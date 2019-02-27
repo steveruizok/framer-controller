@@ -32,7 +32,7 @@ export const myButton: Override = () => ({
 });
 ```
 
-## The problem: Framer X's Data property
+### Data in Framer X
 
 In Framer X, we use a `Data` object to track properties that may change over time. When that `Data` object changes, any components with properties set from that object will re-render with the current values.
 
@@ -61,7 +61,7 @@ In the example above, we might assign the `myFrame` override to one frame and `m
 
 This pattern works well, however it can get very complicated to manage.
 
-## The solution: a state Controller
+### A data Controller
 
 A `Controller` instance allows us to better handle these sorts of changes. Under the hood, a `Controller` implements the above pattern: it has an internal `Data` object and passes the properties of this object to Frames through overrides. The code below will produce exactly the same results as our previous example.
 
@@ -94,7 +94,7 @@ Though it seems very similar to using the `Data` object directly, this pattern w
 
 The `Controller` gives us a lot of control over our state.
 
-### Going further: State History
+### State History
 
 As an out-of-the-box example, the `Controller` class supports a stacked history: each time we change the state (through `controller.setState`), we add a new snapshot of the controller's state to its `history`. We can move our `historyPosition` up and down in this stack using the `undo` and `redo` methods (along with the `traverseHistory` and `setHistoryPosition` methods that support these), loading whichever state is in our current position.
 
