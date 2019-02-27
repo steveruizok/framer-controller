@@ -1,0 +1,40 @@
+{
+	"name": "framer-controller",
+	"version": "1.2.2",
+	"description": "Control a Framer X component through overrides.",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"build": "tsc",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/steveruizok/framer-controller.git"
+	},
+	"keywords": [
+		"framer",
+		"framer",
+		"x",
+		"react",
+		"overrides"
+	],
+	"author": "Steve Ruiz",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/steveruizok/framer-controller/issues"
+	},
+	"homepage": "https://github.com/steveruizok/framer-controller#readme",
+	"dependencies": {
+		"@types/react": "^16.8.5",
+		"@types/react-dom": "^16.8.2",
+		"framer": "^0.10.8"
+	},
+	"devDependencies": {
+		"eventemitter3": "^3.1.0",
+		"immutable": "^4.0.0-rc.12",
+		"react": "^16.8.3",
+		"react-dom": "^16.8.3",
+		"typescript": "^3.3.3333"
+	}
+}
