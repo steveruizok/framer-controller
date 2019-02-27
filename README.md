@@ -2,7 +2,35 @@
 
 Control Framer X code components through overrides.
 
+# Installation
+
+`npm install framer-controller`
+
+- Open your Framer X project's project folder (File > Show Project Folder) in a [terminal window](https://itunes.apple.com/gb/app/go2shell/id445770608?mt=12).
+- Type `npm install framer-controller` and press enter.
+
 # Usage
+
+Create `Controller` instances in an overrides file and use them to control overrides for your components.
+
+```tsx
+import { Override } from "framer";
+import { Controller } from "framer-controller";
+
+const controller = new Controller({
+	width: 200
+});
+
+export const myFrame: Override = () => controller.state;
+
+export const myButton: Override = () => ({
+	onClick() {
+		controller.setState({
+			width: 100 + Math.random() * 200
+		});
+	}
+});
+```
 
 ## The problem: Framer X's Data property
 
