@@ -17,7 +17,7 @@ class Controller {
      * @param {Options<T>} [initial={}]
      * @memberof Controller
      */
-    constructor(initial = {}) {
+    constructor(props) {
         this._state = framer_1.Data({});
         this._historyPosition = 0;
         this._history = [];
@@ -28,7 +28,21 @@ class Controller {
          */
         this.animationOptions = {
             tension: 250,
-            friction: 25
+            friction: 25,
+        };
+        /**
+         * @description - Connect this controller to a component. This method should be called from a component's `onComponentDidMount` method.
+         * @param {*} component - The component to connect.
+         * @example
+         * componentDidMount() {
+         * 	if (this.props.controller) {
+         * 		this.props.controller.connect(this);
+         * 	}
+         * }
+         */
+        this.connect = (component) => {
+            this._controlled = component;
+            console.log('conncted', component);
         };
         /**
          * @description Set the controller's state. The new state will be passed to the managed component as props. Setting state adds the new state to the controller's history and increments the controller's history position.
@@ -52,7 +66,7 @@ class Controller {
         this.animate = (state, options, callback) => {
             for (let prop in state) {
                 let value = this.state[prop];
-                if (value.constructor.name === "AnimatableValue") {
+                if (value.constructor.name === 'AnimatableValue') {
                     framer_1.animate.spring(this._state[prop], state[prop], options || this.animationOptions);
                     state[prop] = framer_1.Animatable(value.get());
                 }
@@ -90,15 +104,23 @@ class Controller {
             let state = this.history[this.historyPosition];
             for (let prop in state) {
                 let value = this.state[prop];
-                if (value.constructor.name === "AnimatableValue") {
+                if (value.constructor.name === 'AnimatableValue') {
                     framer_1.animate.spring(this._state[prop], state[prop].get(), this.animationOptions);
                 }
             }
+            this.updateState(state, callback);
+            return position;
+        };
+        /**
+         * @description Update the component's state (without modifying history).
+         * @param {Options} state - The changes you wish to make to the controller's state.
+         * @param {(state: Options<T>, position: number) => void} [callback] - An optional callback function to run after the new state has loaded.
+         */
+        this.updateState = (state = {}, callback) => {
             Object.assign(this._state, state);
             if (callback) {
                 window.setTimeout(() => callback(this.state, this.historyPosition), 80);
             }
-            return position;
         };
         /**
          * @description - Clears the controller's history, and starts a new history with the current state.
@@ -129,6 +151,8 @@ class Controller {
             }
             return this.historyPosition;
         };
+        const initial = props;
+        initial.controller = this;
         this._state = framer_1.Data(initial);
         this._history = [initial];
     }
@@ -158,4 +182,6 @@ class Controller {
         return this._state;
     }
 }
-exports.Controller = Controller;
+exports.default = Controller;
+var PageComponentController_1 = require("./PageComponentController");
+exports.PageComponentController = PageComponentController_1.PageComponentController;

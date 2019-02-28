@@ -1,7 +1,8 @@
-import { Data, animate, Animatable } from "framer";
-export type WithManager<T> = T & { controller?: any };
-export type Options<T> = Partial<WithManager<T>>;
-export type AnimateOptions<T> = { [P in keyof T]?: any };
+import { Data, animate, Animatable } from 'framer'
+
+type WithManager<T> = T & { controller?: any }
+type Options<T> = Partial<WithManager<T>>
+type AnimateOptions<T> = { [P in keyof T]?: any }
 
 /**
  * A Controller manages a component's props.
@@ -14,11 +15,11 @@ export type AnimateOptions<T> = { [P in keyof T]?: any };
  * @template T - The controlled component's props.
  */
 
-export class Controller<T = {}> {
-	_state: Options<T> = Data({});
-	_historyPosition = 0;
-	_history: Options<T>[] = [];
-	_controlled: any;
+class Controller<T = {}> {
+	_state: Options<T> = Data({})
+	_historyPosition = 0
+	_history: Options<T>[] = []
+	_controlled: any
 
 	/**
 	 * The animation options to use for internal animations (e.g. when moving to a history state)
@@ -27,8 +28,8 @@ export class Controller<T = {}> {
 	 */
 	animationOptions = {
 		tension: 250,
-		friction: 25
-	};
+		friction: 25,
+	}
 
 	/**
 	 * Creates a new instance of Controller.
@@ -36,10 +37,10 @@ export class Controller<T = {}> {
 	 * @memberof Controller
 	 */
 	constructor(props: T) {
-		const initial: Options<T> = props;
-		initial.controller = this;
-		this._state = Data(initial);
-		this._history = [initial];
+		const initial: Options<T> = props
+		initial.controller = this
+		this._state = Data(initial)
+		this._history = [initial]
 	}
 
 	/**
@@ -53,9 +54,9 @@ export class Controller<T = {}> {
 	 * }
 	 */
 	connect = (component: any) => {
-		this._controlled = component;
-		console.log("conncted", component);
-	};
+		this._controlled = component
+		console.log('conncted', component)
+	}
 
 	/**
 	 * @description Set the controller's state. The new state will be passed to the managed component as props. Setting state adds the new state to the controller's history and increments the controller's history position.
@@ -67,11 +68,11 @@ export class Controller<T = {}> {
 		state: Options<T> = {},
 		callback?: (state: T, position: number) => void
 	): number => {
-		const next = { ...(this.state as object), ...(state as object) };
-		this._history = this.history.slice(0, this.historyPosition + 1);
-		this._history.push(next);
-		return this.traverseHistory(1, callback);
-	};
+		const next = { ...(this.state as object), ...(state as object) }
+		this._history = this.history.slice(0, this.historyPosition + 1)
+		this._history.push(next)
+		return this.traverseHistory(1, callback)
+	}
 
 	/**
 	 * @description Set the controller's state, animating any animatable values.
@@ -86,33 +87,33 @@ export class Controller<T = {}> {
 		callback?: (state: T, position: number) => void
 	): number => {
 		for (let prop in state) {
-			let value = this.state[prop];
-			if (value.constructor.name === "AnimatableValue") {
+			let value = this.state[prop]
+			if (value.constructor.name === 'AnimatableValue') {
 				animate.spring(
 					this._state[prop] as any,
 					state[prop],
 					options || this.animationOptions
-				);
-				state[prop] = Animatable((value as any).get());
+				)
+				state[prop] = Animatable((value as any).get())
 			} else {
-				this._state[prop] = state[prop];
+				this._state[prop] = state[prop]
 			}
 		}
 
-		const next = { ...(this.state as object), ...(state as object) };
-		this._history = this.history.slice(0, this.historyPosition + 1);
-		this._history.push(next);
-		this._historyPosition++;
+		const next = { ...(this.state as object), ...(state as object) }
+		this._history = this.history.slice(0, this.historyPosition + 1)
+		this._history.push(next)
+		this._historyPosition++
 
 		if (callback) {
 			window.setTimeout(
 				() => callback(this.state as T, this.historyPosition),
 				80
-			);
+			)
 		}
 
-		return this.historyPosition;
-	};
+		return this.historyPosition
+	}
 
 	/**
 	 * @description - Traverse the controller's history by a certain amount (delta). The controller will load the state stored at the new position.
@@ -124,8 +125,8 @@ export class Controller<T = {}> {
 		delta: number = 0,
 		callback?: (state: T, position: number) => void
 	): number => {
-		return this.setHistoryPosition(this.historyPosition + delta, callback);
-	};
+		return this.setHistoryPosition(this.historyPosition + delta, callback)
+	}
 
 	/**
 	 * @description - Set the controller's history position.
@@ -137,26 +138,26 @@ export class Controller<T = {}> {
 		position: number = 0,
 		callback?: (state: T, position: number) => void
 	): number => {
-		position = Math.max(Math.min(position, this.history.length - 1), 0);
-		this._historyPosition = position;
+		position = Math.max(Math.min(position, this.history.length - 1), 0)
+		this._historyPosition = position
 
-		let state = this.history[this.historyPosition] as Options<T>;
+		let state = this.history[this.historyPosition] as Options<T>
 
 		for (let prop in state) {
-			let value = this.state[prop];
-			if (value.constructor.name === "AnimatableValue") {
+			let value = this.state[prop]
+			if (value.constructor.name === 'AnimatableValue') {
 				animate.spring(
 					this._state[prop] as any,
 					state[prop].get(),
 					this.animationOptions
-				);
+				)
 			}
 		}
 
-		this.updateState(state, callback);
+		this.updateState(state, callback)
 
-		return position;
-	};
+		return position
+	}
 
 	/**
 	 * @description Update the component's state (without modifying history).
@@ -167,25 +168,25 @@ export class Controller<T = {}> {
 		state: Options<T> = {},
 		callback?: (state: Options<T>, position: number) => void
 	): void => {
-		Object.assign(this._state, state);
+		Object.assign(this._state, state)
 
 		if (callback) {
 			window.setTimeout(
 				() => callback(this.state as Options<T>, this.historyPosition),
 				80
-			);
+			)
 		}
-	};
+	}
 
 	/**
 	 * @description - Clears the controller's history, and starts a new history with the current state.
 	 * @returns {number} - The controller's new history position.
 	 */
 	clearHistory = (): number => {
-		this._history = [this.state];
-		this._historyPosition = 0;
-		return this._historyPosition;
-	};
+		this._history = [this.state]
+		this._historyPosition = 0
+		return this._historyPosition
+	}
 
 	/**
 	 * @description - Load the previous state from the controller's history, if there is one.
@@ -193,10 +194,10 @@ export class Controller<T = {}> {
 	 */
 	undo = (): number => {
 		if (this.historyPosition > 0) {
-			this.traverseHistory(-1);
+			this.traverseHistory(-1)
 		}
-		return this.historyPosition;
-	};
+		return this.historyPosition
+	}
 
 	/**
 	 * @description - Load the next state from the controller's history, if there is one.
@@ -204,10 +205,10 @@ export class Controller<T = {}> {
 	 */
 	redo = (): number => {
 		if (this.historyPosition < this.history.length - 1) {
-			this.traverseHistory(1);
+			this.traverseHistory(1)
 		}
-		return this.historyPosition;
-	};
+		return this.historyPosition
+	}
 
 	/**
 	 * @description - The controller's array of history states.
@@ -216,7 +217,7 @@ export class Controller<T = {}> {
 	 * @memberof Controller
 	 */
 	get history(): Options<T>[] {
-		return this._history;
+		return this._history
 	}
 
 	/**
@@ -225,7 +226,7 @@ export class Controller<T = {}> {
 	 * @memberof Controller
 	 */
 	get historyPosition(): number {
-		return this._historyPosition;
+		return this._historyPosition
 	}
 
 	/**
@@ -234,6 +235,9 @@ export class Controller<T = {}> {
 	 * @memberof Controller
 	 */
 	get state() {
-		return this._state;
+		return this._state
 	}
 }
+
+export default Controller
+export { PageComponentController } from './PageComponentController'

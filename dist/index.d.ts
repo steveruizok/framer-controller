@@ -1,6 +1,9 @@
-export declare type Options<T> = Partial<T>;
-export declare type AnimateOptions<T> = {
-    [key in keyof T]: any;
+declare type WithManager<T> = T & {
+    controller?: any;
+};
+declare type Options<T> = Partial<WithManager<T>>;
+declare type AnimateOptions<T> = {
+    [P in keyof T]?: any;
 };
 /**
  * A Controller manages a component's props.
@@ -12,10 +15,11 @@ export declare type AnimateOptions<T> = {
  * @author Steve Ruiz
  * @template T - The controlled component's props.
  */
-export declare class Controller<T extends object> {
+declare class Controller<T = {}> {
     _state: Options<T>;
     _historyPosition: number;
     _history: Options<T>[];
+    _controlled: any;
     /**
      * The animation options to use for internal animations (e.g. when moving to a history state)
      *
@@ -30,14 +34,25 @@ export declare class Controller<T extends object> {
      * @param {Options<T>} [initial={}]
      * @memberof Controller
      */
-    constructor(initial?: Options<T>);
+    constructor(props: T);
+    /**
+     * @description - Connect this controller to a component. This method should be called from a component's `onComponentDidMount` method.
+     * @param {*} component - The component to connect.
+     * @example
+     * componentDidMount() {
+     * 	if (this.props.controller) {
+     * 		this.props.controller.connect(this);
+     * 	}
+     * }
+     */
+    connect: (component: any) => void;
     /**
      * @description Set the controller's state. The new state will be passed to the managed component as props. Setting state adds the new state to the controller's history and increments the controller's history position.
      * @param {Options} state - The changes you wish to make to the controller's state.
      * @param {(state: Options<T>, position: number) => void} [callback] - An optional callback function to run after the new state has loaded.
      * @returns {number} - The controller's new history position.
      */
-    setState: (state?: Partial<T>, callback?: (state: T, position: number) => void) => number;
+    setState: (state?: Partial<WithManager<T>>, callback?: (state: T, position: number) => void) => number;
     /**
      * @description Set the controller's state, animating any animatable values.
      * @param {Partial<AnimateOptions<T>>} state - The changes you wish to make to the controller's state.
@@ -60,6 +75,12 @@ export declare class Controller<T extends object> {
      * @returns {number} - The controller's new history position.
      */
     setHistoryPosition: (position?: number, callback?: (state: T, position: number) => void) => number;
+    /**
+     * @description Update the component's state (without modifying history).
+     * @param {Options} state - The changes you wish to make to the controller's state.
+     * @param {(state: Options<T>, position: number) => void} [callback] - An optional callback function to run after the new state has loaded.
+     */
+    updateState: (state?: Partial<WithManager<T>>, callback?: (state: Partial<WithManager<T>>, position: number) => void) => void;
     /**
      * @description - Clears the controller's history, and starts a new history with the current state.
      * @returns {number} - The controller's new history position.
@@ -93,5 +114,7 @@ export declare class Controller<T extends object> {
      * @readonly
      * @memberof Controller
      */
-    readonly state: Partial<T>;
+    readonly state: Partial<WithManager<T>>;
 }
+export default Controller;
+export { PageComponentController } from './PageComponentController';
