@@ -2,9 +2,6 @@ declare type WithManager<T> = T & {
     controller?: any;
 };
 declare type Options<T> = Partial<WithManager<T>>;
-declare type AnimateOptions<T> = {
-    [P in keyof T]?: any;
-};
 /**
  * A Controller manages a component's props.
  * It maintains a state that can be easily changed and which it passes to a controlled component as props.
@@ -20,15 +17,6 @@ declare class Controller<T = {}> {
     _historyPosition: number;
     _history: Options<T>[];
     _controlled: any;
-    /**
-     * The animation options to use for internal animations (e.g. when moving to a history state)
-     *
-     * @memberof Controller
-     */
-    animationOptions: {
-        tension: number;
-        friction: number;
-    };
     /**
      * Creates a new instance of Controller.
      * @param {Options<T>} [initial={}]
@@ -53,14 +41,6 @@ declare class Controller<T = {}> {
      * @returns {number} - The controller's new history position.
      */
     setState: (state?: Partial<WithManager<T>>, callback?: (state: T, position: number) => void) => number;
-    /**
-     * @description Set the controller's state, animating any animatable values.
-     * @param {Partial<AnimateOptions<T>>} state - The changes you wish to make to the controller's state.
-     * @param {any} [options] - The spring animation options you wish to use.
-     * @param {(state: T, position: number) => void} [callback] - An optional callback function to run after the new state has loaded.
-     * @returns {number} - The controller's new history position.
-     */
-    animate: (state: Partial<AnimateOptions<T>>, options?: AnimateOptions<T>, callback?: (state: T, position: number) => void) => number;
     /**
      * @description - Traverse the controller's history by a certain amount (delta). The controller will load the state stored at the new position.
      * @param {number} delta - The number of steps forward (positive) or backward (negative) to move the controller's history position.

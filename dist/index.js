@@ -22,15 +22,6 @@ class Controller {
         this._historyPosition = 0;
         this._history = [];
         /**
-         * The animation options to use for internal animations (e.g. when moving to a history state)
-         *
-         * @memberof Controller
-         */
-        this.animationOptions = {
-            tension: 250,
-            friction: 25,
-        };
-        /**
          * @description - Connect this controller to a component. This method should be called from a component's `onComponentDidMount` method.
          * @param {*} component - The component to connect.
          * @example
@@ -57,33 +48,6 @@ class Controller {
             return this.traverseHistory(1, callback);
         };
         /**
-         * @description Set the controller's state, animating any animatable values.
-         * @param {Partial<AnimateOptions<T>>} state - The changes you wish to make to the controller's state.
-         * @param {any} [options] - The spring animation options you wish to use.
-         * @param {(state: T, position: number) => void} [callback] - An optional callback function to run after the new state has loaded.
-         * @returns {number} - The controller's new history position.
-         */
-        this.animate = (state, options, callback) => {
-            for (let prop in state) {
-                let value = this.state[prop];
-                if (value.constructor.name === 'AnimatableValue') {
-                    framer_1.animate.spring(this._state[prop], state[prop], options || this.animationOptions);
-                    state[prop] = framer_1.Animatable(value.get());
-                }
-                else {
-                    this._state[prop] = state[prop];
-                }
-            }
-            const next = Object.assign({}, this.state, state);
-            this._history = this.history.slice(0, this.historyPosition + 1);
-            this._history.push(next);
-            this._historyPosition++;
-            if (callback) {
-                window.setTimeout(() => callback(this.state, this.historyPosition), 80);
-            }
-            return this.historyPosition;
-        };
-        /**
          * @description - Traverse the controller's history by a certain amount (delta). The controller will load the state stored at the new position.
          * @param {number} delta - The number of steps forward (positive) or backward (negative) to move the controller's history position.
          * @param {(state: Options<T>, position: number) => void} [callback] - An optional callback function to run after the new state has loaded.
@@ -102,12 +66,6 @@ class Controller {
             position = Math.max(Math.min(position, this.history.length - 1), 0);
             this._historyPosition = position;
             let state = this.history[this.historyPosition];
-            for (let prop in state) {
-                let value = this.state[prop];
-                if (value.constructor.name === 'AnimatableValue') {
-                    framer_1.animate.spring(this._state[prop], state[prop].get(), this.animationOptions);
-                }
-            }
             this.updateState(state, callback);
             return position;
         };
@@ -119,7 +77,7 @@ class Controller {
         this.updateState = (state = {}, callback) => {
             Object.assign(this._state, state);
             if (callback) {
-                window.setTimeout(() => callback(this.state, this.historyPosition), 80);
+                window.setTimeout(() => callback.bind(this)(this.state, this.historyPosition), 150);
             }
         };
         /**

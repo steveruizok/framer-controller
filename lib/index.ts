@@ -1,8 +1,7 @@
-import { Data, animate, Animatable } from 'framer'
+import { Data } from 'framer'
 
 type WithManager<T> = T & { controller?: any }
 type Options<T> = Partial<WithManager<T>>
-type AnimateOptions<T> = { [P in keyof T]?: any }
 
 /**
  * A Controller manages a component's props.
@@ -20,16 +19,6 @@ class Controller<T = {}> {
 	_historyPosition = 0
 	_history: Options<T>[] = []
 	_controlled: any
-
-	/**
-	 * The animation options to use for internal animations (e.g. when moving to a history state)
-	 *
-	 * @memberof Controller
-	 */
-	animationOptions = {
-		tension: 250,
-		friction: 25,
-	}
 
 	/**
 	 * Creates a new instance of Controller.
@@ -75,47 +64,6 @@ class Controller<T = {}> {
 	}
 
 	/**
-	 * @description Set the controller's state, animating any animatable values.
-	 * @param {Partial<AnimateOptions<T>>} state - The changes you wish to make to the controller's state.
-	 * @param {any} [options] - The spring animation options you wish to use.
-	 * @param {(state: T, position: number) => void} [callback] - An optional callback function to run after the new state has loaded.
-	 * @returns {number} - The controller's new history position.
-	 */
-	animate = (
-		state: Partial<AnimateOptions<T>>,
-		options?: AnimateOptions<T>,
-		callback?: (state: T, position: number) => void
-	): number => {
-		for (let prop in state) {
-			let value = this.state[prop]
-			if (value.constructor.name === 'AnimatableValue') {
-				animate.spring(
-					this._state[prop] as any,
-					state[prop],
-					options || this.animationOptions
-				)
-				state[prop] = Animatable((value as any).get())
-			} else {
-				this._state[prop] = state[prop]
-			}
-		}
-
-		const next = { ...(this.state as object), ...(state as object) }
-		this._history = this.history.slice(0, this.historyPosition + 1)
-		this._history.push(next)
-		this._historyPosition++
-
-		if (callback) {
-			window.setTimeout(
-				() => callback(this.state as T, this.historyPosition),
-				80
-			)
-		}
-
-		return this.historyPosition
-	}
-
-	/**
 	 * @description - Traverse the controller's history by a certain amount (delta). The controller will load the state stored at the new position.
 	 * @param {number} delta - The number of steps forward (positive) or backward (negative) to move the controller's history position.
 	 * @param {(state: Options<T>, position: number) => void} [callback] - An optional callback function to run after the new state has loaded.
@@ -143,17 +91,6 @@ class Controller<T = {}> {
 
 		let state = this.history[this.historyPosition] as Options<T>
 
-		for (let prop in state) {
-			let value = this.state[prop]
-			if (value.constructor.name === 'AnimatableValue') {
-				animate.spring(
-					this._state[prop] as any,
-					state[prop].get(),
-					this.animationOptions
-				)
-			}
-		}
-
 		this.updateState(state, callback)
 
 		return position
@@ -172,8 +109,9 @@ class Controller<T = {}> {
 
 		if (callback) {
 			window.setTimeout(
-				() => callback(this.state as Options<T>, this.historyPosition),
-				80
+				() =>
+					callback.bind(this)(this.state as Options<T>, this.historyPosition),
+				150
 			)
 		}
 	}

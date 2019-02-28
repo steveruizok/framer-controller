@@ -182,39 +182,6 @@ export const myButton: Override = () => ({
 })
 ```
 
-### Animations
-
-A controller can keep track of animations as well. We can
-
-```tsx
-import { Override, Animatable } from 'framer'
-import { Controller } from 'framer-controller'
-
-const controller = new Controller({
-	width: Animatable(200),
-})
-
-export const myFrame: Override = () => controller.state
-
-export const myButton: Override = () => ({
-	onClick() {
-		controller.animate(
-			{
-				width: 100 + Math.random() * 200,
-			},
-			{
-				tension: 500,
-				friction: 100,
-			}
-		)
-	},
-})
-```
-
-Note that, when moving through history, the controller will use its
-`Controller.animationOptions` property for the transition of Animatable
-properties.
-
 ### Callbacks
 
 We may sometimes need to run a second function after our new state takes effect.
