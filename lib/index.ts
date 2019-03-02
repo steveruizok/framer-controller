@@ -1,6 +1,7 @@
 import { Data } from 'framer'
 
-type WithManager<T> = T & { controller?: any }
+type WithLoader<T> = T & { onLoad?: (state: T) => void }
+type WithManager<T> = WithLoader<T> & { controller?: any }
 type Options<T> = Partial<WithManager<T>>
 
 /**
@@ -11,26 +12,50 @@ type Options<T> = Partial<WithManager<T>>
  *
  * @class Controller
  * @author Steve Ruiz
- * @template T - The controlled component's props.
+ * @template T - An interface for the controlled component's state.
  */
 
-class Controller<T = {}> {
-	_state: Options<T> = Data({})
-	_historyPosition = 0
-	_history: Options<T>[] = []
-	_controlled: any
+class Controller<T> {
+	protected _state: Options<T> = Data({})
+	protected _historyPosition = 0
+	protected _history: Options<T>[] = []
+	protected _controlled = undefined
+	protected defaultProps: Partial<Options<T>> = {}
 
 	/**
 	 * Creates a new instance of Controller.
-	 * @param {Options<T>} [initial={}]
+	 * @param {T} initial - The initial state of the controller.
 	 * @memberof Controller
 	 */
-	constructor(props: T) {
-		const initial: Options<T> = props
-		initial.controller = this
-		this._state = Data(initial)
-		this._history = [initial]
+	constructor(initial: T) {
+		const initialState: Options<T> = { ...this.defaultProps, ...initial }
+		initialState.controller = this
+		this._state = Data(initialState)
+		this._history = [initialState]
+		this.onLoad(initialState)
 	}
+
+	protected onLoad(state: Options<T>) {}
+
+	protected onUpdate(state: Options<T>) {}
+
+	/* ------------------------------- Life Cycle ------------------------------- */
+
+	/**
+	 * A controller's onLoad method is designed to be overwritten.
+	 * @param {T} initialState - The component's initial state.
+	 * @memberof Controller
+	 */
+	// onLoad(initialState: Options<T>): void {}
+
+	/**
+	 * A controller's onUpdate fires whenever its state changes.
+	 * @param {T} state - The component's current state.
+	 * @memberof Controller
+	 */
+	// onUpdate(state: Options<T>): void {}
+
+	/* ------------------------------- End Life Cycle ------------------------------- */
 
 	/**
 	 * @description - Connect this controller to a component. This method should be called from a component's `onComponentDidMount` method.
@@ -41,10 +66,11 @@ class Controller<T = {}> {
 	 * 		this.props.controller.connect(this);
 	 * 	}
 	 * }
+	 * @memberof Controller
 	 */
 	connect = (component: any) => {
 		this._controlled = component
-		console.log('conncted', component)
+		console.log('Connected', this.constructor.name, component)
 	}
 
 	/**
@@ -52,6 +78,7 @@ class Controller<T = {}> {
 	 * @param {Options} state - The changes you wish to make to the controller's state.
 	 * @param {(state: Options<T>, position: number) => void} [callback] - An optional callback function to run after the new state has loaded.
 	 * @returns {number} - The controller's new history position.
+	 * @memberof Controller
 	 */
 	setState = (
 		state: Options<T> = {},
@@ -106,6 +133,7 @@ class Controller<T = {}> {
 		callback?: (state: Options<T>, position: number) => void
 	): void => {
 		Object.assign(this._state, state)
+		this.onUpdate(this.state)
 
 		if (callback) {
 			window.setTimeout(
@@ -179,3 +207,4 @@ class Controller<T = {}> {
 
 export default Controller
 export { PageComponentController } from './PageComponentController'
+export { PlacesController } from './PlacesController'

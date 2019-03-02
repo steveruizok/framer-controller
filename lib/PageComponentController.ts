@@ -1,97 +1,135 @@
 import Controller from './index'
 
+interface Props {
+	currentPage?: number
+	totalPages?: number
+}
+
 /**
  * A controller for Framer X's Page component.
- *
- * @export
- * @class PageComponentController
- * @extends {Controller<{
- * 	currentPage: number
- * }>}
  */
-export class PageComponentController extends Controller<{
-	currentPage: number
-}> {
-	pagesTotal = Infinity
+export class PageComponentController extends Controller<Props> {
+	constructor(props: Props = {}) {
+		super({
+			currentPage: 0,
+			totalPages: Infinity,
+			...props,
+		})
+	}
 
 	/**
 	 * An event handler that syncs a page component with the controller.
 	 * @param {number} currentPage - The pager's current page.
+   * @example 
+   * ```
+const isPager: Override = (props) => {
+  controller.setTotalPages(props)
+  return {
+    currentPage: controller.state.currentPage,
+    onChangePage: controller.syncCurrentPage
+  }
+}```
 	 */
-	onChangePage = (currentPage: number) => {
+	syncCurrentPage = (currentPage: number) => {
 		if (currentPage === this.state.currentPage) return
 		this.setState({ currentPage })
 	}
 
 	/**
-	 * @description - Change the pager's current page by a given number of pages.
-	 * @param {number} delta - How far forward or backward to move.
-	 * @memberof PageComponentController
-	 */
-	changePage = (delta: number) => {
-		let next = this.state.currentPage + delta
-		this.setPage(next)
-	}
-
-	/**
-	 * @description - Set the pager's current page.
-	 * @param {number} currentPage - The new current page
-	 * @memberof PageComponentController
-	 */
-	setPage = (currentPage: number) => {
-		if (currentPage >= 0 && currentPage < this.pagesTotal) {
-			this.setState({
-				currentPage,
-			})
-		}
-	}
-
-	/**
-	 * @description - Set the total number of pages.
-	 * @param {*} props - Either a number or the props of a page component.
-	 * @memberof PageComponentController
-	 */
+	 * Set the total number of pages in the controller.
+	 * @param {*} props - Either the `number` of pages or the props of a page component.
+   * @example
+   * ```
+const isPager: Override = (props) => {
+  controller.setTotalPages(props)
+  return {
+    currentPage: controller.state.currentPage,
+    onChangePage: controller.syncCurrentPage
+  }
+}```
+      */
 	setTotalPages = (props: any) => {
+		let totalPages: number
 		if (typeof props === 'number') {
-			this.pagesTotal = props
+			totalPages = props
 		} else if (props.children) {
-			this.pagesTotal = props.children[0].props.children.length
+			totalPages = props.children[0].props.children.length
 		} else {
 			console.warn(
 				'PageComponentController.setTotalPages expects either a number or the props from a page component.'
 			)
 		}
+
+		if (totalPages !== this.totalPages) {
+			this.setState({
+				totalPages,
+			})
+		}
 	}
 
 	/**
-	 * @description - Move to the next page.
-	 * @memberof PageComponentController
+	 * Change the pager's current page number by a given number of pages.
+	 * @param {number} delta - How far forward or backward to move.
+	 */
+	changePage = (delta: number) => {
+		let next = this.state.currentPage + delta
+		return this.setPage(next)
+	}
+
+	/**
+	 *  Set the pager's current page to a given number.
+	 * @param {number} currentPage - The new current page
+	 */
+	setPage = (currentPage: number) => {
+		if (currentPage >= 0 && currentPage < this.state.totalPages) {
+			this.setState({ currentPage })
+		}
+
+		return this.currentPage
+	}
+
+	/**
+	 * Move to the next page.
 	 */
 	nextPage = () => {
-		this.changePage(1)
+		return this.changePage(1)
 	}
 
 	/**
-	 * @description = Move to the previous page.
-	 * @memberof PageComponentController
+	 * Move to the previous page.
 	 */
 	prevPage = () => {
-		this.changePage(-1)
+		return this.changePage(-1)
 	}
 
 	/**
-	 * @description - The pager's progress from beginning (0) to end (1).
-	 * @memberof PageComponentController
+	 * Get or set the controller's progress from the first page (0) to
+	 * the last page (1).
 	 */
 	get progress() {
-		return this.state.currentPage / (this.pagesTotal - 1)
+		return this.state.currentPage / (this.state.totalPages - 1)
+	}
+
+	set progress(progress: number) {
+		const { totalPages } = this.state
+		progress = Math.max(Math.min(progress, 1), 0)
+		this.setPage(Math.round((totalPages - 1) * progress))
 	}
 
 	/**
-	 * @description - Set the pager's page using progress, rather than a given page number.
-	 * @memberof PageComponentController
+	 * Get or set the controller's `state.currentPage` value.
+	 * The result will be clamped between zero and the total
+	 * number of pages.
 	 */
-	set progress(progress: number) {
-		this.setPage(Math.round((this.pagesTotal - 1) * progress))
+	get currentPage() {
+		return this.state.currentPage
+	}
+
+	set currentPage(currentPage: number) {
+		this.setPage(currentPage)
+	}
+
+	get totalPages() {
+		return this.state.totalPages
 	}
 }
