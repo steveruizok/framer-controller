@@ -26,6 +26,11 @@
   resolved "https://registry.framer.com/@framer/steveruizok.classy-inputs/-/@framer/steveruizok.classy-inputs-1.7.0.tgz#81ffd6232febd7be82eaba7e98b1d9a295b5d1bd"
   integrity sha1-gf/WIy/r176C6rp+mLHZopW10b0=
 
+"@framer/steveruizok.layout@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.framer.com/@framer/steveruizok.layout/-/@framer/steveruizok.layout-1.3.0.tgz#22b5883b8a3ebc86274d79a2e2d029251c86876b"
+  integrity sha1-IrWIO4o+vIYnTXmi4tApJRyGh2s=
+
 "@mapbox/geojson-area@0.2.2":
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/@mapbox/geojson-area/-/geojson-area-0.2.2.tgz#18d7814aa36bf23fbbcc379f8e26a22927debf10"
@@ -89,6 +94,21 @@
   version "15.5.6"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.6.tgz#9c03d3fed70a8d517c191b7734da2879b50ca26c"
   integrity sha512-ZBFR7TROLVzCkswA3Fmqq+IIJt62/T7aY/Dmz+QkU7CaW2QFqAitCE8Ups7IzmGhcN1YWMBT4Qcoc07jU9hOJQ==
+
+"@types/react-dom@^16.8.2":
+  version "16.8.2"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.8.2.tgz#9bd7d33f908b243ff0692846ef36c81d4941ad12"
+  integrity sha512-MX7n1wq3G/De15RGAAqnmidzhr2Y9O/ClxPxyqaNg96pGyeXUYPSvujgzEVpLo9oIP4Wn1UETl+rxTN02KEpBw==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react@*", "@types/react@^16.8.5":
+  version "16.8.6"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.6.tgz#fa1de3fe56cc9b6afeddc73d093d7f30fd5e31cc"
+  integrity sha512-bN9qDjEMltmHrl0PZRI4IF2AbB7V5UlRfG+OOduckVnRQ4VzXVSzy/1eLAh778IEqhTnW0mmgL9yShfinNverA==
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^2.2.0"
 
 "@types/react@^16.4.16":
   version "16.4.16"
@@ -160,6 +180,20 @@ expect.js@~0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/expect.js/-/expect.js-0.2.0.tgz#1028533d2c1c363f74a6796ff57ec0520ded2be1"
   integrity sha1-EChTPSwcNj90pnlv9X7AUg3tK+E=
+
+framer-controller@^1.3.7:
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/framer-controller/-/framer-controller-1.3.7.tgz#9fc2f1f5714e51dc605281948ecb746e2a250426"
+  integrity sha512-KIXoKuAxJ9dspi4SNTXBz/uQChy4OqI/CPROe5max6KVob/S9L/lCe7eHJySmrN/8S3xeOc08FO6rXwvuq7cKg==
+  dependencies:
+    "@types/react" "^16.8.5"
+    "@types/react-dom" "^16.8.2"
+    framer "^0.10.8"
+
+framer@^0.10.8:
+  version "0.10.9"
+  resolved "https://registry.yarnpkg.com/framer/-/framer-0.10.9.tgz#6bdf801303ef801a4345d701a3f6098d59231a2c"
+  integrity sha512-pfis3ukgh4btEXtiBlJN4qWvw0ylauouYOrn2SGlVepDjXlQJl9Zut1W9BlhHWFpS6dS6xVjQ6jS8dSoj+pjng==
 
 geojson-vt@^3.2.1:
   version "3.2.1"

@@ -16,6 +16,8 @@
 	"author": "Steve Ruiz",
 	"dependencies": {
 		"@framer/mapbox.mapbox": "^1.2.0",
-		"@framer/steveruizok.classy-inputs": "^1.7.0"
+		"@framer/steveruizok.classy-inputs": "^1.7.0",
+		"@framer/steveruizok.layout": "^1.3.0",
+		"framer-controller": "^1.3.7"
 	}
 }

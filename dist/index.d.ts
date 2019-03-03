@@ -16,11 +16,10 @@ declare type Options<T> = Partial<WithManager<T>>;
  * @template T - An interface for the controlled component's state.
  */
 declare class Controller<T> {
-    protected _state: Options<T>;
-    protected _historyPosition: number;
-    protected _history: Options<T>[];
-    protected _controlled: any;
-    protected defaultProps: Partial<Options<T>>;
+    private _state;
+    private _historyPosition;
+    private _history;
+    private _controlled;
     /**
      * Creates a new instance of Controller.
      * @param {T} initial - The initial state of the controller.
@@ -59,6 +58,10 @@ declare class Controller<T> {
      * @memberof Controller
      */
     setState: (state?: Partial<WithManager<T>>, callback?: (state: T, position: number) => void) => number;
+    /**
+     * Set the state to a given value and clear history.
+     */
+    resetState(state: Options<T>): number;
     /**
      * @description - Traverse the controller's history by a certain amount (delta). The controller will load the state stored at the new position.
      * @param {number} delta - The number of steps forward (positive) or backward (negative) to move the controller's history position.
@@ -117,3 +120,4 @@ declare class Controller<T> {
 export default Controller;
 export { PageComponentController } from './PageComponentController';
 export { PlacesController } from './PlacesController';
+export { FormController } from './FormController';

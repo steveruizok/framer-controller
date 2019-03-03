@@ -21,8 +21,6 @@ class Controller {
         this._state = framer_1.Data({});
         this._historyPosition = 0;
         this._history = [];
-        this._controlled = undefined;
-        this.defaultProps = {};
         /* ------------------------------- Life Cycle ------------------------------- */
         /**
          * A controller's onLoad method is designed to be overwritten.
@@ -104,9 +102,7 @@ class Controller {
          * @returns {number} - The controller's new history position.
          */
         this.clearHistory = () => {
-            this._history = [this.state];
-            this._historyPosition = 0;
-            return this._historyPosition;
+            return this.resetState(this.state);
         };
         /**
          * @description - Load the previous state from the controller's history, if there is one.
@@ -128,7 +124,7 @@ class Controller {
             }
             return this.historyPosition;
         };
-        const initialState = Object.assign({}, this.defaultProps, initial);
+        const initialState = initial;
         initialState.controller = this;
         this._state = framer_1.Data(initialState);
         this._history = [initialState];
@@ -136,6 +132,15 @@ class Controller {
     }
     onLoad(state) { }
     onUpdate(state) { }
+    /**
+     * Set the state to a given value and clear history.
+     */
+    resetState(state) {
+        Object.assign(this._state, state);
+        this._history = [state];
+        this._historyPosition = 0;
+        return this._historyPosition;
+    }
     /**
      * @description - The controller's array of history states.
      * @returns {Options<T>[]} The current history history.
@@ -167,3 +172,5 @@ var PageComponentController_1 = require("./PageComponentController");
 exports.PageComponentController = PageComponentController_1.PageComponentController;
 var PlacesController_1 = require("./PlacesController");
 exports.PlacesController = PlacesController_1.PlacesController;
+var FormController_1 = require("./FormController");
+exports.FormController = FormController_1.FormController;

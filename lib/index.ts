@@ -16,11 +16,10 @@ type Options<T> = Partial<WithManager<T>>
  */
 
 class Controller<T> {
-	protected _state: Options<T> = Data({})
-	protected _historyPosition = 0
-	protected _history: Options<T>[] = []
-	protected _controlled = undefined
-	protected defaultProps: Partial<Options<T>> = {}
+	private _state: Options<T> = Data({})
+	private _historyPosition = 0
+	private _history: Options<T>[] = []
+	private _controlled: any
 
 	/**
 	 * Creates a new instance of Controller.
@@ -28,7 +27,7 @@ class Controller<T> {
 	 * @memberof Controller
 	 */
 	constructor(initial: T) {
-		const initialState: Options<T> = { ...this.defaultProps, ...initial }
+		const initialState: Options<T> = initial
 		initialState.controller = this
 		this._state = Data(initialState)
 		this._history = [initialState]
@@ -91,6 +90,16 @@ class Controller<T> {
 	}
 
 	/**
+	 * Set the state to a given value and clear history.
+	 */
+	resetState(state: Options<T>) {
+		Object.assign(this._state, state)
+		this._history = [state]
+		this._historyPosition = 0
+		return this._historyPosition
+	}
+
+	/**
 	 * @description - Traverse the controller's history by a certain amount (delta). The controller will load the state stored at the new position.
 	 * @param {number} delta - The number of steps forward (positive) or backward (negative) to move the controller's history position.
 	 * @param {(state: Options<T>, position: number) => void} [callback] - An optional callback function to run after the new state has loaded.
@@ -149,9 +158,7 @@ class Controller<T> {
 	 * @returns {number} - The controller's new history position.
 	 */
 	clearHistory = (): number => {
-		this._history = [this.state]
-		this._historyPosition = 0
-		return this._historyPosition
+		return this.resetState(this.state)
 	}
 
 	/**
@@ -208,3 +215,4 @@ class Controller<T> {
 export default Controller
 export { PageComponentController } from './PageComponentController'
 export { PlacesController } from './PlacesController'
+export { FormController } from './FormController'
