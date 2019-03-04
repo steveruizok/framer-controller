@@ -5,10 +5,10 @@ const index_1 = require("./index");
  * Control forms.
  * When creating a form, use an object to define the form's `fields`.
  * For each field, provide a set of optional properties used to
- * determine the field's `entry`:
+ * determine the field's `data` entry:
      * - `defaultValue` - a value for new or reset fields
      * - `required` - a boolean (or method that takes the Form's state and returns a boolean)
-     * - `validation` - method that takes the field's entry value and returns a boolean
+     * - `validation` - method that takes the field's data value and returns a boolean
      * - `errorText` - a string (or method that takes the Form's state and returns a string)
      * - `hidden` - a boolean (or method that takes the Form's state and returns a boolean)
    * @example```
@@ -26,7 +26,7 @@ class FormController extends index_1.default {
     constructor(fields) {
         super({
             fields,
-            entries: Object.keys(fields).reduce((a, id) => (Object.assign({}, a, { [id]: {
+            data: Object.keys(fields).reduce((a, id) => (Object.assign({}, a, { [id]: {
                     value: fields[id].defaultValue,
                     errorText: '',
                     valid: false,
@@ -36,25 +36,25 @@ class FormController extends index_1.default {
             ready: false,
         });
         /**
-         * Set the value of one of the form's entries.
-         * @param {keyof Form['fields']} id - The entry's `id`.
-         * @param {*} value - The entry's new value.
+         * Set the value of one of the form's data entries.
+         * @param {keyof Form['fields']} id - The data entry's `id`.
+         * @param {*} value - The data entry's new value.
          */
         this.setValue = (id, value) => {
-            const { entries } = this.state;
-            const state = this.getComputedState(Object.assign({}, entries, { [id]: Object.assign({}, entries[id], { value }) }));
+            const { data } = this.state;
+            const state = this.getComputedState(Object.assign({}, data, { [id]: Object.assign({}, data[id], { value }) }));
             this.setState(state);
         };
         /**`
          * Reset the form's values. All entrys will be reset to the entry's `defaultValue` or `null`.
          */
         this.reset = () => {
-            const entries = Object.keys(this.state.entries).reduce((a, id) => {
-                let entry = this.state.entries[id];
+            const data = Object.keys(this.state.data).reduce((a, id) => {
+                let entry = this.state.data[id];
                 let field = this.state.fields[id];
                 return Object.assign({}, a, { [id]: Object.assign({}, entry, { value: field.defaultValue || null }) });
             }, {});
-            const state = this.getComputedState(entries);
+            const state = this.getComputedState(data);
             this.setState(state);
         };
         const state = this.getComputedState();
@@ -65,16 +65,15 @@ class FormController extends index_1.default {
      * @param incoming
      */
     getComputedState(incoming = {}) {
-        let { fields, entries } = this.state;
+        let { fields, data } = this.state;
         let ready = true;
         // Merge in new entries
-        entries = Object.assign({}, entries, incoming);
+        data = Object.assign({}, data, incoming);
         // Set value-computed properties
-        entries = Object.keys(entries).reduce((a, id) => {
+        data = Object.keys(data).reduce((a, id) => {
             const field = this.state.fields[id];
-            const entry = entries[id];
+            const { value } = data[id];
             const { validation, errorText: fieldErrorText } = field;
-            const { value } = entry;
             let valid = false;
             let errorText = '';
             // Does the field have value, and does that value pass validation?
@@ -97,9 +96,9 @@ class FormController extends index_1.default {
                 } });
         }, {});
         // Now that the values are all set, set state-computed properties
-        for (let id in entries) {
+        for (let id in data) {
             const field = this.state.fields[id];
-            const entry = entries[id];
+            const entry = data[id];
             entry.hidden =
                 field.hidden === undefined
                     ? false
@@ -107,7 +106,7 @@ class FormController extends index_1.default {
                         ? field.hidden
                         : field.hidden({
                             fields,
-                            entries,
+                            data,
                             ready,
                         });
             entry.required = field.required
@@ -115,7 +114,7 @@ class FormController extends index_1.default {
                     ? field.required
                     : field.required({
                         fields,
-                        entries,
+                        data,
                         ready,
                     })
                 : false;
@@ -127,7 +126,7 @@ class FormController extends index_1.default {
         }
         return {
             fields,
-            entries,
+            data,
             ready,
         };
     }
@@ -137,18 +136,18 @@ class FormController extends index_1.default {
         return this.state.fields;
     }
     /**
-     * The form's entries. For each field, the
+     * The form's data entries. For each field, the
      * - `value` - The entry's value.
      * - `valid` - Whether that value is `valid`, according to its `field.validation`.
      * - `errorText` - Any current `errorText` set on invalid fields.
      * - `required` - Whether the field is currently required.
      * - `hidden` - Whether the field is currently hidden.
      */
-    get entries() {
-        return this.state.entries;
+    get data() {
+        return this.state.data;
     }
     /**
-     * Whether all required entries are valid.
+     * Whether all required data entries are valid.
      */
     get ready() {
         return this.state.ready;

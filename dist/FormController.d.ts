@@ -24,17 +24,17 @@ declare type Entries = {
 };
 interface Form {
     fields: FormFields;
-    entries: Entries;
+    data: Entries;
     ready: boolean;
 }
 /**
  * Control forms.
  * When creating a form, use an object to define the form's `fields`.
  * For each field, provide a set of optional properties used to
- * determine the field's `entry`:
+ * determine the field's `data` entry:
      * - `defaultValue` - a value for new or reset fields
      * - `required` - a boolean (or method that takes the Form's state and returns a boolean)
-     * - `validation` - method that takes the field's entry value and returns a boolean
+     * - `validation` - method that takes the field's data value and returns a boolean
      * - `errorText` - a string (or method that takes the Form's state and returns a string)
      * - `hidden` - a boolean (or method that takes the Form's state and returns a boolean)
    * @example```
@@ -56,9 +56,9 @@ export declare class FormController extends Controller<Form> {
      */
     private getComputedState;
     /**
-     * Set the value of one of the form's entries.
-     * @param {keyof Form['fields']} id - The entry's `id`.
-     * @param {*} value - The entry's new value.
+     * Set the value of one of the form's data entries.
+     * @param {keyof Form['fields']} id - The data entry's `id`.
+     * @param {*} value - The data entry's new value.
      */
     setValue: (id: string | number, value: any) => void;
     /**`
@@ -69,16 +69,16 @@ export declare class FormController extends Controller<Form> {
      * The form's fields. 	 */
     readonly fields: FormFields;
     /**
-     * The form's entries. For each field, the
+     * The form's data entries. For each field, the
      * - `value` - The entry's value.
      * - `valid` - Whether that value is `valid`, according to its `field.validation`.
      * - `errorText` - Any current `errorText` set on invalid fields.
      * - `required` - Whether the field is currently required.
      * - `hidden` - Whether the field is currently hidden.
      */
-    readonly entries: Entries;
+    readonly data: Entries;
     /**
-     * Whether all required entries are valid.
+     * Whether all required data entries are valid.
      */
     readonly ready: boolean;
 }

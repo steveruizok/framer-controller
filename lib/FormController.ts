@@ -26,7 +26,7 @@ type Entries = { [key in keyof FormFields]: Entry }
 
 interface Form {
 	fields: FormFields
-	entries: Entries
+	data: Entries
 	ready: boolean
 }
 
@@ -34,10 +34,10 @@ interface Form {
  * Control forms.
  * When creating a form, use an object to define the form's `fields`. 
  * For each field, provide a set of optional properties used to 
- * determine the field's `entry`:
+ * determine the field's `data` entry:
 	 * - `defaultValue` - a value for new or reset fields
 	 * - `required` - a boolean (or method that takes the Form's state and returns a boolean)
-	 * - `validation` - method that takes the field's entry value and returns a boolean
+	 * - `validation` - method that takes the field's data value and returns a boolean
 	 * - `errorText` - a string (or method that takes the Form's state and returns a string)
 	 * - `hidden` - a boolean (or method that takes the Form's state and returns a boolean)
    * @example```
@@ -55,7 +55,7 @@ export class FormController extends Controller<Form> {
 	constructor(fields: FormFields) {
 		super({
 			fields,
-			entries: Object.keys(fields).reduce(
+			data: Object.keys(fields).reduce(
 				(a, id) => ({
 					...a,
 					[id]: {
@@ -78,22 +78,21 @@ export class FormController extends Controller<Form> {
 	 * Return the next state, given a set of incoming entries.
 	 * @param incoming
 	 */
-	private getComputedState(incoming: Partial<Form['entries']> = {}) {
-		let { fields, entries } = this.state
+	private getComputedState(incoming: Partial<Form['data']> = {}) {
+		let { fields, data } = this.state
 		let ready = true
 
 		// Merge in new entries
 
-		entries = { ...entries, ...incoming }
+		data = { ...data, ...incoming }
 
 		// Set value-computed properties
 
-		entries = Object.keys(entries).reduce((a, id) => {
+		data = Object.keys(data).reduce((a, id) => {
 			const field = this.state.fields[id]
-			const entry = entries[id]
+			const { value } = data[id]
 
 			const { validation, errorText: fieldErrorText } = field
-			const { value } = entry
 
 			let valid = false
 			let errorText = ''
@@ -125,9 +124,9 @@ export class FormController extends Controller<Form> {
 
 		// Now that the values are all set, set state-computed properties
 
-		for (let id in entries) {
+		for (let id in data) {
 			const field = this.state.fields[id]
-			const entry = entries[id]
+			const entry = data[id]
 
 			entry.hidden =
 				field.hidden === undefined
@@ -136,7 +135,7 @@ export class FormController extends Controller<Form> {
 					? field.hidden
 					: field.hidden({
 							fields,
-							entries,
+							data,
 							ready,
 					  })
 
@@ -145,7 +144,7 @@ export class FormController extends Controller<Form> {
 					? field.required
 					: field.required({
 							fields,
-							entries,
+							data,
 							ready,
 					  })
 				: false
@@ -159,21 +158,21 @@ export class FormController extends Controller<Form> {
 
 		return {
 			fields,
-			entries,
+			data,
 			ready,
 		}
 	}
 
 	/**
-	 * Set the value of one of the form's entries.
-	 * @param {keyof Form['fields']} id - The entry's `id`.
-	 * @param {*} value - The entry's new value.
+	 * Set the value of one of the form's data entries.
+	 * @param {keyof Form['fields']} id - The data entry's `id`.
+	 * @param {*} value - The data entry's new value.
 	 */
 	setValue = (id: keyof Form['fields'], value: any) => {
-		const { entries } = this.state
+		const { data } = this.state
 		const state = this.getComputedState({
-			...entries,
-			[id]: { ...entries[id], value },
+			...data,
+			[id]: { ...data[id], value },
 		})
 		this.setState(state)
 	}
@@ -182,8 +181,8 @@ export class FormController extends Controller<Form> {
 	 * Reset the form's values. All entrys will be reset to the entry's `defaultValue` or `null`.
 	 */
 	reset = () => {
-		const entries = Object.keys(this.state.entries).reduce((a, id) => {
-			let entry = this.state.entries[id]
+		const data = Object.keys(this.state.data).reduce((a, id) => {
+			let entry = this.state.data[id]
 			let field = this.state.fields[id]
 			return {
 				...a,
@@ -194,7 +193,7 @@ export class FormController extends Controller<Form> {
 			}
 		}, {})
 
-		const state = this.getComputedState(entries)
+		const state = this.getComputedState(data)
 
 		this.setState(state)
 	}
@@ -206,19 +205,19 @@ export class FormController extends Controller<Form> {
 	}
 
 	/**
-	 * The form's entries. For each field, the
+	 * The form's data entries. For each field, the
 	 * - `value` - The entry's value.
 	 * - `valid` - Whether that value is `valid`, according to its `field.validation`.
 	 * - `errorText` - Any current `errorText` set on invalid fields.
 	 * - `required` - Whether the field is currently required.
 	 * - `hidden` - Whether the field is currently hidden.
 	 */
-	get entries() {
-		return this.state.entries
+	get data() {
+		return this.state.data
 	}
 
 	/**
-	 * Whether all required entries are valid.
+	 * Whether all required data entries are valid.
 	 */
 	get ready() {
 		return this.state.ready

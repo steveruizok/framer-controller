@@ -1,5 +1,5 @@
 import { Override } from 'framer'
-import { FormController } from 'framer-controller'
+import { FormController } from '../../../lib'
 
 const controller = new FormController({
 	name: {
@@ -19,26 +19,28 @@ const controller = new FormController({
 	},
 	email: {
 		defaultValue: null,
-		required: (form) => !form.entries.email.hidden,
+		required: (form) => !form.data.email.hidden,
 		validation: (v: string) => v && v.includes('@'),
-		hidden: (form) => !form.entries.contactMe.value,
+		hidden: (form) => !form.data.contactMe.value,
 		errorText: (v) => `Please include a valid email address.`,
 	},
 })
 
+console.log(controller)
+
 // Name
 
 export const nameField: Override = () => ({
-	$errorText: controller.entries.name.errorText,
+	$errorText: controller.data.name.errorText,
 })
 
 export const nameRequiredDot: Override = () => ({
-	opacity: controller.entries.name.required ? 1 : 0,
-	background: controller.entries.name.valid ? '#5CC0FF' : '#FFC65C',
+	opacity: controller.data.name.required ? 1 : 0,
+	background: controller.data.name.valid ? '#5CC0FF' : '#FFC65C',
 })
 
 export const nameInput: Override = () => ({
-	value: controller.entries.name.value,
+	value: controller.data.name.value,
 	onValueChange(value: string) {
 		controller.setValue('name', value)
 	},
@@ -47,16 +49,16 @@ export const nameInput: Override = () => ({
 // Age
 
 export const ageField: Override = () => ({
-	$errorText: controller.entries.age.errorText,
+	$errorText: controller.data.age.errorText,
 })
 
 export const ageRequiredDot: Override = () => ({
-	opacity: controller.entries.age.required ? 1 : 0,
-	background: controller.entries.age.valid ? '#5CC0FF' : '#FFC65C',
+	opacity: controller.data.age.required ? 1 : 0,
+	background: controller.data.age.valid ? '#5CC0FF' : '#FFC65C',
 })
 
 export const ageInput: Override = () => ({
-	value: controller.entries.age.value,
+	value: controller.data.age.value,
 	onValueChange(value: string) {
 		controller.setValue('age', value)
 	},
@@ -67,7 +69,7 @@ export const ageInput: Override = () => ({
 export const contactField: Override = () => ({})
 
 export const contactInput: Override = () => ({
-	toggled: controller.entries.contactMe.value,
+	toggled: controller.data.contactMe.value,
 	onToggle(value: boolean) {
 		controller.setValue('contactMe', value)
 	},
@@ -76,17 +78,17 @@ export const contactInput: Override = () => ({
 // Email
 
 export const emailField: Override = () => ({
-	opacity: controller.entries.email.hidden ? 0 : 1,
-	$errorText: controller.entries.email.errorText,
+	opacity: controller.data.email.hidden ? 0 : 1,
+	$errorText: controller.data.email.errorText,
 })
 
 export const emailRequiredDot: Override = () => ({
-	opacity: controller.entries.email.required ? 1 : 0,
-	background: controller.entries.email.valid ? '#5CC0FF' : '#FFC65C',
+	opacity: controller.data.email.required ? 1 : 0,
+	background: controller.data.email.valid ? '#5CC0FF' : '#FFC65C',
 })
 
 export const emailInput: Override = () => ({
-	value: controller.entries.email.value,
+	value: controller.data.email.value,
 	onValueChange(value: string) {
 		controller.setValue('email', value)
 	},
