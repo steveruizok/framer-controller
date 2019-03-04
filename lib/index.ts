@@ -216,3 +216,4 @@ export default Controller
 export { PageComponentController } from './PageComponentController'
 export { PlacesController } from './PlacesController'
 export { FormController } from './FormController'
+export { FetchController } from './FetchController'
