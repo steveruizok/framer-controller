@@ -9,7 +9,7 @@ class PageComponentController extends index_1.default {
         super(Object.assign({ currentPage: 0, totalPages: Infinity }, props));
         /**
          * An event handler that syncs a page component with the controller.
-         * @param {number} currentPage - The pager's current page.
+         * @param {number} currentPage The pager's current page.
        * @example
        * ```
     const isPager: Override = (props) => {
@@ -27,7 +27,7 @@ class PageComponentController extends index_1.default {
         };
         /**
          * Set the total number of pages in the controller.
-         * @param {*} props - Either the `number` of pages or the props of a page component.
+         * @param {*} props Either the `number` of pages or the props of a page component.
        * @example
        * ```
     const isPager: Override = (props) => {
@@ -57,7 +57,7 @@ class PageComponentController extends index_1.default {
         };
         /**
          * Change the pager's current page number by a given number of pages.
-         * @param {number} delta - How far forward or backward to move.
+         * @param {number} delta How far forward or backward to move.
          */
         this.changePage = (delta) => {
             let next = this.state.currentPage + delta;
@@ -65,7 +65,7 @@ class PageComponentController extends index_1.default {
         };
         /**
          *  Set the pager's current page to a given number.
-         * @param {number} currentPage - The new current page
+         * @param {number} currentPage The new current page
          */
         this.setPage = (currentPage) => {
             if (currentPage >= 0 && currentPage < this.state.totalPages) {

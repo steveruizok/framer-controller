@@ -51,10 +51,6 @@ const controller = new FormController({
 export declare class FormController extends Controller<Form> {
     constructor(fields: FormFields);
     /**
-     * When the component loads, update the state
-     */
-    onLoad(): void;
-    /**
      * Return the next state, given a set of incoming entries.
      * @param incoming
      */

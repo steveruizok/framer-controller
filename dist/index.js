@@ -6,16 +6,12 @@ const framer_1 = require("framer");
  * It maintains a state that can be easily changed and which it passes to a controlled component as props.
  * It also keeps a history of states and can take commands, such as undo and redo, to traverse this history.
  * You can easily extend the Controller class to add custom controls for any component.
- *
- * @class Controller
- * @author Steve Ruiz
- * @template T - An interface for the controlled component's state.
+ * @template T An interface for the controlled component's state.
  */
 class Controller {
     /**
      * Creates a new instance of Controller.
-     * @param {T} initial - The initial state of the controller.
-     * @memberof Controller
+     * @param {T} initial The initial state of the controller.
      */
     constructor(initial) {
         this._state = framer_1.Data({});
@@ -23,39 +19,30 @@ class Controller {
         this._history = [];
         /* ------------------------------- Life Cycle ------------------------------- */
         /**
-         * A controller's onLoad method is designed to be overwritten.
-         * @param {T} initialState - The component's initial state.
-         * @memberof Controller
+         * A method that fires automatically after each state change.
+         * @param state The controller's initial state.
          */
-        // onLoad(initialState: Options<T>): void {}
-        /**
-         * A controller's onUpdate fires whenever its state changes.
-         * @param {T} state - The component's current state.
-         * @memberof Controller
-         */
-        // onUpdate(state: Options<T>): void {}
+        this.onUpdate = (state) => { };
         /* ------------------------------- End Life Cycle ------------------------------- */
         /**
-         * @description - Connect this controller to a component. This method should be called from a component's `onComponentDidMount` method.
-         * @param {*} component - The component to connect.
-         * @example
-         * componentDidMount() {
-         * 	if (this.props.controller) {
-         * 		this.props.controller.connect(this);
-         * 	}
-         * }
-         * @memberof Controller
-         */
+         * Connect this controller to a component. This method should be called from a component's `onComponentDidMount` method.
+         * @param {*} component The component to connect.
+         * @example```
+    componentDidMount() {
+      if (this.props.controller) {
+        this.props.controller.connect(this);
+      }
+    }
+         ```*/
         this.connect = (component) => {
             this._controlled = component;
             console.log('Connected', this.constructor.name, component);
         };
         /**
-         * @description Set the controller's state. The new state will be passed to the managed component as props. Setting state adds the new state to the controller's history and increments the controller's history position.
-         * @param {Options} state - The changes you wish to make to the controller's state.
-         * @param {(state: Options<T>, position: number) => void} [callback] - An optional callback function to run after the new state has loaded.
-         * @returns {number} - The controller's new history position.
-         * @memberof Controller
+         * Set the controller's state. The new state will be passed to the managed component as props. Setting state adds the new state to the controller's history and increments the controller's history position.
+         * @param {Options} state The changes you wish to make to the controller's state.
+         * @param {(state: Options<T>, position: number) => void} [callback] An optional callback function to run after the new state has loaded.
+         * @returns {number} The controller's new history position.
          */
         this.setState = (state = {}, callback) => {
             const next = Object.assign({}, this.state, state);
@@ -64,19 +51,19 @@ class Controller {
             return this.traverseHistory(1, callback);
         };
         /**
-         * @description - Traverse the controller's history by a certain amount (delta). The controller will load the state stored at the new position.
-         * @param {number} delta - The number of steps forward (positive) or backward (negative) to move the controller's history position.
-         * @param {(state: Options<T>, position: number) => void} [callback] - An optional callback function to run after the new state has loaded.
-         * @returns {number} - The controller's new history position.
+         * Traverse the controller's history by a certain amount (delta). The controller will load the state stored at the new position.
+         * @param {number} delta The number of steps forward (positive) or backward (negative) to move the controller's history position.
+         * @param {(state: Options<T>, position: number) => void} [callback] An optional callback function to run after the new state has loaded.
+         * @returns {number} The controller's new history position.
          */
         this.traverseHistory = (delta = 0, callback) => {
             return this.setHistoryPosition(this.historyPosition + delta, callback);
         };
         /**
-         * @description - Set the controller's history position.
-         * @param {number} position - The new history position to set.
-         * @param {(state: Options<T>, position: number) => void} [callback] - An optional callback function to run after the new state has loaded.
-         * @returns {number} - The controller's new history position.
+         * Set the controller's history position.
+         * @param {number} position The new history position to set.
+         * @param {(state: Options<T>, position: number) => void} [callback] An optional callback function to run after the new state has loaded.
+         * @returns {number} The controller's new history position.
          */
         this.setHistoryPosition = (position = 0, callback) => {
             position = Math.max(Math.min(position, this.history.length - 1), 0);
@@ -86,9 +73,9 @@ class Controller {
             return position;
         };
         /**
-         * @description Update the component's state (without modifying history).
-         * @param {Options} state - The changes you wish to make to the controller's state.
-         * @param {(state: Options<T>, position: number) => void} [callback] - An optional callback function to run after the new state has loaded.
+         * Update the component's state (without modifying history).
+         * @param {Options} state The changes you wish to make to the controller's state.
+         * @param {(state: Options<T>, position: number) => void} [callback] An optional callback function to run after the new state has loaded.
          */
         this.updateState = (state = {}, callback) => {
             Object.assign(this._state, state);
@@ -98,14 +85,14 @@ class Controller {
             }
         };
         /**
-         * @description - Clears the controller's history, and starts a new history with the current state.
-         * @returns {number} - The controller's new history position.
+         * Clears the controller's history, and starts a new history with the current state.
+         * @returns {number} The controller's new history position.
          */
         this.clearHistory = () => {
             return this.resetState(this.state);
         };
         /**
-         * @description - Load the previous state from the controller's history, if there is one.
+         * Load the previous state from the controller's history, if there is one.
          * @returns {number} The new history position.
          */
         this.undo = () => {
@@ -115,7 +102,7 @@ class Controller {
             return this.historyPosition;
         };
         /**
-         * @description - Load the next state from the controller's history, if there is one.
+         * Load the next state from the controller's history, if there is one.
          * @returns {number} The new history position.
          */
         this.redo = () => {
@@ -128,12 +115,10 @@ class Controller {
         initialState.controller = this;
         this._state = framer_1.Data(initialState);
         this._history = [initialState];
-        this.onLoad(initialState);
     }
-    onLoad(state) { }
-    onUpdate(state) { }
     /**
      * Set the state to a given value and clear history.
+     * @param state The controller's new state.
      */
     resetState(state) {
         Object.assign(this._state, state);
@@ -142,7 +127,7 @@ class Controller {
         return this._historyPosition;
     }
     /**
-     * @description - The controller's array of history states.
+     * The controller's array of history states.
      * @returns {Options<T>[]} The current history history.
      * @readonly
      * @memberof Controller
@@ -151,7 +136,7 @@ class Controller {
         return this._history;
     }
     /**
-     * @description - The controller's current history position.
+     * The controller's current history position.
      * @readonly
      * @memberof Controller
      */
@@ -159,7 +144,7 @@ class Controller {
         return this._historyPosition;
     }
     /**
-     * @description - The controller's current state.
+     * The controller's current state.
      * @readonly
      * @memberof Controller
      */
@@ -174,3 +159,5 @@ var PlacesController_1 = require("./PlacesController");
 exports.PlacesController = PlacesController_1.PlacesController;
 var FormController_1 = require("./FormController");
 exports.FormController = FormController_1.FormController;
+var FetchController_1 = require("./FetchController");
+exports.FetchController = FetchController_1.FetchController;

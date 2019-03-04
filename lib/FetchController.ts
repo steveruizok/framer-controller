@@ -19,7 +19,6 @@ export class FetchController extends Controller<Props> {
 			data: [],
 			...props,
 		})
-
 		this.refresh()
 	}
 

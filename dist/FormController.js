@@ -57,11 +57,6 @@ class FormController extends index_1.default {
             const state = this.getComputedState(entries);
             this.setState(state);
         };
-    }
-    /**
-     * When the component loads, update the state
-     */
-    onLoad() {
         const state = this.getComputedState();
         this.resetState(state);
     }

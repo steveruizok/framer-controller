@@ -10,7 +10,7 @@ export declare class PageComponentController extends Controller<Props> {
     constructor(props?: Props);
     /**
      * An event handler that syncs a page component with the controller.
-     * @param {number} currentPage - The pager's current page.
+     * @param {number} currentPage The pager's current page.
    * @example
    * ```
 const isPager: Override = (props) => {
@@ -24,7 +24,7 @@ const isPager: Override = (props) => {
     syncCurrentPage: (currentPage: number) => void;
     /**
      * Set the total number of pages in the controller.
-     * @param {*} props - Either the `number` of pages or the props of a page component.
+     * @param {*} props Either the `number` of pages or the props of a page component.
    * @example
    * ```
 const isPager: Override = (props) => {
@@ -38,12 +38,12 @@ const isPager: Override = (props) => {
     setTotalPages: (props: any) => void;
     /**
      * Change the pager's current page number by a given number of pages.
-     * @param {number} delta - How far forward or backward to move.
+     * @param {number} delta How far forward or backward to move.
      */
     changePage: (delta: number) => number;
     /**
      *  Set the pager's current page to a given number.
-     * @param {number} currentPage - The new current page
+     * @param {number} currentPage The new current page
      */
     setPage: (currentPage: number) => number;
     /**

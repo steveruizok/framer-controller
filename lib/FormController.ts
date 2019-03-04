@@ -70,12 +70,6 @@ export class FormController extends Controller<Form> {
 			),
 			ready: false,
 		})
-	}
-
-	/**
-	 * When the component loads, update the state
-	 */
-	onLoad() {
 		const state = this.getComputedState()
 		this.resetState(state)
 	}
