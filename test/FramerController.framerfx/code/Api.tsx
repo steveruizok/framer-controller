@@ -10,7 +10,14 @@ const controller = new FetchController({
 
 export const isUserContainer: Override = () => ({
 	children: controller.data.map(({ name, username, email }, i) => (
-		<User $name={name} $username={username} $email={email} top={i * 96} />
+		<User
+			$name={name}
+			$username={username}
+			$email={email}
+			top={16 + i * 114}
+			width={343}
+			left={16}
+		/>
 	)),
 })
 

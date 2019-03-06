@@ -27,5 +27,5 @@ export const isRedoButton: Override = () => ({
 })
 
 export const isColorLabel: Override = () => ({
-	$text: controller.state.background,
+	$text: controller.state.background.toString(),
 })

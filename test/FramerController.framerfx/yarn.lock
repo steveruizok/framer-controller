@@ -21,15 +21,17 @@
   dependencies:
     react-map-gl "^4.0.10"
 
+"@framer/steveframer.flow@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.framer.com/@framer/steveframer.flow/-/@framer/steveframer.flow-1.3.0.tgz#0a43f6f50ae8e30afca12a45c16ad769bf3fcd8f"
+  integrity sha512-b9plkRrk6W4nDKdzLNF2/PqPKxAWmfH69ddDy3jJiwSLVkFXYrYWGGoH1veO/MJ2Tcw5MfUF2J3+6VBBJ5iKag==
+  dependencies:
+    framer-controller "^1.4.0"
+
 "@framer/steveruizok.classy-inputs@^1.7.0":
   version "1.7.0"
   resolved "https://registry.framer.com/@framer/steveruizok.classy-inputs/-/@framer/steveruizok.classy-inputs-1.7.0.tgz#81ffd6232febd7be82eaba7e98b1d9a295b5d1bd"
   integrity sha1-gf/WIy/r176C6rp+mLHZopW10b0=
-
-"@framer/steveruizok.layout@^1.3.0":
-  version "1.3.0"
-  resolved "https://registry.framer.com/@framer/steveruizok.layout/-/@framer/steveruizok.layout-1.3.0.tgz#22b5883b8a3ebc86274d79a2e2d029251c86876b"
-  integrity sha1-IrWIO4o+vIYnTXmi4tApJRyGh2s=
 
 "@mapbox/geojson-area@0.2.2":
   version "0.2.2"
@@ -181,10 +183,10 @@ expect.js@~0.2.0:
   resolved "https://registry.yarnpkg.com/expect.js/-/expect.js-0.2.0.tgz#1028533d2c1c363f74a6796ff57ec0520ded2be1"
   integrity sha1-EChTPSwcNj90pnlv9X7AUg3tK+E=
 
-framer-controller@^1.3.7:
-  version "1.3.7"
-  resolved "https://registry.yarnpkg.com/framer-controller/-/framer-controller-1.3.7.tgz#9fc2f1f5714e51dc605281948ecb746e2a250426"
-  integrity sha512-KIXoKuAxJ9dspi4SNTXBz/uQChy4OqI/CPROe5max6KVob/S9L/lCe7eHJySmrN/8S3xeOc08FO6rXwvuq7cKg==
+framer-controller@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/framer-controller/-/framer-controller-1.4.0.tgz#5e27e3e3890ccce2542bf27ca01559c5331cc975"
+  integrity sha512-BPNHaDRL4cRPw0w87iXYuWH75nguJKPjGLQYpUue4gByyZ0PslQUSNZ74+dZbM5SBorshwl3b/YTpCKZAYyq8A==
   dependencies:
     "@types/react" "^16.8.5"
     "@types/react-dom" "^16.8.2"
