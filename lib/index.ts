@@ -1,4 +1,4 @@
-import { Data } from 'framer'
+import { Data } from "framer"
 
 type WithLoader<T> = T & { onLoad?: (state: T) => void }
 type WithManager<T> = WithLoader<T> & { controller?: any }
@@ -17,7 +17,7 @@ class Controller<T> {
 	private _state: Options<T> = Data({})
 	private _historyPosition = 0
 	private _history: Options<T>[] = []
-	private _controlled: any
+	private _connected: any
 
 	/**
 	 * Creates a new instance of Controller.
@@ -36,7 +36,11 @@ class Controller<T> {
 	 * A method that fires automatically after each state change.
 	 * @param state The controller's initial state.
 	 */
-	protected onUpdate: (state: Options<T>) => void = (state) => {}
+	protected onUpdate: (state: Options<T>) => void = state => {}
+	protected onConnect: (state: Options<T>, component: any) => void = (
+		state,
+		component
+	) => {}
 
 	/* ------------------------------- End Life Cycle ------------------------------- */
 
@@ -50,9 +54,11 @@ componentDidMount() {
   }
 }
 	 ```*/
-	connect = (component: any) => {
-		this._controlled = component
-		console.log('Connected', this.constructor.name, component)
+	connect = (connected: any) => {
+		if (connected === this._connected) return
+		this._connected = connected
+		this.onConnect(this.state, this.connected)
+		console.log("Connected", this.constructor.name, connected)
 	}
 
 	/**
@@ -193,10 +199,18 @@ componentDidMount() {
 	get state() {
 		return this._state
 	}
+
+	/**
+	 * The component (if any) connected to / controlled by this controller.
+	 */
+	get connected() {
+		return this._connected
+	}
 }
 
 export default Controller
-export { PageComponentController } from './PageComponentController'
-export { PlacesController } from './PlacesController'
-export { FormController } from './FormController'
-export { FetchController } from './FetchController'
+export { PageComponentController } from "./PageComponentController"
+export { PlacesController } from "./PlacesController"
+export { FormController } from "./FormController"
+export { FetchController } from "./FetchController"
+export { FlowController } from "./FlowController"

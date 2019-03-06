@@ -22,7 +22,8 @@ class Controller {
          * A method that fires automatically after each state change.
          * @param state The controller's initial state.
          */
-        this.onUpdate = (state) => { };
+        this.onUpdate = state => { };
+        this.onConnect = (state, component) => { };
         /* ------------------------------- End Life Cycle ------------------------------- */
         /**
          * Connect this controller to a component. This method should be called from a component's `onComponentDidMount` method.
@@ -34,9 +35,12 @@ class Controller {
       }
     }
          ```*/
-        this.connect = (component) => {
-            this._controlled = component;
-            console.log('Connected', this.constructor.name, component);
+        this.connect = (connected) => {
+            if (connected === this._connected)
+                return;
+            this._connected = connected;
+            this.onConnect(this.state, this.connected);
+            console.log("Connected", this.constructor.name, connected);
         };
         /**
          * Set the controller's state. The new state will be passed to the managed component as props. Setting state adds the new state to the controller's history and increments the controller's history position.
@@ -151,6 +155,12 @@ class Controller {
     get state() {
         return this._state;
     }
+    /**
+     * The component (if any) connected to / controlled by this controller.
+     */
+    get connected() {
+        return this._connected;
+    }
 }
 exports.default = Controller;
 var PageComponentController_1 = require("./PageComponentController");
@@ -161,3 +171,5 @@ var FormController_1 = require("./FormController");
 exports.FormController = FormController_1.FormController;
 var FetchController_1 = require("./FetchController");
 exports.FetchController = FetchController_1.FetchController;
+var FlowController_1 = require("./FlowController");
+exports.FlowController = FlowController_1.FlowController;

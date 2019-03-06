@@ -16,7 +16,7 @@ declare class Controller<T> {
     private _state;
     private _historyPosition;
     private _history;
-    private _controlled;
+    private _connected;
     /**
      * Creates a new instance of Controller.
      * @param {T} initial The initial state of the controller.
@@ -27,6 +27,7 @@ declare class Controller<T> {
      * @param state The controller's initial state.
      */
     protected onUpdate: (state: Options<T>) => void;
+    protected onConnect: (state: Options<T>, component: any) => void;
     /**
      * Connect this controller to a component. This method should be called from a component's `onComponentDidMount` method.
      * @param {*} component The component to connect.
@@ -37,7 +38,7 @@ componentDidMount() {
   }
 }
      ```*/
-    connect: (component: any) => void;
+    connect: (connected: any) => void;
     /**
      * Set the controller's state. The new state will be passed to the managed component as props. Setting state adds the new state to the controller's history and increments the controller's history position.
      * @param {Options} state The changes you wish to make to the controller's state.
@@ -104,9 +105,14 @@ componentDidMount() {
      * @memberof Controller
      */
     readonly state: Partial<WithManager<T>>;
+    /**
+     * The component (if any) connected to / controlled by this controller.
+     */
+    readonly connected: any;
 }
 export default Controller;
-export { PageComponentController } from './PageComponentController';
-export { PlacesController } from './PlacesController';
-export { FormController } from './FormController';
-export { FetchController } from './FetchController';
+export { PageComponentController } from "./PageComponentController";
+export { PlacesController } from "./PlacesController";
+export { FormController } from "./FormController";
+export { FetchController } from "./FetchController";
+export { FlowController } from "./FlowController";
