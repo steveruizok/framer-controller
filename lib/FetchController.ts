@@ -1,4 +1,4 @@
-import Controller from './index'
+import Controller from "./index"
 
 type Props = {
 	url: string
@@ -43,7 +43,7 @@ export class FetchController extends Controller<Props> {
 	 */
 	refresh = async (callback?: (data: any) => void) => {
 		this.setState({ loading: true })
-		const data = await FetchController.fetch(this.state.url).catch((e) =>
+		const data = await FetchController.fetch(this.state.url).catch(e =>
 			console.warn(`⚠️Error refreshing from ${this.state.url}`, e)
 		)
 		this.setState({ data, loading: false }, () => {

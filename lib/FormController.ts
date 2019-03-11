@@ -1,4 +1,4 @@
-import Controller from './index'
+import Controller from "./index"
 
 type BooleanFromStatus = (status: Form) => boolean
 type StringFromValue = (value: any) => string
@@ -60,7 +60,7 @@ export class FormController extends Controller<Form> {
 					...a,
 					[id]: {
 						value: fields[id].defaultValue,
-						errorText: '',
+						errorText: "",
 						valid: false,
 						hidden: false,
 						required: false,
@@ -70,15 +70,33 @@ export class FormController extends Controller<Form> {
 			),
 			ready: false,
 		})
-		const state = this.getComputedState()
-		this.resetState(state)
+		this.reset()
 	}
+
+	// /**`
+	//  * Reset the form's values. All entrys will be reset to the entry's `defaultValue` or `null`.
+	//  */
+	// onReset = () => {
+	// 	const data = Object.keys(this.state.data).reduce((a, id) => {
+	// 		let entry = this.state.data[id]
+	// 		let field = this.state.fields[id]
+	// 		return {
+	// 			...a,
+	// 			[id]: {
+	// 				...entry,
+	// 				value: field.defaultValue || null,
+	// 			},
+	// 		}
+	// 	}, {})
+
+	// 	this.setState(this.getComputedState(data))
+	// }
 
 	/**
 	 * Return the next state, given a set of incoming entries.
 	 * @param incoming
 	 */
-	private getComputedState(incoming: Partial<Form['data']> = {}) {
+	private getComputedState(incoming: Partial<Form["data"]> = {}) {
 		let { fields, data } = this.state
 		let ready = true
 
@@ -95,7 +113,7 @@ export class FormController extends Controller<Form> {
 			const { validation, errorText: fieldErrorText } = field
 
 			let valid = false
-			let errorText = ''
+			let errorText = ""
 
 			// Does the field have value, and does that value pass validation?
 			if (value !== undefined && value !== null) {
@@ -104,10 +122,10 @@ export class FormController extends Controller<Form> {
 				// If not complete, use error text (as string or function) if provided
 				errorText =
 					value && !valid && fieldErrorText
-						? typeof fieldErrorText === 'string'
+						? typeof fieldErrorText === "string"
 							? fieldErrorText
 							: fieldErrorText(value)
-						: ''
+						: ""
 			}
 
 			return {
@@ -131,7 +149,7 @@ export class FormController extends Controller<Form> {
 			entry.hidden =
 				field.hidden === undefined
 					? false
-					: typeof field.hidden === 'boolean'
+					: typeof field.hidden === "boolean"
 					? field.hidden
 					: field.hidden({
 							fields,
@@ -140,7 +158,7 @@ export class FormController extends Controller<Form> {
 					  })
 
 			entry.required = field.required
-				? typeof field.required === 'boolean'
+				? typeof field.required === "boolean"
 					? field.required
 					: field.required({
 							fields,
@@ -168,33 +186,12 @@ export class FormController extends Controller<Form> {
 	 * @param {keyof Form['fields']} id - The data entry's `id`.
 	 * @param {*} value - The data entry's new value.
 	 */
-	setValue = (id: keyof Form['fields'], value: any) => {
+	setValue = (id: keyof Form["fields"], value: any) => {
 		const { data } = this.state
 		const state = this.getComputedState({
 			...data,
 			[id]: { ...data[id], value },
 		})
-		this.setState(state)
-	}
-
-	/**`
-	 * Reset the form's values. All entrys will be reset to the entry's `defaultValue` or `null`.
-	 */
-	reset = () => {
-		const data = Object.keys(this.state.data).reduce((a, id) => {
-			let entry = this.state.data[id]
-			let field = this.state.fields[id]
-			return {
-				...a,
-				[id]: {
-					...entry,
-					value: field.defaultValue || null,
-				},
-			}
-		}, {})
-
-		const state = this.getComputedState(data)
-
 		this.setState(state)
 	}
 

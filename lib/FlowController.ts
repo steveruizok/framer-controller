@@ -71,7 +71,7 @@ export class FlowController extends Controller<State> {
 		let current = Math.min(Math.max(index, 0), this.pagesTotal)
 		if (current === previous) return
 
-		this.updateState({
+		this.setState({
 			direction: "forward",
 			stack: [...stack, previous],
 			current,
@@ -87,21 +87,11 @@ export class FlowController extends Controller<State> {
 		const current = stack.pop()
 		if (current === undefined) return
 
-		this.updateState({
+		this.setState({
 			direction: "backward",
 			current,
 			stack,
 			root: stack.length === 0,
-		})
-	}
-
-	/**
-	 * Clear the current stack, setting the current index as root.
-	 */
-	reset() {
-		this.setState({
-			stack: [],
-			root: true,
 		})
 	}
 

@@ -1,4 +1,4 @@
-import Controller from './index'
+import Controller from "./index"
 
 interface Props {
 	currentPage?: number
@@ -8,13 +8,23 @@ interface Props {
 /**
  * A controller for Framer X's Page component.
  */
-export class PageComponentController extends Controller<Props> {
+export class PageController extends Controller<Props> {
 	constructor(props: Props = {}) {
 		super({
 			currentPage: 0,
 			totalPages: Infinity,
 			...props,
 		})
+	}
+
+	protected onConnect = (props: any) => {
+		let totalPages = props.children[0].props.children.length
+
+		if (totalPages !== this.totalPages) {
+			this.setState({
+				totalPages,
+			})
+		}
 	}
 
 	/**
@@ -30,57 +40,25 @@ const isPager: Override = (props) => {
   }
 }```
 	 */
-	syncCurrentPage = (currentPage: number) => {
+	public syncCurrentPage = (currentPage: number) => {
 		if (currentPage === this.state.currentPage) return
 		this.setState({ currentPage })
-	}
-
-	/**
-	 * Set the total number of pages in the controller.
-	 * @param {*} props Either the `number` of pages or the props of a page component.
-   * @example
-   * ```
-const isPager: Override = (props) => {
-  controller.setTotalPages(props)
-  return {
-    currentPage: controller.state.currentPage,
-    onChangePage: controller.syncCurrentPage
-  }
-}```
-      */
-	setTotalPages = (props: any) => {
-		let totalPages: number
-		if (typeof props === 'number') {
-			totalPages = props
-		} else if (props.children) {
-			totalPages = props.children[0].props.children.length
-		} else {
-			console.warn(
-				'PageComponentController.setTotalPages expects either a number or the props from a page component.'
-			)
-		}
-
-		if (totalPages !== this.totalPages) {
-			this.setState({
-				totalPages,
-			})
-		}
 	}
 
 	/**
 	 * Change the pager's current page number by a given number of pages.
 	 * @param {number} delta How far forward or backward to move.
 	 */
-	changePage = (delta: number) => {
+	public changePage = (delta: number) => {
 		let next = this.state.currentPage + delta
-		return this.setPage(next)
+		return this.setCurrentPage(next)
 	}
 
 	/**
 	 *  Set the pager's current page to a given number.
 	 * @param {number} currentPage The new current page
 	 */
-	setPage = (currentPage: number) => {
+	public setCurrentPage = (currentPage: number) => {
 		if (currentPage >= 0 && currentPage < this.state.totalPages) {
 			this.setState({ currentPage })
 		}
@@ -91,14 +69,14 @@ const isPager: Override = (props) => {
 	/**
 	 * Move to the next page.
 	 */
-	nextPage = () => {
+	public nextPage = () => {
 		return this.changePage(1)
 	}
 
 	/**
 	 * Move to the previous page.
 	 */
-	prevPage = () => {
+	public prevPage = () => {
 		return this.changePage(-1)
 	}
 
@@ -113,7 +91,7 @@ const isPager: Override = (props) => {
 	set progress(progress: number) {
 		const { totalPages } = this.state
 		progress = Math.max(Math.min(progress, 1), 0)
-		this.setPage(Math.round((totalPages - 1) * progress))
+		this.setCurrentPage(Math.round((totalPages - 1) * progress))
 	}
 
 	/**
@@ -126,7 +104,7 @@ const isPager: Override = (props) => {
 	}
 
 	set currentPage(currentPage: number) {
-		this.setPage(currentPage)
+		this.setCurrentPage(currentPage)
 	}
 
 	get totalPages() {
