@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_1 = require("./index");
+const Controller_1 = require("./Controller");
 /**
  * Control forms.
  * When creating a form, use an object to define the form's `fields`.
@@ -22,13 +22,13 @@ const controller = new FormController({
   }
 })```
  */
-class FormController extends index_1.default {
+class FormController extends Controller_1.Controller {
     constructor(fields) {
         super({
             fields,
             data: Object.keys(fields).reduce((a, id) => (Object.assign({}, a, { [id]: {
                     value: fields[id].defaultValue,
-                    errorText: '',
+                    errorText: "",
                     valid: false,
                     hidden: false,
                     required: false,
@@ -45,21 +45,25 @@ class FormController extends index_1.default {
             const state = this.getComputedState(Object.assign({}, data, { [id]: Object.assign({}, data[id], { value }) }));
             this.setState(state);
         };
-        /**`
-         * Reset the form's values. All entrys will be reset to the entry's `defaultValue` or `null`.
-         */
-        this.reset = () => {
-            const data = Object.keys(this.state.data).reduce((a, id) => {
-                let entry = this.state.data[id];
-                let field = this.state.fields[id];
-                return Object.assign({}, a, { [id]: Object.assign({}, entry, { value: field.defaultValue || null }) });
-            }, {});
-            const state = this.getComputedState(data);
-            this.setState(state);
-        };
-        const state = this.getComputedState();
-        this.resetState(state);
+        this.reset();
     }
+    // /**`
+    //  * Reset the form's values. All entrys will be reset to the entry's `defaultValue` or `null`.
+    //  */
+    // onReset = () => {
+    // 	const data = Object.keys(this.state.data).reduce((a, id) => {
+    // 		let entry = this.state.data[id]
+    // 		let field = this.state.fields[id]
+    // 		return {
+    // 			...a,
+    // 			[id]: {
+    // 				...entry,
+    // 				value: field.defaultValue || null,
+    // 			},
+    // 		}
+    // 	}, {})
+    // 	this.setState(this.getComputedState(data))
+    // }
     /**
      * Return the next state, given a set of incoming entries.
      * @param incoming
@@ -75,17 +79,17 @@ class FormController extends index_1.default {
             const { value } = data[id];
             const { validation, errorText: fieldErrorText } = field;
             let valid = false;
-            let errorText = '';
+            let errorText = "";
             // Does the field have value, and does that value pass validation?
             if (value !== undefined && value !== null) {
                 valid = validation === undefined ? true : validation(value);
                 // If not complete, use error text (as string or function) if provided
                 errorText =
                     value && !valid && fieldErrorText
-                        ? typeof fieldErrorText === 'string'
+                        ? typeof fieldErrorText === "string"
                             ? fieldErrorText
                             : fieldErrorText(value)
-                        : '';
+                        : "";
             }
             return Object.assign({}, a, { [id]: {
                     value,
@@ -102,7 +106,7 @@ class FormController extends index_1.default {
             entry.hidden =
                 field.hidden === undefined
                     ? false
-                    : typeof field.hidden === 'boolean'
+                    : typeof field.hidden === "boolean"
                         ? field.hidden
                         : field.hidden({
                             fields,
@@ -110,7 +114,7 @@ class FormController extends index_1.default {
                             ready,
                         });
             entry.required = field.required
-                ? typeof field.required === 'boolean'
+                ? typeof field.required === "boolean"
                     ? field.required
                     : field.required({
                         fields,

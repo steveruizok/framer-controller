@@ -1,4 +1,4 @@
-import Controller from "./index"
+import { Controller } from "./Controller"
 
 type Props = {
 	url: string

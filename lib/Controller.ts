@@ -39,19 +39,19 @@ export class Controller<T> {
 	 * is reset using the `reset` method.
 	 * @param state The controller's initial state.
 	 */
-	protected onReset: (state?: State<T>, connected?: any) => void = () => {}
+	protected onReset: (state?: State<T>, connected?: any) => any = () => {}
 
 	/**
 	 * A method that fires automatically after each state change.
 	 * @param state The controller's initial state.
 	 */
-	protected onUpdate: (state?: State<T>, connected?: any) => void = () => {}
+	protected onUpdate: (state?: State<T>, connected?: any) => any = () => {}
 
 	/**
 	 * A callback that fires automatically after the controller is
 	 * connected to data using `connect` method.
 	 */
-	protected onConnect: (state?: State<T>, connected?: any) => void = () => {}
+	protected onConnect = (state?: State<T>, connected?: any) => this.state
 
 	/**
 	 * Connect this controller to a component or set of props. This
@@ -60,9 +60,12 @@ export class Controller<T> {
 	 * @param {*} connected - The data to connect.
 	 */
 	public connect = (connected: any) => {
-		if (connected === this._connected) return
-		this._connected = connected
-		this.onConnect(this.state, this.connected)
+		if (connected !== this._connected) {
+			this._connected = connected
+			return this.onConnect(this.state, this.connected)
+		}
+
+		return this.state
 	}
 
 	/**

@@ -1,4 +1,4 @@
-import Controller from "./index"
+import { Controller } from "./Controller"
 import { without } from "./utils"
 
 type Config = {

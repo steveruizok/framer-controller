@@ -8,12 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_1 = require("./index");
+const Controller_1 = require("./Controller");
 /**
  * Fetch data from an API endpoint (a `url`) and return it as `data`.
  * Accepts manual refrsehing (`refresh()`) and handles `loading` state, too.
  */
-class FetchController extends index_1.default {
+class FetchController extends Controller_1.Controller {
     constructor(props) {
         super(Object.assign({ log: false, loading: true, data: [] }, props));
         /**
@@ -25,7 +25,7 @@ class FetchController extends index_1.default {
          */
         this.refresh = (callback) => __awaiter(this, void 0, void 0, function* () {
             this.setState({ loading: true });
-            const data = yield FetchController.fetch(this.state.url).catch((e) => console.warn(`⚠️Error refreshing from ${this.state.url}`, e));
+            const data = yield FetchController.fetch(this.state.url).catch(e => console.warn(`⚠️Error refreshing from ${this.state.url}`, e));
             this.setState({ data, loading: false }, () => {
                 callback && callback(data);
                 this.state.log && console.log(data);

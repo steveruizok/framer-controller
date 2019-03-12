@@ -1,4 +1,4 @@
-import Controller from "./index"
+import { Controller } from "./Controller"
 
 interface Directions {
 	forward: string
@@ -53,14 +53,16 @@ export class FlowController extends Controller<State> {
 	/**
 	 * Connect a FlowComponent to this controller via its override props.
 	 */
-	onConnect = (_: any, props: any) => {
+	onConnect = (state = this.state, props: any) => {
 		const component = props.children[0]
 		if (!component || !component.props.pages) {
-			return console.error(
+			console.warn(
 				"Error: You can only connect a FlowComponent to a FlowController."
 			)
+			return this.state
 		}
 		this.pagesTotal = component.props.pages.length
+		return this.state
 	}
 
 	/**

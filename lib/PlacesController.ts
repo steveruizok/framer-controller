@@ -1,4 +1,4 @@
-import Controller from './index'
+import { Controller } from "./Controller"
 
 type Props = {
 	apiKey: string
@@ -31,21 +31,21 @@ export class PlacesController extends Controller<Props> {
 	private loadLibrary(key: string) {
 		let script: HTMLScriptElement
 
-		window['initMap'] = () => {
+		window["initMap"] = () => {
 			this._autoCompleteService = new window[
-				'google'
+				"google"
 			].maps.places.AutocompleteService()
-			this._geocoder = new window['google'].maps.Geocoder()
+			this._geocoder = new window["google"].maps.Geocoder()
 		}
 
-		if (window['google']) {
-			script = document.querySelector('#google_maps_library')
+		if (window["google"]) {
+			script = document.querySelector("#google_maps_library")
 			script.remove()
-			delete window['google']
+			delete window["google"]
 		}
 
-		script = document.createElement('script')
-		script.id = 'google_maps_library'
+		script = document.createElement("script")
+		script.id = "google_maps_library"
 		script.src = `https://maps.googleapis.com/maps/api/js?key=${key}&libraries=places&callback=initMap`
 		document.head.appendChild(script)
 	}
@@ -65,7 +65,7 @@ export class PlacesController extends Controller<Props> {
 		sessionToken?: string
 	) => {
 		const getPredictions = () =>
-			new Promise((resolve) => {
+			new Promise(resolve => {
 				if (!this.autocompleteService) {
 					return
 				}
@@ -93,7 +93,7 @@ export class PlacesController extends Controller<Props> {
 	 */
 	getPlaceDetails = async (placeId: string, fields?: Array<keyof Fields>) => {
 		const getDetails = () =>
-			new Promise((resolve) => {
+			new Promise(resolve => {
 				if (!this.geocoder) {
 					return
 				}

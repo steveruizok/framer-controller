@@ -1,4 +1,4 @@
-import Controller from './index';
+import { Controller } from "./Controller";
 declare type Props = {
     apiKey: string;
     predictions?: any[];
@@ -27,7 +27,7 @@ export declare class PlacesController extends Controller<Props> {
     /**
      * Get place details from a placeId
      */
-    getPlaceDetails: (placeId: string, fields?: ("icon" | "id" | "name" | "address_component" | "adr_address" | "alt_id" | "formatted_address" | "geometry" | "permanently_closed" | "photo" | "place_id" | "plus_code" | "scope" | "type" | "url" | "user_ratings_total" | "utc_offset" | "vicinity")[]) => Promise<any>;
+    getPlaceDetails: (placeId: string, fields?: ("icon" | "id" | "name" | "url" | "address_component" | "adr_address" | "alt_id" | "formatted_address" | "geometry" | "permanently_closed" | "photo" | "place_id" | "plus_code" | "scope" | "type" | "user_ratings_total" | "utc_offset" | "vicinity")[]) => Promise<any>;
     clearPredictions: () => void;
     clearDetails: () => void;
     readonly predictions: any[];

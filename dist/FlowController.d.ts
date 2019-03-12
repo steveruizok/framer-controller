@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import Controller from "./index";
+import { Controller } from "./Controller";
 interface Directions {
     forward: string;
     backward: string;
@@ -23,7 +23,11 @@ export declare class FlowController extends Controller<State> {
     /**
      * Connect a FlowComponent to this controller via its override props.
      */
-    onConnect: (_: any, props: any) => void;
+    onConnect: (state: Partial<State & {
+        controller?: any;
+    }>, props: any) => Partial<State & {
+        controller?: any;
+    }>;
     /**
      * Show a new index.
      */
@@ -32,10 +36,6 @@ export declare class FlowController extends Controller<State> {
      * Show the previous index.
      */
     showPrevious: () => void;
-    /**
-     * Clear the current stack, setting the current index as root.
-     */
-    reset(): void;
     readonly current: number;
     readonly direction: "forward" | "backward";
     /**

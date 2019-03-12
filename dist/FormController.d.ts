@@ -1,4 +1,4 @@
-import Controller from './index';
+import { Controller } from "./Controller";
 declare type BooleanFromStatus = (status: Form) => boolean;
 declare type StringFromValue = (value: any) => string;
 declare type BooleanFromValue = (value: any) => boolean;
@@ -61,10 +61,6 @@ export declare class FormController extends Controller<Form> {
      * @param {*} value - The data entry's new value.
      */
     setValue: (id: string | number, value: any) => void;
-    /**`
-     * Reset the form's values. All entrys will be reset to the entry's `defaultValue` or `null`.
-     */
-    reset: () => void;
     /**
      * The form's fields. 	 */
     readonly fields: FormFields;

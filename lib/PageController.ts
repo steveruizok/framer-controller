@@ -1,23 +1,35 @@
-import Controller from "./index"
+import { Controller } from "./Controller"
 
-interface Props {
+interface Config {
 	currentPage?: number
 	totalPages?: number
+	loop?: boolean
+}
+
+interface State extends Config {
+	onChangePage: (currentPage) => void
+}
+
+type Direction = keyof {
+	left: string
+	right: string
 }
 
 /**
  * A controller for Framer X's Page component.
  */
-export class PageController extends Controller<Props> {
-	constructor(props: Props = {}) {
+export class PageController extends Controller<State> {
+	constructor(config: Config = {}) {
 		super({
 			currentPage: 0,
 			totalPages: Infinity,
-			...props,
+			loop: false,
+			onChangePage: p => this.syncCurrentPage(p),
+			...config,
 		})
 	}
 
-	protected onConnect = (props: any) => {
+	protected onConnect = (state: any, props: any) => {
 		let totalPages = props.children[0].props.children.length
 
 		if (totalPages !== this.totalPages) {
@@ -25,6 +37,8 @@ export class PageController extends Controller<Props> {
 				totalPages,
 			})
 		}
+
+		return this.state
 	}
 
 	/**
@@ -51,14 +65,19 @@ const isPager: Override = (props) => {
 	 */
 	public changePage = (delta: number) => {
 		let next = this.state.currentPage + delta
-		return this.setCurrentPage(next)
+		return this.snapToPage(next)
 	}
 
 	/**
 	 *  Set the pager's current page to a given number.
 	 * @param {number} currentPage The new current page
 	 */
-	public setCurrentPage = (currentPage: number) => {
+	public snapToPage = (currentPage: number) => {
+		if (this.loop) {
+			let max = this.state.totalPages
+			currentPage = (max + currentPage) % max
+		}
+
 		if (currentPage >= 0 && currentPage < this.state.totalPages) {
 			this.setState({ currentPage })
 		}
@@ -67,17 +86,16 @@ const isPager: Override = (props) => {
 	}
 
 	/**
-	 * Move to the next page.
+	 *  Change the page to the next page in a given direction ('right' or 'left').
+	 * @param {number} currentPage The new current page
 	 */
-	public nextPage = () => {
-		return this.changePage(1)
-	}
+	public snapToNextPage = (direction: Direction = "right") => {
+		const deltas = {
+			left: -1,
+			right: 1,
+		}
 
-	/**
-	 * Move to the previous page.
-	 */
-	public prevPage = () => {
-		return this.changePage(-1)
+		return this.changePage(deltas[direction])
 	}
 
 	/**
@@ -91,7 +109,7 @@ const isPager: Override = (props) => {
 	set progress(progress: number) {
 		const { totalPages } = this.state
 		progress = Math.max(Math.min(progress, 1), 0)
-		this.setCurrentPage(Math.round((totalPages - 1) * progress))
+		this.snapToPage(Math.round((totalPages - 1) * progress))
 	}
 
 	/**
@@ -104,10 +122,18 @@ const isPager: Override = (props) => {
 	}
 
 	set currentPage(currentPage: number) {
-		this.setCurrentPage(currentPage)
+		this.snapToPage(currentPage)
 	}
 
 	get totalPages() {
 		return this.state.totalPages
+	}
+
+	get loop() {
+		return this.state.loop
+	}
+
+	set loop(loop: boolean) {
+		this.setState({ loop })
 	}
 }

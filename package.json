@@ -1,7 +1,7 @@
 {
 	"name": "framer-controller",
-	"version": "1.4.0",
-	"description": "Control a Framer X component through overrides.",
+	"version": "1.4.8",
+	"description": "Create and reuse stateful logic in Framer X.",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"scripts": {
@@ -28,7 +28,7 @@
 	"dependencies": {
 		"@types/react": "^16.8.5",
 		"@types/react-dom": "^16.8.2",
-		"framer": "^0.10.8"
+		"framer": "^0.10.9"
 	},
 	"devDependencies": {
 		"eventemitter3": "^3.1.0",

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_1 = require("./index");
-class FlowController extends index_1.default {
+const Controller_1 = require("./Controller");
+class FlowController extends Controller_1.Controller {
     constructor(config = {}) {
         super(Object.assign({ current: 0, pagesTotal: 3, direction: "forward", root: config.stack ? config.stack.length === 0 : true, stack: [], transitions: {
                 behind: {
@@ -23,12 +23,14 @@ class FlowController extends index_1.default {
         /**
          * Connect a FlowComponent to this controller via its override props.
          */
-        this.onConnect = (_, props) => {
+        this.onConnect = (state = this.state, props) => {
             const component = props.children[0];
             if (!component || !component.props.pages) {
-                return console.error("Error: You can only connect a FlowComponent to a FlowController.");
+                console.warn("Error: You can only connect a FlowComponent to a FlowController.");
+                return this.state;
             }
             this.pagesTotal = component.props.pages.length;
+            return this.state;
         };
         /**
          * Show a new index.
@@ -38,7 +40,7 @@ class FlowController extends index_1.default {
             let current = Math.min(Math.max(index, 0), this.pagesTotal);
             if (current === previous)
                 return;
-            this.updateState({
+            this.setState({
                 direction: "forward",
                 stack: [...stack, previous],
                 current,
@@ -53,22 +55,13 @@ class FlowController extends index_1.default {
             const current = stack.pop();
             if (current === undefined)
                 return;
-            this.updateState({
+            this.setState({
                 direction: "backward",
                 current,
                 stack,
                 root: stack.length === 0,
             });
         };
-    }
-    /**
-     * Clear the current stack, setting the current index as root.
-     */
-    reset() {
-        this.setState({
-            stack: [],
-            root: true,
-        });
     }
     get current() {
         return this.state.current;

@@ -1,4 +1,4 @@
-import Controller from './index';
+import { Controller } from "./Controller";
 declare type Props = {
     url: string;
     log?: boolean;

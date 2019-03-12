@@ -1,4 +1,4 @@
-import Controller from "./index"
+import { Controller } from "./Controller"
 
 export type ValuesOf<T extends any[]> = T[number]
 

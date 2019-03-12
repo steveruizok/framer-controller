@@ -1,4 +1,4 @@
-import Controller from "./index"
+import { Controller } from "./Controller"
 
 type BooleanFromStatus = (status: Form) => boolean
 type StringFromValue = (value: any) => string

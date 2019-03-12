@@ -8,20 +8,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_1 = require("./index");
+const Controller_1 = require("./Controller");
 /**
  * Load autocomplete predictions and place details from Google's Places library. Creating a PlacesController requires an `apiKey` from Google. [Learn more](https://developers.google.com/maps/documentation/javascript/get-api-key).
  * @example
  * const controller = new PlacesController({apiKey: "..."})
  */
-class PlacesController extends index_1.default {
+class PlacesController extends Controller_1.Controller {
     constructor(props) {
         super(Object.assign({ predictions: [], details: null }, props));
         /**
          * Get a place prediction from an input string.
          */
         this.getPlacePredictions = (input, location, radius, language, types, sessionToken) => __awaiter(this, void 0, void 0, function* () {
-            const getPredictions = () => new Promise((resolve) => {
+            const getPredictions = () => new Promise(resolve => {
                 if (!this.autocompleteService) {
                     return;
                 }
@@ -42,7 +42,7 @@ class PlacesController extends index_1.default {
          * Get place details from a placeId
          */
         this.getPlaceDetails = (placeId, fields) => __awaiter(this, void 0, void 0, function* () {
-            const getDetails = () => new Promise((resolve) => {
+            const getDetails = () => new Promise(resolve => {
                 if (!this.geocoder) {
                     return;
                 }
@@ -69,17 +69,17 @@ class PlacesController extends index_1.default {
      */
     loadLibrary(key) {
         let script;
-        window['initMap'] = () => {
-            this._autoCompleteService = new window['google'].maps.places.AutocompleteService();
-            this._geocoder = new window['google'].maps.Geocoder();
+        window["initMap"] = () => {
+            this._autoCompleteService = new window["google"].maps.places.AutocompleteService();
+            this._geocoder = new window["google"].maps.Geocoder();
         };
-        if (window['google']) {
-            script = document.querySelector('#google_maps_library');
+        if (window["google"]) {
+            script = document.querySelector("#google_maps_library");
             script.remove();
-            delete window['google'];
+            delete window["google"];
         }
-        script = document.createElement('script');
-        script.id = 'google_maps_library';
+        script = document.createElement("script");
+        script.id = "google_maps_library";
         script.src = `https://maps.googleapis.com/maps/api/js?key=${key}&libraries=places&callback=initMap`;
         document.head.appendChild(script);
     }
