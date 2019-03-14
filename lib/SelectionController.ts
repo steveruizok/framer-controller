@@ -1,5 +1,5 @@
-import { Controller } from "./Controller"
-import { without } from "./utils"
+import { Controller } from './Controller'
+import { without } from './utils'
 
 type Config = {
 	selected?: any | any[]

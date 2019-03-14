@@ -28,6 +28,7 @@
 	"dependencies": {
 		"@types/react": "^16.8.5",
 		"@types/react-dom": "^16.8.2",
+		"dayjs": "^1.8.10",
 		"framer": "^0.10.9"
 	},
 	"devDependencies": {
