@@ -16,7 +16,7 @@
             "aspectRatio" : null,
             "bottom" : null,
             "centerAnchorX" : 0.5,
-            "centerAnchorY" : 0.47167487684729065,
+            "centerAnchorY" : 0.49507389162561577,
             "children" : [
               {
                 "__class" : "FrameNode",
@@ -91,9 +91,9 @@
                               "emptyStyle" : [
                                 "LETTERSPACING:0",
                                 "LINEHEIGHT:1.2",
-                                "SIZE:14",
                                 "FONT:HelveticaNeue-Bold",
-                                "COLOR:rgba(35, 105, 225, 1.00)"
+                                "COLOR:rgba(35, 105, 225, 1.00)",
+                                "SIZE:12"
                               ]
                             },
                             "depth" : 0,
@@ -114,17 +114,17 @@
                               {
                                 "length" : 1,
                                 "offset" : 0,
-                                "style" : "SIZE:14"
-                              },
-                              {
-                                "length" : 1,
-                                "offset" : 0,
                                 "style" : "FONT:HelveticaNeue-Bold"
                               },
                               {
                                 "length" : 1,
                                 "offset" : 0,
                                 "style" : "COLOR:rgba(35, 105, 225, 1.00)"
+                              },
+                              {
+                                "length" : 1,
+                                "offset" : 0,
+                                "style" : "SIZE:12"
                               }
                             ],
                             "key" : "2347j",
@@ -133,10 +133,10 @@
                           }
                         ],
                         "cached" : {
-                          "html" : "<div data-offset-key=\"2347j-0-0\" class=\"public-DraftStyleDefault-block public-DraftStyleDefault-ltr\"><span data-offset-key=\"2347j-0-0\" style=\"tab-size:4;font-weight:700;font-family:&quot;HelveticaNeue-Bold&quot;, &quot;Helvetica Neue&quot;, sans-serif;-webkit-text-fill-color:rgba(35, 105, 225, 1.00);font-size:14px;letter-spacing:0px;line-height:1.2\"><span data-text=\"true\"> <\/span><\/span><\/div>",
+                          "html" : "<div data-offset-key=\"2347j-0-0\" class=\"public-DraftStyleDefault-block public-DraftStyleDefault-ltr\"><span data-offset-key=\"2347j-0-0\" style=\"tab-size:4;font-weight:700;font-family:&quot;HelveticaNeue-Bold&quot;, &quot;Helvetica Neue&quot;, sans-serif;-webkit-text-fill-color:rgba(35, 105, 225, 1.00);font-size:12px;letter-spacing:0px;line-height:1.2\"><span data-text=\"true\"> <\/span><\/span><\/div>",
                           "os" : "10_14",
                           "size" : {
-                            "height" : 16,
+                            "height" : 14,
                             "width" : 5
                           },
                           "width" : 0
@@ -312,9 +312,9 @@
                               "emptyStyle" : [
                                 "LETTERSPACING:0",
                                 "LINEHEIGHT:1.2",
-                                "SIZE:14",
                                 "FONT:HelveticaNeue-Bold",
-                                "COLOR:rgba(35, 105, 225, 1.00)"
+                                "COLOR:rgba(35, 105, 225, 1.00)",
+                                "SIZE:12"
                               ]
                             },
                             "depth" : 0,
@@ -335,17 +335,17 @@
                               {
                                 "length" : 1,
                                 "offset" : 0,
-                                "style" : "SIZE:14"
-                              },
-                              {
-                                "length" : 1,
-                                "offset" : 0,
                                 "style" : "FONT:HelveticaNeue-Bold"
                               },
                               {
                                 "length" : 1,
                                 "offset" : 0,
                                 "style" : "COLOR:rgba(35, 105, 225, 1.00)"
+                              },
+                              {
+                                "length" : 1,
+                                "offset" : 0,
+                                "style" : "SIZE:12"
                               }
                             ],
                             "key" : "2347j",
@@ -354,10 +354,10 @@
                           }
                         ],
                         "cached" : {
-                          "html" : "<div data-offset-key=\"2347j-0-0\" class=\"public-DraftStyleDefault-block public-DraftStyleDefault-ltr\"><span data-offset-key=\"2347j-0-0\" style=\"tab-size:4;font-weight:700;font-family:&quot;HelveticaNeue-Bold&quot;, &quot;Helvetica Neue&quot;, sans-serif;-webkit-text-fill-color:rgba(35, 105, 225, 1.00);font-size:14px;letter-spacing:0px;line-height:1.2\"><span data-text=\"true\"> <\/span><\/span><\/div>",
+                          "html" : "<div data-offset-key=\"2347j-0-0\" class=\"public-DraftStyleDefault-block public-DraftStyleDefault-ltr\"><span data-offset-key=\"2347j-0-0\" style=\"tab-size:4;font-weight:700;font-family:&quot;HelveticaNeue-Bold&quot;, &quot;Helvetica Neue&quot;, sans-serif;-webkit-text-fill-color:rgba(35, 105, 225, 1.00);font-size:12px;letter-spacing:0px;line-height:1.2\"><span data-text=\"true\"> <\/span><\/span><\/div>",
                           "os" : "10_14",
                           "size" : {
-                            "height" : 16,
+                            "height" : 14,
                             "width" : 5
                           },
                           "width" : 0
@@ -560,9 +560,9 @@
                               "emptyStyle" : [
                                 "LETTERSPACING:0",
                                 "LINEHEIGHT:1.2",
-                                "SIZE:14",
                                 "FONT:HelveticaNeue-Bold",
-                                "COLOR:rgba(35, 105, 225, 1.00)"
+                                "COLOR:rgba(35, 105, 225, 1.00)",
+                                "SIZE:12"
                               ]
                             },
                             "depth" : 0,
@@ -583,17 +583,17 @@
                               {
                                 "length" : 1,
                                 "offset" : 0,
-                                "style" : "SIZE:14"
-                              },
-                              {
-                                "length" : 1,
-                                "offset" : 0,
                                 "style" : "FONT:HelveticaNeue-Bold"
                               },
                               {
                                 "length" : 1,
                                 "offset" : 0,
                                 "style" : "COLOR:rgba(35, 105, 225, 1.00)"
+                              },
+                              {
+                                "length" : 1,
+                                "offset" : 0,
+                                "style" : "SIZE:12"
                               }
                             ],
                             "key" : "2347j",
@@ -602,10 +602,10 @@
                           }
                         ],
                         "cached" : {
-                          "html" : "<div data-offset-key=\"2347j-0-0\" class=\"public-DraftStyleDefault-block public-DraftStyleDefault-ltr\"><span data-offset-key=\"2347j-0-0\" style=\"tab-size:4;font-weight:700;font-family:&quot;HelveticaNeue-Bold&quot;, &quot;Helvetica Neue&quot;, sans-serif;-webkit-text-fill-color:rgba(35, 105, 225, 1.00);font-size:14px;letter-spacing:0px;line-height:1.2\"><span data-text=\"true\"> <\/span><\/span><\/div>",
+                          "html" : "<div data-offset-key=\"2347j-0-0\" class=\"public-DraftStyleDefault-block public-DraftStyleDefault-ltr\"><span data-offset-key=\"2347j-0-0\" style=\"tab-size:4;font-weight:700;font-family:&quot;HelveticaNeue-Bold&quot;, &quot;Helvetica Neue&quot;, sans-serif;-webkit-text-fill-color:rgba(35, 105, 225, 1.00);font-size:12px;letter-spacing:0px;line-height:1.2\"><span data-text=\"true\"> <\/span><\/span><\/div>",
                           "os" : "10_14",
                           "size" : {
-                            "height" : 16,
+                            "height" : 14,
                             "width" : 5
                           },
                           "width" : 0
@@ -761,9 +761,9 @@
                               "emptyStyle" : [
                                 "LETTERSPACING:0",
                                 "LINEHEIGHT:1.2",
-                                "SIZE:14",
                                 "FONT:HelveticaNeue-Bold",
-                                "COLOR:rgba(35, 105, 225, 1.00)"
+                                "COLOR:rgba(35, 105, 225, 1.00)",
+                                "SIZE:12"
                               ]
                             },
                             "depth" : 0,
@@ -784,17 +784,17 @@
                               {
                                 "length" : 1,
                                 "offset" : 0,
-                                "style" : "SIZE:14"
-                              },
-                              {
-                                "length" : 1,
-                                "offset" : 0,
                                 "style" : "FONT:HelveticaNeue-Bold"
                               },
                               {
                                 "length" : 1,
                                 "offset" : 0,
                                 "style" : "COLOR:rgba(35, 105, 225, 1.00)"
+                              },
+                              {
+                                "length" : 1,
+                                "offset" : 0,
+                                "style" : "SIZE:12"
                               }
                             ],
                             "key" : "2347j",
@@ -803,10 +803,10 @@
                           }
                         ],
                         "cached" : {
-                          "html" : "<div data-offset-key=\"2347j-0-0\" class=\"public-DraftStyleDefault-block public-DraftStyleDefault-ltr\"><span data-offset-key=\"2347j-0-0\" style=\"tab-size:4;font-weight:700;font-family:&quot;HelveticaNeue-Bold&quot;, &quot;Helvetica Neue&quot;, sans-serif;-webkit-text-fill-color:rgba(35, 105, 225, 1.00);font-size:14px;letter-spacing:0px;line-height:1.2\"><span data-text=\"true\"> <\/span><\/span><\/div>",
+                          "html" : "<div data-offset-key=\"2347j-0-0\" class=\"public-DraftStyleDefault-block public-DraftStyleDefault-ltr\"><span data-offset-key=\"2347j-0-0\" style=\"tab-size:4;font-weight:700;font-family:&quot;HelveticaNeue-Bold&quot;, &quot;Helvetica Neue&quot;, sans-serif;-webkit-text-fill-color:rgba(35, 105, 225, 1.00);font-size:12px;letter-spacing:0px;line-height:1.2\"><span data-text=\"true\"> <\/span><\/span><\/div>",
                           "os" : "10_14",
                           "size" : {
-                            "height" : 16,
+                            "height" : 14,
                             "width" : 5
                           },
                           "width" : 0
@@ -943,7 +943,7 @@
             "fillImagePixelWidth" : null,
             "fillImageResize" : "fill",
             "fillType" : "color",
-            "height" : 452,
+            "height" : 444,
             "heightType" : 0,
             "id" : "PRTc4GHtW",
             "intrinsicHeight" : null,
@@ -963,7 +963,7 @@
             "radiusTopRight" : 0,
             "right" : 0,
             "rotation" : 0,
-            "top" : 157,
+            "top" : 180,
             "visible" : true,
             "width" : 375,
             "widthType" : 0
@@ -1587,7 +1587,7 @@
             "exportOptions" : [
 
             ],
-            "height" : 16,
+            "height" : 14,
             "heightType" : 0,
             "id" : "bmCe3T91J",
             "isTarget" : true,
@@ -1608,9 +1608,9 @@
                     "emptyStyle" : [
                       "LETTERSPACING:0",
                       "LINEHEIGHT:1.2",
-                      "SIZE:14",
                       "FONT:HelveticaNeue-Bold",
-                      "COLOR:rgba(35, 105, 225, 1.00)"
+                      "COLOR:rgba(35, 105, 225, 1.00)",
+                      "SIZE:12"
                     ]
                   },
                   "depth" : 0,
@@ -1631,17 +1631,17 @@
                     {
                       "length" : 10,
                       "offset" : 0,
-                      "style" : "SIZE:14"
-                    },
-                    {
-                      "length" : 10,
-                      "offset" : 0,
                       "style" : "FONT:HelveticaNeue-Bold"
                     },
                     {
                       "length" : 10,
                       "offset" : 0,
                       "style" : "COLOR:rgba(35, 105, 225, 1.00)"
+                    },
+                    {
+                      "length" : 10,
+                      "offset" : 0,
+                      "style" : "SIZE:12"
                     }
                   ],
                   "key" : "2347j",
@@ -1650,11 +1650,11 @@
                 }
               ],
               "cached" : {
-                "html" : "<div data-offset-key=\"2347j-0-0\" class=\"public-DraftStyleDefault-block public-DraftStyleDefault-ltr\"><span data-offset-key=\"2347j-0-0\" style=\"tab-size:4;font-weight:700;font-family:&quot;HelveticaNeue-Bold&quot;, &quot;Helvetica Neue&quot;, sans-serif;-webkit-text-fill-color:rgba(35, 105, 225, 1.00);font-size:14px;letter-spacing:0px;line-height:1.2\"><span data-text=\"true\">Error text<\/span><\/span><\/div>",
+                "html" : "<div data-offset-key=\"2347j-0-0\" class=\"public-DraftStyleDefault-block public-DraftStyleDefault-ltr\"><span data-offset-key=\"2347j-0-0\" style=\"tab-size:4;font-weight:700;font-family:&quot;HelveticaNeue-Bold&quot;, &quot;Helvetica Neue&quot;, sans-serif;-webkit-text-fill-color:rgba(35, 105, 225, 1.00);font-size:12px;letter-spacing:0px;line-height:1.2\"><span data-text=\"true\">Error text<\/span><\/span><\/div>",
                 "os" : "10_14",
                 "size" : {
-                  "height" : 16,
-                  "width" : 65
+                  "height" : 14,
+                  "width" : 56
                 },
                 "width" : 0
               },
@@ -1664,7 +1664,7 @@
             },
             "top" : null,
             "visible" : true,
-            "width" : 65,
+            "width" : 56,
             "widthType" : 0
           }
         ],
@@ -1900,7 +1900,7 @@
             "exportOptions" : [
 
             ],
-            "height" : 16,
+            "height" : 14,
             "heightType" : 0,
             "id" : "Y_nQrmw0NbmCe3T91J",
             "isTarget" : true,
@@ -1921,9 +1921,9 @@
                     "emptyStyle" : [
                       "LETTERSPACING:0",
                       "LINEHEIGHT:1.2",
-                      "SIZE:14",
                       "FONT:HelveticaNeue-Bold",
-                      "COLOR:rgba(35, 105, 225, 1.00)"
+                      "COLOR:rgba(35, 105, 225, 1.00)",
+                      "SIZE:12"
                     ]
                   },
                   "depth" : 0,
@@ -1944,17 +1944,17 @@
                     {
                       "length" : 10,
                       "offset" : 0,
-                      "style" : "SIZE:14"
-                    },
-                    {
-                      "length" : 10,
-                      "offset" : 0,
                       "style" : "FONT:HelveticaNeue-Bold"
                     },
                     {
                       "length" : 10,
                       "offset" : 0,
                       "style" : "COLOR:rgba(35, 105, 225, 1.00)"
+                    },
+                    {
+                      "length" : 10,
+                      "offset" : 0,
+                      "style" : "SIZE:12"
                     }
                   ],
                   "key" : "2347j",
@@ -1963,11 +1963,11 @@
                 }
               ],
               "cached" : {
-                "html" : "<div data-offset-key=\"2347j-0-0\" class=\"public-DraftStyleDefault-block public-DraftStyleDefault-ltr\"><span data-offset-key=\"2347j-0-0\" style=\"tab-size:4;font-weight:700;font-family:&quot;HelveticaNeue-Bold&quot;, &quot;Helvetica Neue&quot;, sans-serif;-webkit-text-fill-color:rgba(35, 105, 225, 1.00);font-size:14px;letter-spacing:0px;line-height:1.2\"><span data-text=\"true\">Error text<\/span><\/span><\/div>",
+                "html" : "<div data-offset-key=\"2347j-0-0\" class=\"public-DraftStyleDefault-block public-DraftStyleDefault-ltr\"><span data-offset-key=\"2347j-0-0\" style=\"tab-size:4;font-weight:700;font-family:&quot;HelveticaNeue-Bold&quot;, &quot;Helvetica Neue&quot;, sans-serif;-webkit-text-fill-color:rgba(35, 105, 225, 1.00);font-size:12px;letter-spacing:0px;line-height:1.2\"><span data-text=\"true\">Error text<\/span><\/span><\/div>",
                 "os" : "10_14",
                 "size" : {
-                  "height" : 16,
-                  "width" : 65
+                  "height" : 14,
+                  "width" : 56
                 },
                 "width" : 0
               },
@@ -1977,7 +1977,7 @@
             },
             "top" : null,
             "visible" : true,
-            "width" : 65,
+            "width" : 56,
             "widthType" : 0
           },
           {
