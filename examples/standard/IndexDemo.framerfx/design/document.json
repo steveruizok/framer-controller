@@ -1701,9 +1701,9 @@
                     "os" : "10_14",
                     "size" : {
                       "height" : 19,
-                      "width" : 47
+                      "width" : 101
                     },
-                    "width" : 0
+                    "width" : 100
                   },
                   "entityMap" : {
 

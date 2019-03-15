@@ -2,6 +2,7 @@ import { Controller } from "./Controller"
 
 type Props = {
 	url: string
+	parse?: (data: any) => any
 	log?: boolean
 	data?: any
 	loading?: boolean
@@ -16,7 +17,8 @@ export class FetchController extends Controller<Props> {
 		super({
 			log: false,
 			loading: true,
-			data: [],
+			parse: d => d,
+			data: false,
 			...props,
 		})
 		this.refresh()
@@ -41,13 +43,17 @@ export class FetchController extends Controller<Props> {
 	 * controller.refresh()
 	 * controller.refresh((data) => console.log(data))
 	 */
-	refresh = async (callback?: (data: any) => void) => {
+	refresh = async () => {
 		this.setState({ loading: true })
-		const data = await FetchController.fetch(this.state.url).catch(e =>
+		let data = await FetchController.fetch(this.state.url).catch(e =>
 			console.warn(`⚠️Error refreshing from ${this.state.url}`, e)
 		)
+
+		if (this.state.parse) {
+			data = this.state.parse(data)
+		}
+
 		this.setState({ data, loading: false }, () => {
-			callback && callback(data)
 			this.state.log && console.log(data)
 		})
 	}
