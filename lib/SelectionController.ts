@@ -1,5 +1,5 @@
-import { Controller } from './Controller'
-import { without } from './utils'
+import { Controller } from "./Controller"
+import { without } from "./utils"
 
 type Config = {
 	selected?: any | any[]
@@ -11,7 +11,7 @@ type Config = {
 export class SelectionController extends Controller<Config> {
 	constructor(config: Config = {} as Config) {
 		super({
-			selected: null,
+			selected: config.multiple ? castArray(config.selected) : config.selected,
 			validation: null,
 			toggle: false,
 			...config,
@@ -32,9 +32,7 @@ export class SelectionController extends Controller<Config> {
 		if (multiple) {
 			if (selected.includes(item)) {
 				if (toggle) {
-					selected = without(selected, item)
-				} else {
-					return selected
+					return this.deselect(item)
 				}
 			} else {
 				selected = [...selected, item]
@@ -42,9 +40,7 @@ export class SelectionController extends Controller<Config> {
 		} else {
 			if (selected === item) {
 				if (toggle) {
-					selected = null
-				} else {
-					return selected
+					return this.deselect(item)
 				}
 			} else {
 				selected = item
@@ -61,18 +57,10 @@ export class SelectionController extends Controller<Config> {
 		const { multiple } = this
 		let { selected } = this
 
-		if (multiple) {
-			if (selected.includes(item)) {
-				selected = without(selected, item)
-			} else {
-				return selected
-			}
-		} else {
-			if (selected === item) {
-				selected = null
-			} else {
-				return selected
-			}
+		if (multiple && selected.includes(item)) {
+			selected = without(selected, item)
+		} else if (selected === item) {
+			selected = null
 		}
 
 		this.setState({ selected })
@@ -118,14 +106,30 @@ export class SelectionController extends Controller<Config> {
 	}
 
 	get toggle() {
-		return this.state.selected
+		return this.state.toggle
+	}
+
+	set toggle(toggle: boolean) {
+		this.setState({ toggle })
 	}
 
 	get multiple() {
 		return this.state.multiple
 	}
 
+	set multiple(multiple: boolean) {
+		this.setState({ multiple })
+	}
+
 	get validation() {
 		return this.state.validation
 	}
+
+	set validation(validation: (item: any | any[]) => boolean) {
+		this.setState({
+			validation,
+		})
+	}
 }
+
+const castArray = value => (Array.isArray(value) ? value : [value])

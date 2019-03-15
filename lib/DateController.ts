@@ -1,5 +1,8 @@
-import { Controller } from './Controller'
-import * as dayjs from 'dayjs'
+import { Controller } from "./Controller"
+import * as dayjs from "dayjs"
+import * as advancedFormat from "dayjs/plugin/advancedFormat"
+
+dayjs.extend(advancedFormat)
 
 type IDate = dayjs.Dayjs
 type Dates<T> = { [K in keyof T]: string }
@@ -33,6 +36,7 @@ export class DateController<
 		)
 
 		this._data = this._keys.reduce((a, k: keyof C) => {
+			// a[k] = controller.state[k]
 			Object.defineProperty(a, k, {
 				get() {
 					return controller.state[k]

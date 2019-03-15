@@ -70,27 +70,8 @@ export class FormController extends Controller<Form> {
 			),
 			ready: false,
 		})
-		this.reset()
+		this.setState(this.getComputedState(this.state.data))
 	}
-
-	// /**`
-	//  * Reset the form's values. All entrys will be reset to the entry's `defaultValue` or `null`.
-	//  */
-	// onReset = () => {
-	// 	const data = Object.keys(this.state.data).reduce((a, id) => {
-	// 		let entry = this.state.data[id]
-	// 		let field = this.state.fields[id]
-	// 		return {
-	// 			...a,
-	// 			[id]: {
-	// 				...entry,
-	// 				value: field.defaultValue || null,
-	// 			},
-	// 		}
-	// 	}, {})
-
-	// 	this.setState(this.getComputedState(data))
-	// }
 
 	/**
 	 * Return the next state, given a set of incoming entries.
@@ -117,7 +98,8 @@ export class FormController extends Controller<Form> {
 
 			// Does the field have value, and does that value pass validation?
 			if (value !== undefined && value !== null) {
-				valid = validation === undefined ? true : validation(value)
+				valid =
+					validation === undefined ? true : validation(value) ? true : false
 
 				// If not complete, use error text (as string or function) if provided
 				errorText =
@@ -144,9 +126,8 @@ export class FormController extends Controller<Form> {
 
 		for (let id in data) {
 			const field = this.state.fields[id]
-			const entry = data[id]
 
-			entry.hidden =
+			data[id].hidden =
 				field.hidden === undefined
 					? false
 					: typeof field.hidden === "boolean"
@@ -156,8 +137,10 @@ export class FormController extends Controller<Form> {
 							data,
 							ready,
 					  })
+					? true
+					: false
 
-			entry.required = field.required
+			data[id].required = field.required
 				? typeof field.required === "boolean"
 					? field.required
 					: field.required({
@@ -166,10 +149,13 @@ export class FormController extends Controller<Form> {
 							ready,
 					  })
 				: false
+		}
 
-			// If form is still ready, but this field is both required
-			// and incomplete, mark it not ready
-			if (entry.required && !entry.valid) {
+		// Finally, loop through to set ready state
+
+		for (let id in data) {
+			let entry = data[id]
+			if (entry.required && !entry.hidden && !entry.valid) {
 				ready = false
 			}
 		}

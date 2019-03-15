@@ -14,10 +14,10 @@ export function without(array: any[], items: any | any[]) {
 
 	arr = items.reduce((acc: any[], item: any) => {
 		let index = acc.indexOf(item)
-		if (index < 0) return arr
+		if (index < 0) return acc
 		acc.splice(index, 1)
 		return acc
-	})
+	}, arr)
 
 	return arr
 }

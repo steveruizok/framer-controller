@@ -1,0 +1,21 @@
+{
+  "files" : {
+    ".backups/2019-03-15 20.38.47.zip" : {
+      "sha1" : "TTHUcrgl+2tssQyDkyf+pa0h+u4=",
+      "size" : 9527
+    },
+    ".backups/2019-03-15 20.39.48.zip" : {
+      "sha1" : "+uN9nvwPTTir+u4XBRXFIPvjNws=",
+      "size" : 7917
+    },
+    "build/index.js" : {
+      "sha1" : "XUgC/oAJGDb0HHoNxr8pVDHZwgs=",
+      "size" : 126842
+    },
+    "design/document.json" : {
+      "sha1" : "Gx/11XZJSQHWVx4dDg3RO6yu4ww=",
+      "size" : 115197
+    }
+  },
+  "uuid" : "2C9F61B3-757F-40F4-B8F2-F318537713B9"
+}
