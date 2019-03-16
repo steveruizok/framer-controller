@@ -1,0 +1,47 @@
+---
+name: PageController
+route: /PageController
+---
+
+# PageController
+
+A `PageController` is specially written to control Framer's Page component. See the example for proper usage.
+
+| Option      | Type    | DefaultValue | Description                                                                                             |
+| :---------- | :------ | :----------- | :------------------------------------------------------------------------------------------------------ |
+| currentPage | number  | 0            | The initial currentPage for the controller.                                                             |
+| loop        | boolean | false        | _Optional_ - When true, `snapToNextPage` will move from the last page to the first page, and vis versa. |
+
+| Property    | Type    | Description                                                                                                                 |
+| :---------- | :------ | :-------------------------------------------------------------------------------------------------------------------------- |
+| currentPage | number  | The controller's current page.                                                                                              |
+| totalPages  | number  | The controller's total number of pages.                                                                                     |
+| progress    | number  | A normalized value, 0 when the current page is the pager's first page and 1 when the current page is the pager's last page. |
+| loop        | boolean | Whether the page controller can navigate from the last page to the first page, and vis versa.                               |
+
+| Method                                       | Description                                  |
+| :------------------------------------------- | :------------------------------------------- |
+| snapToNextPage(direction: `left` or `right`) | Change the page `left` or `right`.           |
+| snapToPage(page: number)                     | Change the page to the given page index.     |
+| changePage(delta: number)                    | Change the current page by the given number. |
+
+Example:
+
+```tsx
+import { Override } from "framer"
+import { PageController } from "framer-controller"
+
+const controller = new PageController()
+
+export const PageComponent: Override = () => controller.state
+
+export const NextPage: Override = () => ({
+	opacity: controller.progress < 1 ? 1 : 0.5,
+	onClick: () => controller.snapToNextPage("right"),
+})
+
+export const PrevPage: Override = () => ({
+	opacity: controller.progress > 0 ? 1 : 0.5,
+	onClick: () => controller.snapToNextPage("left"),
+})
+```

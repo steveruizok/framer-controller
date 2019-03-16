@@ -29,12 +29,20 @@ export declare class Controller<T> {
      * is reset using the `reset` method.
      * @param state The controller's initial state.
      */
-    protected onReset: (state?: State<T>, connected?: any) => any;
+    protected onReset: (state?: Partial<T & {
+        controller?: any;
+    }>, connected?: any) => Partial<T & {
+        controller?: any;
+    }>;
     /**
      * A method that fires automatically after each state change.
      * @param state The controller's initial state.
      */
-    protected onUpdate: (state?: State<T>, connected?: any) => any;
+    protected onUpdate: (state?: Partial<T & {
+        controller?: any;
+    }>, connected?: any) => Partial<T & {
+        controller?: any;
+    }>;
     /**
      * A callback that fires automatically after the controller is
      * connected to data using `connect` method.
@@ -56,31 +64,26 @@ export declare class Controller<T> {
     /**
      * Set the controller's state.
      * @param {Options} state The changes you wish to make to the controller's state.
-     * @param {(state: Options<T>, position: number) => void} [callback] An optional callback function to run after the new state has loaded.
-     * @returns {Options<T>} The controller's new state.
+     * @param {(state: State<T>, position: number) => void} [callback] An optional callback function to run after the new state has loaded.
+     * @returns {State<T>} The controller's new state.
      */
     setState: (state?: Partial<T & {
         controller?: any;
-    }>, callback?: (state: T) => void) => Partial<T & {
+    }>) => Partial<T & {
         controller?: any;
     }>;
     /**
      * Return the state to its initial value.
-     * @param {(state: Options<T>, position: number) => void} [callback] An optional callback function to run after the new state has loaded.
-     * @returns {Options<T>} The controller's new state.
+     * @returns {State<T>} The controller's new state.
      */
-    reset: (callback?: (state: Partial<T & {
-        controller?: any;
-    }>) => void) => Partial<T & {
+    reset: () => Partial<T & {
         controller?: any;
     }>;
     /**
      * The controller's current state.
      * @readonly
      */
-    readonly state: Partial<T & {
-        controller?: any;
-    }>;
+    readonly state: State<T>;
     /**
      * The data connected using `controller.connect`.
      * @readonly

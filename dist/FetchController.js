@@ -14,8 +14,12 @@ const Controller_1 = require("./Controller");
  * Accepts manual refrsehing (`refresh()`) and handles `loading` state, too.
  */
 class FetchController extends Controller_1.Controller {
-    constructor(props) {
-        super(Object.assign({ log: false, loading: true, data: [] }, props));
+    constructor(options = {}) {
+        super(Object.assign({ log: false, loading: true, parse: d => d, data: false }, options));
+        this.onUpdate = state => {
+            this.state.log && console.log(state.data);
+            return this.state;
+        };
         /**
          * Load a new set of data from the controller's `url`.
          * @param callback - An optional callback to run once the data arrives.
@@ -23,13 +27,13 @@ class FetchController extends Controller_1.Controller {
          * controller.refresh()
          * controller.refresh((data) => console.log(data))
          */
-        this.refresh = (callback) => __awaiter(this, void 0, void 0, function* () {
+        this.refresh = () => __awaiter(this, void 0, void 0, function* () {
             this.setState({ loading: true });
-            const data = yield FetchController.fetch(this.state.url).catch(e => console.warn(`⚠️Error refreshing from ${this.state.url}`, e));
-            this.setState({ data, loading: false }, () => {
-                callback && callback(data);
-                this.state.log && console.log(data);
-            });
+            let data = yield FetchController.fetch(this.state.url).catch(e => console.warn(`⚠️Error refreshing from ${this.state.url}`, e));
+            if (this.state.parse) {
+                data = this.state.parse(data);
+            }
+            this.setState({ data, loading: false });
         });
         this.refresh();
     }
@@ -40,7 +44,8 @@ class FetchController extends Controller_1.Controller {
         return this.state.url;
     }
     set url(url) {
-        this.setState({ url }, () => this.refresh());
+        this.setState({ url });
+        this.refresh();
     }
     /**
      * The controller's current data.

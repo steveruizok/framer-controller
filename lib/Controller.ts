@@ -39,13 +39,13 @@ export class Controller<T> {
 	 * is reset using the `reset` method.
 	 * @param state The controller's initial state.
 	 */
-	protected onReset: (state?: State<T>, connected?: any) => any = () => {}
+	protected onReset = (state?: State<T>, connected?: any) => this.state
 
 	/**
 	 * A method that fires automatically after each state change.
 	 * @param state The controller's initial state.
 	 */
-	protected onUpdate: (state?: State<T>, connected?: any) => any = () => {}
+	protected onUpdate = (state?: State<T>, connected?: any) => this.state
 
 	/**
 	 * A callback that fires automatically after the controller is
@@ -71,42 +71,29 @@ export class Controller<T> {
 	/**
 	 * Set the controller's state.
 	 * @param {Options} state The changes you wish to make to the controller's state.
-	 * @param {(state: Options<T>, position: number) => void} [callback] An optional callback function to run after the new state has loaded.
-	 * @returns {Options<T>} The controller's new state.
+	 * @param {(state: State<T>, position: number) => void} [callback] An optional callback function to run after the new state has loaded.
+	 * @returns {State<T>} The controller's new state.
 	 */
-	public setState = (
-		state: State<T> = {},
-		callback?: (state: T) => void
-	): State<T> => {
+	public setState = (state: State<T> = {}): State<T> => {
 		Object.assign(this._state, {
 			...(this.state as object),
 			...(state as object),
 		})
 		this.onUpdate(this._state)
-
-		if (callback) {
-			window.setTimeout(
-				() => callback.bind(this)(this._state as State<T>),
-				150 // i want to be a real boy
-			)
-		}
-
 		return this._state
 	}
 
 	/**
 	 * Return the state to its initial value.
-	 * @param {(state: Options<T>, position: number) => void} [callback] An optional callback function to run after the new state has loaded.
-	 * @returns {Options<T>} The controller's new state.
+	 * @returns {State<T>} The controller's new state.
 	 */
-	public reset = (callback?: (state: State<T>) => void) =>
-		this.setState(this._initial, callback)
+	public reset = (): State<T> => this.setState(this._initial)
 
 	/**
 	 * The controller's current state.
 	 * @readonly
 	 */
-	get state() {
+	get state(): State<T> {
 		return this._state
 	}
 
@@ -114,7 +101,7 @@ export class Controller<T> {
 	 * The data connected using `controller.connect`.
 	 * @readonly
 	 */
-	get connected() {
+	get connected(): any {
 		return this._connected
 	}
 }

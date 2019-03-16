@@ -5,8 +5,8 @@ const Controller_1 = require("./Controller");
  * Control a set of index values for a given set of Frames.
  */
 class IndexController extends Controller_1.Controller {
-    constructor(props) {
-        super(Object.assign({ order: props.items.reduce((a, c, i) => (Object.assign({}, a, { [c]: i })), {}), loop: false }, props));
+    constructor(options = { items: [] }) {
+        super(Object.assign({ order: options.items.reduce((a, c, i) => (Object.assign({}, a, { [c]: i })), {}), loop: false }, options));
         /**
          * Send an item forward by in the order.
          */
@@ -98,6 +98,10 @@ class IndexController extends Controller_1.Controller {
             }
         }
         this.setState({ order });
+    }
+    swap(itemA, itemB) {
+        let { order } = this.state;
+        this.swapValues(order[itemA], order[itemB]);
     }
     /**
      * The minimum index for an item in this controller.

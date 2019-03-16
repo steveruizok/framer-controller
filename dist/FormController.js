@@ -45,25 +45,8 @@ class FormController extends Controller_1.Controller {
             const state = this.getComputedState(Object.assign({}, data, { [id]: Object.assign({}, data[id], { value }) }));
             this.setState(state);
         };
-        this.reset();
+        this.setState(this.getComputedState(this.state.data));
     }
-    // /**`
-    //  * Reset the form's values. All entrys will be reset to the entry's `defaultValue` or `null`.
-    //  */
-    // onReset = () => {
-    // 	const data = Object.keys(this.state.data).reduce((a, id) => {
-    // 		let entry = this.state.data[id]
-    // 		let field = this.state.fields[id]
-    // 		return {
-    // 			...a,
-    // 			[id]: {
-    // 				...entry,
-    // 				value: field.defaultValue || null,
-    // 			},
-    // 		}
-    // 	}, {})
-    // 	this.setState(this.getComputedState(data))
-    // }
     /**
      * Return the next state, given a set of incoming entries.
      * @param incoming
@@ -82,7 +65,8 @@ class FormController extends Controller_1.Controller {
             let errorText = "";
             // Does the field have value, and does that value pass validation?
             if (value !== undefined && value !== null) {
-                valid = validation === undefined ? true : validation(value);
+                valid =
+                    validation === undefined ? true : validation(value) ? true : false;
                 // If not complete, use error text (as string or function) if provided
                 errorText =
                     value && !valid && fieldErrorText
@@ -102,8 +86,7 @@ class FormController extends Controller_1.Controller {
         // Now that the values are all set, set state-computed properties
         for (let id in data) {
             const field = this.state.fields[id];
-            const entry = data[id];
-            entry.hidden =
+            data[id].hidden =
                 field.hidden === undefined
                     ? false
                     : typeof field.hidden === "boolean"
@@ -112,8 +95,10 @@ class FormController extends Controller_1.Controller {
                             fields,
                             data,
                             ready,
-                        });
-            entry.required = field.required
+                        })
+                            ? true
+                            : false;
+            data[id].required = field.required
                 ? typeof field.required === "boolean"
                     ? field.required
                     : field.required({
@@ -122,9 +107,11 @@ class FormController extends Controller_1.Controller {
                         ready,
                     })
                 : false;
-            // If form is still ready, but this field is both required
-            // and incomplete, mark it not ready
-            if (entry.required && !entry.valid) {
+        }
+        // Finally, loop through to set ready state
+        for (let id in data) {
+            let entry = data[id];
+            if (entry.required && !entry.hidden && !entry.valid) {
                 ready = false;
             }
         }

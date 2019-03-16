@@ -1,17 +1,17 @@
 import { Controller } from "./Controller";
-interface Config {
+interface Options {
     currentPage?: number;
-    totalPages?: number;
     loop?: boolean;
 }
-interface State extends Config {
+interface State extends Options {
     onChangePage: (currentPage: any) => void;
+    totalPages?: number;
 }
 /**
  * A controller for Framer X's Page component.
  */
-export declare class PageController extends Controller<State> {
-    constructor(config?: Config);
+export declare class PageController<Options> extends Controller<State> {
+    constructor(options?: Options);
     protected onConnect: (state: any, props: any) => Partial<State & {
         controller?: any;
     }>;

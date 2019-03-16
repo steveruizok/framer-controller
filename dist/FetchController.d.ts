@@ -1,16 +1,22 @@
 import { Controller } from "./Controller";
-declare type Props = {
+interface Options {
     url: string;
+    parse?: (data: any) => any;
     log?: boolean;
     data?: any;
+}
+interface State extends Options {
     loading?: boolean;
-};
+}
 /**
  * Fetch data from an API endpoint (a `url`) and return it as `data`.
  * Accepts manual refrsehing (`refresh()`) and handles `loading` state, too.
  */
-export declare class FetchController extends Controller<Props> {
-    constructor(props: Props);
+export declare class FetchController extends Controller<State> {
+    constructor(options?: Options);
+    onUpdate: (state: any) => Partial<State & {
+        controller?: any;
+    }>;
     /**
      * Make a fetch request and return the data as a JSON object.
      * @example
@@ -24,7 +30,7 @@ export declare class FetchController extends Controller<Props> {
      * controller.refresh()
      * controller.refresh((data) => console.log(data))
      */
-    refresh: (callback?: (data: any) => void) => Promise<void>;
+    refresh: () => Promise<void>;
     /**
      * The controller's current data endpoint. Setting this property will refresh the controller.
      */

@@ -1,7 +1,8 @@
 import { Controller } from "./Controller"
 export default Controller
 
-export { DateController } from "./DateController"
+export { IntervalController } from "./IntervalController"
+export { CounterController } from "./CounterController"
 export { FetchController } from "./FetchController"
 export { FlowController } from "./FlowController"
 export { FormController } from "./FormController"

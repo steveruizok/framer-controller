@@ -2,23 +2,26 @@ import { Controller } from "./Controller"
 
 export type ValuesOf<T extends any[]> = T[number]
 
-type Props = {
+interface Options {
 	items: Array<string | number>
-	order?: { [key in ValuesOf<Props["items"]>]: number }
 	loop?: boolean
 }
 
-type Item = ValuesOf<Props["items"]>
+type Item = ValuesOf<Options["items"]>
+
+interface State extends Options {
+	order?: { [key in ValuesOf<Options["items"]>]: number }
+}
 
 /**
  * Control a set of index values for a given set of Frames.
  */
-export class IndexController extends Controller<Props> {
-	constructor(props: Props) {
+export class IndexController extends Controller<State> {
+	constructor(options: Options = { items: [] } as Options) {
 		super({
-			order: props.items.reduce((a, c, i) => ({ ...a, [c]: i }), {}),
+			order: options.items.reduce((a, c, i) => ({ ...a, [c]: i }), {}),
 			loop: false,
-			...props,
+			...options,
 		})
 	}
 
@@ -38,6 +41,11 @@ export class IndexController extends Controller<Props> {
 		}
 
 		this.setState({ order })
+	}
+
+	public swap(itemA: Item, itemB: Item) {
+		let { order } = this.state
+		this.swapValues(order[itemA], order[itemB])
 	}
 
 	/**
@@ -148,7 +156,7 @@ export class IndexController extends Controller<Props> {
 		return this.state.order
 	}
 
-	set order(order: { [key in ValuesOf<Props["items"]>]: number }) {
+	set order(order: { [key in ValuesOf<Options["items"]>]: number }) {
 		this.setState({
 			order,
 		})

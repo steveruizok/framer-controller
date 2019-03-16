@@ -1,13 +1,13 @@
 import { Controller } from "./Controller"
 
-interface Config {
+interface Options {
 	currentPage?: number
-	totalPages?: number
 	loop?: boolean
 }
 
-interface State extends Config {
+interface State extends Options {
 	onChangePage: (currentPage) => void
+	totalPages?: number
 }
 
 type Direction = keyof {
@@ -18,14 +18,14 @@ type Direction = keyof {
 /**
  * A controller for Framer X's Page component.
  */
-export class PageController extends Controller<State> {
-	constructor(config: Config = {}) {
+export class PageController<Options> extends Controller<State> {
+	constructor(options = {} as Options) {
 		super({
 			currentPage: 0,
 			totalPages: Infinity,
 			loop: false,
 			onChangePage: p => this.syncCurrentPage(p),
-			...config,
+			...options,
 		})
 	}
 

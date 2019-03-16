@@ -1,0 +1,50 @@
+---
+name: Controller
+route: /Controllerç
+---
+
+# Controller
+
+A `Controller` maintains state for an arbitrary set of properties.
+
+When a controller is created, all properties passed into its constructor will be stored in state.
+
+| Property  | Type   | Description                                 |
+| :-------- | :----- | :------------------------------------------ |
+| state     | object | The controller's current state.             |
+| connected | any    | Any data stored using the `connect` method. |
+
+| Method          | Description                                                          |
+| :-------------- | :------------------------------------------------------------------- |
+| setState(state) | Merges the provided values into the controller's `state`.            |
+| connect(data)   | Stores the provided `data` as the controller's `connected` property. |
+| reset()         | Resets the controller to its initial state.                          |
+
+In addition, the `Controller` class has three `protected` life cycle methods. If you're writing a class that extends `Controller`, you can overwrite these methods in your class.
+
+| Protected Method                        | Description                                                    |
+| :-------------------------------------- | :------------------------------------------------------------- |
+| onUpdate(state: State, connected: any)  | A lifecycle method fired when the controller's state updates.  |
+| onConnect(state: State, connected: any) | A lifecycle method fired when the controller connects to data. |
+| onReset(state: State, connected: any)   | A lifecycle method fired when the controller resets its state. |
+
+Example:
+
+```tsx
+const controller = new Controller({
+	darkMode: false,
+})
+
+const Interface: Override = () => ({
+	darkMode: controller.state.darkMode,
+})
+
+const ToggleModeButton: Override = () => ({
+	onClick: () => {
+		const { darkMode } = controller.state
+		controller.setState({
+			darkMode = !darkMode,
+		})
+	},
+})
+```

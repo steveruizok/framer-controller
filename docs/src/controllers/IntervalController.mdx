@@ -1,0 +1,59 @@
+---
+name: IntervalController
+route: /IntervalController
+---
+
+# IntervalController
+
+A `IntervalController` tracks a single value (`frame`) and increments it once every `delay` seconds. The interval may be paused and resumed with the `start` and `stop` methods.
+
+| Option      | Type     | DefaultValue | Description                                                                                     |
+| :---------- | :------- | :----------- | :---------------------------------------------------------------------------------------------- |
+| onChange    | function | () => null   | _Optional_ - A callback to run when the controller completes an interval.                       |
+| delay       | number   | 1            | _Optional_ - The amount of time in seconds to wait between intervals.                           |
+| paused      | boolean  | false        | _Optional_ - Whether the controller should start paused.                                        |
+| cleanResume | boolean  | false        | _Optional_ - Whether the controller should begin from a new interval when resuming from paused. |
+
+| Property | Type    | Description                               |
+| :------- | :------ | :---------------------------------------- |
+| frame    | number  | The controller's current frame.           |
+| delay    | number  | The controller's delay between intervals. |
+| paused   | boolean | Whether the controller is paused.         |
+
+| Method   | Description                                                  |
+| :------- | :----------------------------------------------------------- |
+| start()  | Start the controller's interval, if paused.                  |
+| stop()   | Stop the controller's interval, if paused.                   |
+| toggle() | Start the controller if paused, or else stop the controller. |
+
+Example:
+
+```tsx
+import { Override } from "framer"
+import { IntervalController } from "framer-controller"
+
+const controller = new IntervalController({
+	delay: 1,
+	paused: false,
+	cleanResume: false,
+	onChange() {
+		console.log(controller.frame)
+	},
+})
+
+const SecondDisplay: Override = () => ({
+	$textLabel: controller.frame % 60,
+})
+
+const MinuteDisplay: Override = () => ({
+	$textLabel: Math.floor(controller.frame / 60) % 60,
+})
+
+const stopButton: Override = () => ({
+	onClick: controller.stop,
+})
+
+const startButton: Override = () => ({
+	onClick: controller.start,
+})
+```

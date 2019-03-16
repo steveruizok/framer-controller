@@ -1,0 +1,47 @@
+---
+name: CounterController
+route: /CounterController
+---
+
+# CounterController
+
+A `CounterController` tracks a single value and provides methods for incrementing, decrementing, and setting that value.
+
+| Option  | Type   | DefaultValue | Description                                  |
+| :------ | :----- | :----------- | :------------------------------------------- |
+| initial | number | 0            | _Optional_ - The controller's initial value. |
+
+| Property | Type   | Description                     |
+| :------- | :----- | :------------------------------ |
+| value    | number | The controller's current value. |
+
+| Method                   | Description                                             |
+| :----------------------- | :------------------------------------------------------ |
+| increment()              | Increases the controller's value` by one.               |
+| incrementBy(num: number) | Increases the controller's value by the value of `num`. |
+| decrement()              | Decreases the controller's value by one.                |
+| decrementBy(num: number) | Decreases the controller's value by the value of `num`. |
+| reset()                  | Resets the controller to its initial value.             |
+
+Example:
+
+```tsx
+import { Override } from "framer"
+import { CounterController } from "framer-controller"
+
+const controller = new CounterController({
+	initial: 10,
+})
+
+const ValueDisplay: Override = () => ({
+	$textLabel: controller.value,
+})
+
+const IncrementButton: Override = () => ({
+	onClick: controller.increment,
+})
+
+const IncrementBy5Button: Override = () => ({
+	onClick: () => controller.incrementBy(5),
+})
+```

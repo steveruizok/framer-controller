@@ -1,9 +1,0 @@
-// WARNING: this file is auto generated, any changes will be lost
-import { createDesignComponent, CanvasStore } from "framer"
-const canvas = CanvasStore.shared(); // CANVAS_DATA;
-export const Component = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string,label?:string,$value?:string}>(canvas, "id_DuDUnyXOX", {label:"string",$value:"string"}, 326,82);
-export const Component_1 = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string,$label?:string}>(canvas, "id_wdNoSgKmG", {$label:"string"}, 326,22);
-export const DayCard = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string,$day?:string}>(canvas, "id_vDciqoNR2", {$day:"string"}, 46,49);
-export const PrimaryDate = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string,$iconDay?:string,$iconWeekday?:string,$iconMonth?:string,$date?:string,$year?:string,$weekday?:string}>(canvas, "id_BFyHPxciS", {$iconDay:"string",$iconWeekday:"string",$iconMonth:"string",$date:"string",$year:"string",$weekday:"string"}, 338,90);
-export const SecondaryDate = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string,$date?:string,$weekday?:string,$day?:string}>(canvas, "id_lpEB0jAPL", {$date:"string",$weekday:"string",$day:"string"}, 329,68);
-export const TertiaryDate = createDesignComponent<{parentSize?:{width:number|string,height:number|string},width?:number|string,height?:number|string,$relativeLabel?:string,$date?:string,$weekday?:string,$day?:string}>(canvas, "id_URJu5I8_Q", {$relativeLabel:"string",$date:"string",$weekday:"string",$day:"string"}, 326,47);

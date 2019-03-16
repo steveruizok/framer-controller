@@ -14,10 +14,10 @@ function without(array, items) {
     arr = items.reduce((acc, item) => {
         let index = acc.indexOf(item);
         if (index < 0)
-            return arr;
+            return acc;
         acc.splice(index, 1);
         return acc;
-    });
+    }, arr);
     return arr;
 }
 exports.without = without;

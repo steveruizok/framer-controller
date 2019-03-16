@@ -12,7 +12,7 @@ type FormField = {
 	hidden?: boolean | BooleanFromStatus
 }
 
-type FormFields = { [key: string]: FormField }
+type Options = { [key: string]: FormField }
 
 type Entry = {
 	value: any
@@ -22,10 +22,10 @@ type Entry = {
 	required: boolean
 }
 
-type Entries = { [key in keyof FormFields]: Entry }
+type Entries = { [key in keyof Options]: Entry }
 
 interface Form {
-	fields: FormFields
+	fields: Options
 	data: Entries
 	ready: boolean
 }
@@ -52,14 +52,14 @@ const controller = new FormController({
 })```
  */
 export class FormController extends Controller<Form> {
-	constructor(fields: FormFields) {
+	constructor(options: Options) {
 		super({
-			fields,
-			data: Object.keys(fields).reduce(
+			fields: options,
+			data: Object.keys(options).reduce(
 				(a, id) => ({
 					...a,
 					[id]: {
-						value: fields[id].defaultValue,
+						value: options[id].defaultValue,
 						errorText: "",
 						valid: false,
 						hidden: false,

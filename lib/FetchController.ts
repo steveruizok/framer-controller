@@ -1,10 +1,13 @@
 import { Controller } from "./Controller"
 
-type Props = {
+interface Options {
 	url: string
 	parse?: (data: any) => any
 	log?: boolean
 	data?: any
+}
+
+interface State extends Options {
 	loading?: boolean
 }
 
@@ -12,16 +15,21 @@ type Props = {
  * Fetch data from an API endpoint (a `url`) and return it as `data`.
  * Accepts manual refrsehing (`refresh()`) and handles `loading` state, too.
  */
-export class FetchController extends Controller<Props> {
-	constructor(props: Props) {
+export class FetchController extends Controller<State> {
+	constructor(options: Options = {} as Options) {
 		super({
 			log: false,
 			loading: true,
 			parse: d => d,
 			data: false,
-			...props,
+			...options,
 		})
 		this.refresh()
+	}
+
+	onUpdate = state => {
+		this.state.log && console.log(state.data)
+		return this.state
 	}
 
 	/**
@@ -53,9 +61,7 @@ export class FetchController extends Controller<Props> {
 			data = this.state.parse(data)
 		}
 
-		this.setState({ data, loading: false }, () => {
-			this.state.log && console.log(data)
-		})
+		this.setState({ data, loading: false })
 	}
 
 	/**
@@ -66,7 +72,8 @@ export class FetchController extends Controller<Props> {
 	}
 
 	set url(url: string) {
-		this.setState({ url }, () => this.refresh())
+		this.setState({ url })
+		this.refresh()
 	}
 
 	/**

@@ -5,8 +5,8 @@ const Controller_1 = require("./Controller");
  * A controller for Framer X's Page component.
  */
 class PageController extends Controller_1.Controller {
-    constructor(config = {}) {
-        super(Object.assign({ currentPage: 0, totalPages: Infinity, loop: false, onChangePage: p => this.syncCurrentPage(p) }, config));
+    constructor(options = {}) {
+        super(Object.assign({ currentPage: 0, totalPages: Infinity, loop: false, onChangePage: p => this.syncCurrentPage(p) }, options));
         this.onConnect = (state, props) => {
             let totalPages = props.children[0].props.children.length;
             if (totalPages !== this.totalPages) {

@@ -1,0 +1,56 @@
+---
+name: SelectionController
+route: /SelectionController
+---
+
+# SelectionController
+
+A `SelectionController` tracks one or more selected values.
+
+| Option     | Type               | DefaultValue     | Description                                                                                                                       |
+| :--------- | :----------------- | :--------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
+| selected   | string or string[] | null or []       | The controller's initial `selected` value.                                                                                        |
+| validation | function           | (any) => boolean | _Optional_ - A function that accepts a value from the `select` method and returns whether or not to add this value to `selected`. |
+| toggle     | boolean            | false            | _Optional_ - When `true`, selecting an already-selected item will deselect it instead.                                            |
+| multiple   | boolean            | false            | _Optional_ - When `true`, the controller will track multiple selected values.                                                     |
+
+| Property    | Type             | Description                                                      |
+| :---------- | :--------------- | :--------------------------------------------------------------- |
+| multiple    | boolean          | Whether the controller will support multiple selections at once. |
+| toggle      | boolean          | Whether the controller will toggle selections.                   |
+| hasSelected | boolean          | Whether the controller has a selected value                      |
+| validation  | (any) => boolean | A method for validating values passed to `select` method.        |
+
+| Method                | Description                                                                                                                                                                                                                                                                                                                                   |
+| :-------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| select(item: any)     | Select an item. If the controller has a `validation` method, the item will only be selected if this method returns `true`. If `multiple` is selected, the value will be added to the `selected` array; if not, the new value will replace the old one. If `toggle` is enabled, selecting an already-selected item will `deselect` it instead. |
+| deselect(item: any)   | Deselect an item.                                                                                                                                                                                                                                                                                                                             |
+| isSelected(item: any) | Whether the given item is selected.                                                                                                                                                                                                                                                                                                           |
+| clear()               | Remove any selected item(s).                                                                                                                                                                                                                                                                                                                  |
+
+Example:
+
+```tsx
+import { Override } from "framer"
+import { SelectionController } from "framer-controller"
+
+const controller = new SelectionController({
+	selected: "A",
+	toggle: true,
+})
+
+export const ItemA: Override = () => ({
+	opacity: controller.isSelected("A") ? 1 : 0.5,
+	onClick: () => controller.select("A"),
+})
+
+export const ItemB: Override = () => ({
+	opacity: controller.isSelected("B") ? 1 : 0.5,
+	onClick: () => controller.select("B"),
+})
+
+export const ClearButton: Override = () => ({
+	opacity: controller.hasSelected ? 1 : 0.5,
+	onClick: controller.clear,
+})
+```

@@ -1,20 +1,22 @@
 import { Controller } from "./Controller"
 import { without } from "./utils"
 
-type Config = {
+type Options = Partial<State>
+
+interface State {
 	selected?: any | any[]
 	validation?: (item: any | any[]) => boolean
 	toggle?: boolean
 	multiple?: boolean
 }
 
-export class SelectionController extends Controller<Config> {
-	constructor(config: Config = {} as Config) {
+export class SelectionController extends Controller<State> {
+	constructor(options: Options = {} as Options) {
 		super({
-			selected: config.multiple ? castArray(config.selected) : config.selected,
-			validation: null,
+			selected: castArray(options.multiple, options.selected),
+			validation: () => true,
 			toggle: false,
-			...config,
+			...options,
 		})
 	}
 
@@ -132,4 +134,14 @@ export class SelectionController extends Controller<Config> {
 	}
 }
 
-const castArray = value => (Array.isArray(value) ? value : [value])
+const castArray = (multiple, selected) => {
+	if (selected === undefined) {
+		return multiple ? [] : null
+	} else {
+		if (multiple) {
+			return Array.isArray(selected) ? selected : [selected]
+		}
+
+		return selected
+	}
+}

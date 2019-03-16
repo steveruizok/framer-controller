@@ -1,9 +1,11 @@
 import { Controller } from "./Controller";
-export { PageController } from "./PageController";
-export { PlacesController } from "./PlacesController";
-export { FormController } from "./FormController";
+export default Controller;
+export { IntervalController } from "./IntervalController";
+export { CounterController } from "./CounterController";
 export { FetchController } from "./FetchController";
 export { FlowController } from "./FlowController";
+export { FormController } from "./FormController";
 export { IndexController } from "./IndexController";
+export { PageController } from "./PageController";
+export { PlacesController } from "./PlacesController";
 export { SelectionController } from "./SelectionController";
-export default Controller;

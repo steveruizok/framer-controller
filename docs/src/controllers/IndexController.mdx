@@ -1,0 +1,54 @@
+---
+name: IndexController
+route: /IndexController
+---
+
+# IndexController
+
+A `IndexController` tracks the relative positions of an array of items.
+
+| Option | Type                 | DefaultValue | Description                                                                                                                                                                             |
+| :----- | :------------------- | :----------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| items  | string[] or number[] | []           | The items to track with this controller.                                                                                                                                                |
+| loop   | boolean              | false        | _Optional_ - When true, the `moveForward` and `moveBackward` methods will move items "forward" from the last position to the first, and "backward" from the first position to the last. |
+
+| Property | Type    | Description                                                                                                                                                                                                       |
+| :------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| min      | number  | The minimum index for any item (always `0`).                                                                                                                                                                      |
+| max      | number  | The maximum index for any item.                                                                                                                                                                                   |
+| order    | object  | The order of items.                                                                                                                                                                                               |
+| items    | array   | The items tracked by this controller                                                                                                                                                                              |
+| loop     | boolean | Whether the controller is set to loop. When true, the `moveForward` and `moveBackward` methods will move items "forward" from the last position to the first, and "backward" from the first position to the last. |
+
+| Method             | Description                                        |
+| :----------------- | :------------------------------------------------- |
+| moveForward(item)  | Moves an item forward in the order.                |
+| moveBackward(item) | Moves an item backward in the order.               |
+| moveToFront(item)  | Moves an item to the last position in the order.   |
+| moveToBack(item)   | Moves an item to the fiirst position in the order. |
+| swap(itemA, itemB) | Swaps the position of any two items.               |
+
+Example:
+
+```tsx
+import { Override } from "framer"
+import { IndexController } from "framer-controller"
+
+const controller = new IndexController({
+	items: ["A", "B", "C", "D"],
+})
+
+export const ItemA: Override = () => ({
+	style: {
+		zIndex: controller.order["A"],
+	},
+	onClick: () => controller.moveToFront("A"),
+})
+
+export const ItemB: Override = () => ({
+	style: {
+		zIndex: controller.order["B"],
+	},
+	onClick: () => controller.moveToFront("B"),
+})
+```

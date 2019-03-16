@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Controller_1 = require("./Controller");
 const utils_1 = require("./utils");
 class SelectionController extends Controller_1.Controller {
-    constructor(config = {}) {
-        super(Object.assign({ selected: null, validation: null, toggle: false }, config));
+    constructor(options = {}) {
+        super(Object.assign({ selected: castArray(options.multiple, options.selected), validation: () => true, toggle: false }, options));
         /**
          * Select the given item. (If toggle is enabled, )
          */
@@ -17,10 +17,7 @@ class SelectionController extends Controller_1.Controller {
             if (multiple) {
                 if (selected.includes(item)) {
                     if (toggle) {
-                        selected = utils_1.without(selected, item);
-                    }
-                    else {
-                        return selected;
+                        return this.deselect(item);
                     }
                 }
                 else {
@@ -30,10 +27,7 @@ class SelectionController extends Controller_1.Controller {
             else {
                 if (selected === item) {
                     if (toggle) {
-                        selected = null;
-                    }
-                    else {
-                        return selected;
+                        return this.deselect(item);
                     }
                 }
                 else {
@@ -48,21 +42,11 @@ class SelectionController extends Controller_1.Controller {
         this.deselect = (item) => {
             const { multiple } = this;
             let { selected } = this;
-            if (multiple) {
-                if (selected.includes(item)) {
-                    selected = utils_1.without(selected, item);
-                }
-                else {
-                    return selected;
-                }
+            if (multiple && selected.includes(item)) {
+                selected = utils_1.without(selected, item);
             }
-            else {
-                if (selected === item) {
-                    selected = null;
-                }
-                else {
-                    return selected;
-                }
+            else if (selected === item) {
+                selected = null;
             }
             this.setState({ selected });
         };
@@ -99,13 +83,35 @@ class SelectionController extends Controller_1.Controller {
         return this.state.selected;
     }
     get toggle() {
-        return this.state.selected;
+        return this.state.toggle;
+    }
+    set toggle(toggle) {
+        this.setState({ toggle });
     }
     get multiple() {
         return this.state.multiple;
     }
+    set multiple(multiple) {
+        this.setState({ multiple });
+    }
     get validation() {
         return this.state.validation;
     }
+    set validation(validation) {
+        this.setState({
+            validation,
+        });
+    }
 }
 exports.SelectionController = SelectionController;
+const castArray = (multiple, selected) => {
+    if (selected === undefined) {
+        return multiple ? [] : null;
+    }
+    else {
+        if (multiple) {
+            return Array.isArray(selected) ? selected : [selected];
+        }
+        return selected;
+    }
+};

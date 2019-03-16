@@ -1,0 +1,45 @@
+---
+name: FetchController
+route: /FetchController
+---
+
+# FetchController
+
+A `FetchController` fetches data from a URL and stores it in its `data` property.
+
+| Option | Type     | DefaultValue   | Description                                                                                        |
+| :----- | :------- | :------------- | :------------------------------------------------------------------------------------------------- |
+| url    | string   |                | The URL to fetch data from.                                                                        |
+| parse  | function | (data) => data | _Optional_ - A function that accepts the raw fetched data and returns the data to store as `data`. |
+| log    | boolean  | false          | _Optional_ - When `true`, the controller will log its `data` on each change.                       |
+| data   | any      | false          | _Optional_ - An initial value for the controller's `data` property.                                |
+
+| Property | Type    | Description                                                                                                 |
+| :------- | :------ | :---------------------------------------------------------------------------------------------------------- |
+| url      | string  | The controller's current URL for data fetching. Changing this property will load new data from the new URL. |
+| data     | any     | The controller's data, stored from its last fetch request.                                                  |
+| loading  | boolean | Whether the controller is waiting for new data.                                                             |
+
+| Method    | Description                         |
+| :-------- | :---------------------------------- |
+| refresh() | Load new data from the current URL. |
+
+Example:
+
+```tsx
+import { Override } from "framer"
+import { FetchController } from "framer-controller"
+
+const controller = new FetchController({
+	url: "https://randomuser.me/api/",
+	parse: data => data.results[0],
+})
+
+export const ImageContainer: Override = () => ({
+	background: controller.data && `url(${controller.data.picture.large})`,
+})
+
+export const FetchButton: Override = () => ({
+	onClick: controller.refresh,
+})
+```

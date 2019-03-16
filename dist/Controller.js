@@ -28,12 +28,12 @@ class Controller {
          * is reset using the `reset` method.
          * @param state The controller's initial state.
          */
-        this.onReset = () => { };
+        this.onReset = (state, connected) => this.state;
         /**
          * A method that fires automatically after each state change.
          * @param state The controller's initial state.
          */
-        this.onUpdate = () => { };
+        this.onUpdate = (state, connected) => this.state;
         /**
          * A callback that fires automatically after the controller is
          * connected to data using `connect` method.
@@ -55,24 +55,19 @@ class Controller {
         /**
          * Set the controller's state.
          * @param {Options} state The changes you wish to make to the controller's state.
-         * @param {(state: Options<T>, position: number) => void} [callback] An optional callback function to run after the new state has loaded.
-         * @returns {Options<T>} The controller's new state.
+         * @param {(state: State<T>, position: number) => void} [callback] An optional callback function to run after the new state has loaded.
+         * @returns {State<T>} The controller's new state.
          */
-        this.setState = (state = {}, callback) => {
+        this.setState = (state = {}) => {
             Object.assign(this._state, Object.assign({}, this.state, state));
             this.onUpdate(this._state);
-            if (callback) {
-                window.setTimeout(() => callback.bind(this)(this._state), 150 // i want to be a real boy
-                );
-            }
             return this._state;
         };
         /**
          * Return the state to its initial value.
-         * @param {(state: Options<T>, position: number) => void} [callback] An optional callback function to run after the new state has loaded.
-         * @returns {Options<T>} The controller's new state.
+         * @returns {State<T>} The controller's new state.
          */
-        this.reset = (callback) => this.setState(this._initial, callback);
+        this.reset = () => this.setState(this._initial);
         const initialState = initial;
         initialState.controller = this;
         this._initial = initialState;

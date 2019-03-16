@@ -1,0 +1,93 @@
+---
+name: FormController
+route: /FormController
+---
+
+# FormController
+
+A `FormController` manages a form's state. Its constructor takes an `options` object comprised of `FormField` objects.
+
+| Property     | Type                          | DefaultValue     | Description                                                                                                                          |
+| :----------- | :---------------------------- | :--------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
+| defaultValue | any                           | null             | _Optional_ - The field's initial value.                                                                                              |
+| validation   | (value) => boolean            | (state) => true  | _Optional_ - method that takes the field's data value and returns a boolean, determining whether the field is valid.                 |
+| hidden       | (state) => boolean            | (state) => false | _Optional_ - a boolean (or method that takes the Form's state and returns a boolean) determining whether the field should be hidden. |
+| required     | boolean or (state) => boolean | false            | _Optional_ - a boolean (or method that takes the Form's state and returns a boolean) determining whether the field is required.      |
+| errorText    | string or (value) => string   | null             | _Optional_ - a string (or method that takes the field's value and returns a string) to show when the field is invalid.               |
+
+Each object will be stored in state under `data` as an object with the following properties:
+
+| Property  | Type    | Description                                                                                                      |
+| :-------- | :------ | :--------------------------------------------------------------------------------------------------------------- |
+| value     | any     | The field's current value - either its `defaultValue` or the value set using the controller's `setValue` method. |
+| valid     | boolean | Whether the field's value has passed its validation check.                                                       |
+| errorText | string  | The field's current error text, if any, depending on its value.                                                  |
+| required  | boolean | Whether the field is currently required.                                                                         |
+| hidden    | boolean | Whether the field is currently hidden.                                                                           |
+
+The `FormController` itself has the following properties and methods:
+
+| Property | Type    | Description                                                                                                   |
+| :------- | :------ | :------------------------------------------------------------------------------------------------------------ |
+| fields   | object  | The controller's current fields.                                                                              |
+| data     | object  | The controller's current data, with a state for each field.                                                   |
+| ready    | boolean | Whether the form is complete. A form is complete when each of its required, non-hidden data states are valid. |
+
+| Method              | Description                       |
+| :------------------ | :-------------------------------- |
+| setValue(id, value) | Set the value of the given field. |
+
+Example:
+
+```tsx
+import { Override } from "framer"
+import { FormController } from "framer-controller"
+
+const controller = new FormController({
+	name: {
+		defaultValue: "",
+		required: true,
+		validation: v => v.includes(" "),
+		errorText: (v) => {
+      if (v.split("").length > 2) {
+        "Please enter only your first and last name.",
+      } else {
+        "Please enter your first and last name.",
+      }
+	},
+	email: {
+		defaultValue: "",
+		validation: v => v.includes("@") && v.includes("."),
+		errorText: () => "Please enter a valid email address.",
+		required: true,
+	},
+})
+
+// Name
+
+export const NameErrorText: Override = () => ({
+	$value: controller.data.name.errorText,
+})
+
+export const NameInput: Override = () => ({
+	value: controller.data.name.value,
+	onValueChange: value => controller.setValue("name", value),
+})
+
+// Email
+
+export const EmailErrorText: Override = () => ({
+	$value: controller.data.email.errorText,
+})
+
+export const EmailInput: Override = () => ({
+	value: controller.data.email.value,
+	onValueChange: value => controller.setValue("email", value),
+})
+
+// Button
+
+export const ContinueButton: Override = () => ({
+	disabled: !controller.ready,
+})
+```

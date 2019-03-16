@@ -1,12 +1,13 @@
 import { Controller } from "./Controller";
-declare type Config = {
+declare type Options = Partial<State>;
+interface State {
     selected?: any | any[];
     validation?: (item: any | any[]) => boolean;
     toggle?: boolean;
     multiple?: boolean;
-};
-export declare class SelectionController extends Controller<Config> {
-    constructor(config?: Config);
+}
+export declare class SelectionController extends Controller<State> {
+    constructor(options?: Options);
     /**
      * Select the given item. (If toggle is enabled, )
      */
@@ -14,7 +15,7 @@ export declare class SelectionController extends Controller<Config> {
     /**
      * Deselect a given item.
      */
-    deselect: (item: any) => any;
+    deselect: (item: any) => void;
     /**
      * Check whether a given item is selected.
      */
@@ -25,8 +26,8 @@ export declare class SelectionController extends Controller<Config> {
     clear: () => void;
     readonly hasSelected: boolean;
     readonly selected: any;
-    readonly toggle: any;
-    readonly multiple: boolean;
-    readonly validation: (item: any) => boolean;
+    toggle: boolean;
+    multiple: boolean;
+    validation: (item: any | any[]) => boolean;
 }
 export {};
