@@ -1,23 +1,55 @@
 import { Controller } from "./Controller";
-interface Config {
+/**
+ * IntervalController's options
+ */
+interface Options {
     delay?: number;
     paused?: boolean;
     cleanResume?: boolean;
     onChange?: () => void;
 }
-interface State extends Config {
+/**
+ * IntervalController's state
+ */
+interface State extends Options {
     frame: number;
     paused: boolean;
 }
-export declare class IntervalController<Config> extends Controller<State> {
+export declare class IntervalController extends Controller<State> {
     _timeout: any;
-    constructor(config?: Config);
+    constructor(options?: Options);
+    /**
+     * Start the interval.
+     *
+     */
     start: () => void;
+    /**
+     * Stop the interval.
+     *
+     */
     stop: () => void;
+    /**
+     * Toggle the controller from paused to unpaused.
+     *
+     */
     toggle: () => void;
+    /**
+     * Whether the controller is paused.
+     *
+     */
     paused: boolean;
+    /**
+     * The controller's delay between intervals.
+     *
+     */
     delay: number;
+    /**
+     * The controller's current frame.
+     */
     readonly frame: number;
+    /**
+     * Begin a new interval.
+     */
     protected tick: () => void;
 }
 export {};

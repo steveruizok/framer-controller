@@ -6,5 +6,9 @@
 		"declaration": true,
 		"outDir": "./dist"
 	},
-	"exclude": ["node_modules", "dist", "examples", "docs"]
+	"exclude": ["node_modules", "dist", "examples", "docs"],
+	"typedocOptions": {
+		"mode": "modules",
+		"out": "docs"
+	}
 }

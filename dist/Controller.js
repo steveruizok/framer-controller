@@ -2,23 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const framer_1 = require("framer");
 /**
- * A Controller is a tool for managing a small piece of application state.
- * On its own, it can be used much like a regular Data object, except that
- * changes to state are made using the `setState` method.
- *
- *
- * However, the real value of Controller is through extension: it can be
- * easily extended, allowing a user to abstract away common-but-complex
- * stateful relationships behind simple imperative commands -- think
- * `const [lat, lng] = await controller.findTheNearestCoffeeshop()`.
- *
- *
- * @template T An interface for the controlled component's state.
+ * A Controller provides an interface for updating a Framer X Data object.
  */
 class Controller {
     /**
      * Creates a new instance of Controller.
-     * @param {T} initial The initial state of the controller.
      */
     constructor(initial) {
         this._initial = {};
@@ -26,12 +14,10 @@ class Controller {
         /**
          * A method that fires automatically after a controller's state
          * is reset using the `reset` method.
-         * @param state The controller's initial state.
          */
         this.onReset = (state, connected) => this.state;
         /**
          * A method that fires automatically after each state change.
-         * @param state The controller's initial state.
          */
         this.onUpdate = (state, connected) => this.state;
         /**
@@ -43,7 +29,6 @@ class Controller {
          * Connect this controller to a component or set of props. This
          * could be called from a component's `onComponentDidMount` method,
          * or using the props from an override.
-         * @param {*} connected - The data to connect.
          */
         this.connect = (connected) => {
             if (connected !== this._connected) {
@@ -54,9 +39,6 @@ class Controller {
         };
         /**
          * Set the controller's state.
-         * @param {Options} state The changes you wish to make to the controller's state.
-         * @param {(state: State<T>, position: number) => void} [callback] An optional callback function to run after the new state has loaded.
-         * @returns {State<T>} The controller's new state.
          */
         this.setState = (state = {}) => {
             Object.assign(this._state, Object.assign({}, this.state, state));
@@ -65,7 +47,6 @@ class Controller {
         };
         /**
          * Return the state to its initial value.
-         * @returns {State<T>} The controller's new state.
          */
         this.reset = () => this.setState(this._initial);
         const initialState = initial;
@@ -75,14 +56,12 @@ class Controller {
     }
     /**
      * The controller's current state.
-     * @readonly
      */
     get state() {
         return this._state;
     }
     /**
      * The data connected using `controller.connect`.
-     * @readonly
      */
     get connected() {
         return this._connected;

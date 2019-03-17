@@ -1,0 +1,2356 @@
+{
+  "kind": "package",
+  "name": "framer-controller",
+  "summary": [],
+  "remarks": [],
+  "exports": {
+    "CounterController": {
+      "kind": "class",
+      "extends": "Controller",
+      "implements": "",
+      "typeParameters": [],
+      "deprecatedMessage": [],
+      "summary": [],
+      "remarks": [],
+      "isBeta": false,
+      "isSealed": false,
+      "members": {
+        "__constructor": {
+          "kind": "constructor",
+          "signature": "constructor(config?: Options);",
+          "parameters": {
+            "config": {
+              "name": "config",
+              "description": [],
+              "isOptional": true,
+              "isSpread": false,
+              "type": "Options"
+            }
+          },
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Constructs a new instance of the "
+            },
+            {
+              "kind": "api-link",
+              "elements": [
+                {
+                  "kind": "text",
+                  "text": "CounterController"
+                }
+              ],
+              "target": {
+                "scopeName": "",
+                "packageName": "framer-controller",
+                "exportName": "CounterController",
+                "memberName": ""
+              }
+            },
+            {
+              "kind": "text",
+              "text": " class"
+            }
+          ],
+          "remarks": []
+        },
+        "count": {
+          "kind": "property",
+          "signature": "readonly count: number;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "number",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "decrement": {
+          "kind": "property",
+          "signature": "decrement: () => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "() => void",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "decrementBy": {
+          "kind": "property",
+          "signature": "decrementBy: (by?: number) => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(by?: number) => void",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "increment": {
+          "kind": "property",
+          "signature": "increment: () => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "() => void",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "incrementBy": {
+          "kind": "property",
+          "signature": "incrementBy: (by?: number) => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(by?: number) => void",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "set": {
+          "kind": "property",
+          "signature": "set: (value: number) => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(value: number) => void",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "value": {
+          "kind": "property",
+          "signature": "readonly value: number;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "number",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        }
+      }
+    },
+    "default": {
+      "kind": "class",
+      "extends": "",
+      "implements": "",
+      "typeParameters": [
+        "T"
+      ],
+      "deprecatedMessage": [],
+      "summary": [
+        {
+          "kind": "text",
+          "text": "A Controller is a tool for managing a small piece of application state. On its own, it can be used much like a regular Data object, except that changes to state are made using the "
+        },
+        {
+          "kind": "code",
+          "text": "setState",
+          "highlighter": "plain"
+        },
+        {
+          "kind": "text",
+          "text": " method."
+        },
+        {
+          "kind": "paragraph"
+        },
+        {
+          "kind": "text",
+          "text": "However, the real value of Controller is through extension: it can be easily extended, allowing a user to abstract away common-but-complex stateful relationships behind simple imperative commands -- think "
+        },
+        {
+          "kind": "code",
+          "text": "const [lat, lng] = await controller.findTheNearestCoffeeshop()",
+          "highlighter": "plain"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "paragraph"
+        },
+        {
+          "kind": "text",
+          "text": " T An interface for the controlled component's state."
+        }
+      ],
+      "remarks": [],
+      "isBeta": false,
+      "isSealed": false,
+      "members": {
+        "__constructor": {
+          "kind": "constructor",
+          "signature": "constructor(initial: T);",
+          "parameters": {
+            "initial": {
+              "name": "initial",
+              "description": [],
+              "isOptional": false,
+              "isSpread": false,
+              "type": "T"
+            }
+          },
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Creates a new instance of Controller."
+            }
+          ],
+          "remarks": []
+        },
+        "connect": {
+          "kind": "property",
+          "signature": "connect: (connected: any) => Partial<T & {\n        controller?: any;\n    }>;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(connected: any) => Partial<T & {\n        controller?: any;\n    }>",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Connect this controller to a component or set of props. This could be called from a component's "
+            },
+            {
+              "kind": "code",
+              "text": "onComponentDidMount",
+              "highlighter": "plain"
+            },
+            {
+              "kind": "text",
+              "text": " method, or using the props from an override."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "connected": {
+          "kind": "property",
+          "signature": "readonly connected: any;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "any",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "The data connected using "
+            },
+            {
+              "kind": "code",
+              "text": "controller.connect",
+              "highlighter": "plain"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "onConnect": {
+          "kind": "property",
+          "signature": "protected onConnect: (state?: Partial<T & {\n        controller?: any;\n    }>, connected?: any) => Partial<T & {\n        controller?: any;\n    }>;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(state?: Partial<T & {\n        controller?: any;\n    }>, connected?: any) => Partial<T & {\n        controller?: any;\n    }>",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "A callback that fires automatically after the controller is connected to data using "
+            },
+            {
+              "kind": "code",
+              "text": "connect",
+              "highlighter": "plain"
+            },
+            {
+              "kind": "text",
+              "text": " method."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "onReset": {
+          "kind": "property",
+          "signature": "protected onReset: (state?: Partial<T & {\n        controller?: any;\n    }>, connected?: any) => Partial<T & {\n        controller?: any;\n    }>;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(state?: Partial<T & {\n        controller?: any;\n    }>, connected?: any) => Partial<T & {\n        controller?: any;\n    }>",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "A method that fires automatically after a controller's state is reset using the "
+            },
+            {
+              "kind": "code",
+              "text": "reset",
+              "highlighter": "plain"
+            },
+            {
+              "kind": "text",
+              "text": " method."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "onUpdate": {
+          "kind": "property",
+          "signature": "protected onUpdate: (state?: Partial<T & {\n        controller?: any;\n    }>, connected?: any) => Partial<T & {\n        controller?: any;\n    }>;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(state?: Partial<T & {\n        controller?: any;\n    }>, connected?: any) => Partial<T & {\n        controller?: any;\n    }>",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "A method that fires automatically after each state change."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "reset": {
+          "kind": "property",
+          "signature": "reset: () => Partial<T & {\n        controller?: any;\n    }>;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "() => Partial<T & {\n        controller?: any;\n    }>",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Return the state to its initial value."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "setState": {
+          "kind": "property",
+          "signature": "setState: (state?: Partial<T & {\n        controller?: any;\n    }>) => Partial<T & {\n        controller?: any;\n    }>;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(state?: Partial<T & {\n        controller?: any;\n    }>) => Partial<T & {\n        controller?: any;\n    }>",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Set the controller's state."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "state": {
+          "kind": "property",
+          "signature": "readonly state: State<T>;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "State<T>",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "The controller's current state."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        }
+      }
+    },
+    "FetchController": {
+      "kind": "class",
+      "extends": "Controller",
+      "implements": "",
+      "typeParameters": [],
+      "deprecatedMessage": [],
+      "summary": [
+        {
+          "kind": "text",
+          "text": "Fetch data from an API endpoint (a "
+        },
+        {
+          "kind": "code",
+          "text": "url",
+          "highlighter": "plain"
+        },
+        {
+          "kind": "text",
+          "text": ") and return it as "
+        },
+        {
+          "kind": "code",
+          "text": "data",
+          "highlighter": "plain"
+        },
+        {
+          "kind": "text",
+          "text": ". Accepts manual refrsehing ("
+        },
+        {
+          "kind": "code",
+          "text": "refresh()",
+          "highlighter": "plain"
+        },
+        {
+          "kind": "text",
+          "text": ") and handles "
+        },
+        {
+          "kind": "code",
+          "text": "loading",
+          "highlighter": "plain"
+        },
+        {
+          "kind": "text",
+          "text": " state, too."
+        }
+      ],
+      "remarks": [],
+      "isBeta": false,
+      "isSealed": false,
+      "members": {
+        "__constructor": {
+          "kind": "constructor",
+          "signature": "constructor(options?: Options);",
+          "parameters": {
+            "options": {
+              "name": "options",
+              "description": [],
+              "isOptional": true,
+              "isSpread": false,
+              "type": "Options"
+            }
+          },
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Constructs a new instance of the "
+            },
+            {
+              "kind": "api-link",
+              "elements": [
+                {
+                  "kind": "text",
+                  "text": "FetchController"
+                }
+              ],
+              "target": {
+                "scopeName": "",
+                "packageName": "framer-controller",
+                "exportName": "FetchController",
+                "memberName": ""
+              }
+            },
+            {
+              "kind": "text",
+              "text": " class"
+            }
+          ],
+          "remarks": []
+        },
+        "data": {
+          "kind": "property",
+          "signature": "readonly data: any;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "any",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "The controller's current data."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "fetch": {
+          "kind": "property",
+          "signature": "static fetch: (url?: string, callback?: (data: any) => void) => Promise<any>;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": true,
+          "type": "(url?: string, callback?: (data: any) => void) => Promise<any>",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Make a fetch request and return the data as a JSON object."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "loading": {
+          "kind": "property",
+          "signature": "readonly loading: boolean;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "boolean",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Whether or not the controller is waiting for data to arrive."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "onUpdate": {
+          "kind": "property",
+          "signature": "onUpdate: (state: any) => Partial<State & {\n        controller?: any;\n    }>;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(state: any) => Partial<State & {\n        controller?: any;\n    }>",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "refresh": {
+          "kind": "property",
+          "signature": "refresh: () => Promise<void>;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "() => Promise<void>",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Load a new set of data from the controller's "
+            },
+            {
+              "kind": "code",
+              "text": "url",
+              "highlighter": "plain"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "url": {
+          "kind": "property",
+          "signature": "url: string;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "string",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "The controller's current data endpoint. Setting this property will refresh the controller."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        }
+      }
+    },
+    "FlowController": {
+      "kind": "class",
+      "extends": "Controller",
+      "implements": "",
+      "typeParameters": [],
+      "deprecatedMessage": [],
+      "summary": [],
+      "remarks": [],
+      "isBeta": false,
+      "isSealed": false,
+      "members": {
+        "__constructor": {
+          "kind": "constructor",
+          "signature": "constructor(config?: Config);",
+          "parameters": {
+            "config": {
+              "name": "config",
+              "description": [],
+              "isOptional": true,
+              "isSpread": false,
+              "type": "Config"
+            }
+          },
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Constructs a new instance of the "
+            },
+            {
+              "kind": "api-link",
+              "elements": [
+                {
+                  "kind": "text",
+                  "text": "FlowController"
+                }
+              ],
+              "target": {
+                "scopeName": "",
+                "packageName": "framer-controller",
+                "exportName": "FlowController",
+                "memberName": ""
+              }
+            },
+            {
+              "kind": "text",
+              "text": " class"
+            }
+          ],
+          "remarks": []
+        },
+        "current": {
+          "kind": "property",
+          "signature": "readonly current: number;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "number",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "direction": {
+          "kind": "property",
+          "signature": "readonly direction: \"forward\" | \"backward\";",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "\"forward\" | \"backward\"",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "onConnect": {
+          "kind": "property",
+          "signature": "onConnect: (state: Partial<State & {\n        controller?: any;\n    }>, props: any) => Partial<State & {\n        controller?: any;\n    }>;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(state: Partial<State & {\n        controller?: any;\n    }>, props: any) => Partial<State & {\n        controller?: any;\n    }>",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Connect a FlowComponent to this controller via its override props."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "pagesTotal": {
+          "kind": "property",
+          "signature": "pagesTotal: number;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "number",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Set the total number of pages."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "root": {
+          "kind": "property",
+          "signature": "readonly root: boolean;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "boolean",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "showNext": {
+          "kind": "property",
+          "signature": "showNext: (index: number) => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(index: number) => void",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Show a new index."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "showPrevious": {
+          "kind": "property",
+          "signature": "showPrevious: () => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "() => void",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Show the previous index."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        }
+      }
+    },
+    "FormController": {
+      "kind": "class",
+      "extends": "Controller",
+      "implements": "",
+      "typeParameters": [],
+      "deprecatedMessage": [],
+      "summary": [
+        {
+          "kind": "text",
+          "text": "Control forms. When creating a form, use an object to define the form's "
+        },
+        {
+          "kind": "code",
+          "text": "fields",
+          "highlighter": "plain"
+        },
+        {
+          "kind": "text",
+          "text": ". For each field, provide a set of optional properties used to determine the field's "
+        },
+        {
+          "kind": "code",
+          "text": "data",
+          "highlighter": "plain"
+        },
+        {
+          "kind": "text",
+          "text": " entry: - "
+        },
+        {
+          "kind": "code",
+          "text": "defaultValue",
+          "highlighter": "plain"
+        },
+        {
+          "kind": "text",
+          "text": " - a value for new or reset fields - "
+        },
+        {
+          "kind": "code",
+          "text": "required",
+          "highlighter": "plain"
+        },
+        {
+          "kind": "text",
+          "text": " - a boolean (or method that takes the Form's state and returns a boolean) - "
+        },
+        {
+          "kind": "code",
+          "text": "validation",
+          "highlighter": "plain"
+        },
+        {
+          "kind": "text",
+          "text": " - method that takes the field's data value and returns a boolean - "
+        },
+        {
+          "kind": "code",
+          "text": "errorText",
+          "highlighter": "plain"
+        },
+        {
+          "kind": "text",
+          "text": " - a string (or method that takes the Form's state and returns a string) - "
+        },
+        {
+          "kind": "code",
+          "text": "hidden",
+          "highlighter": "plain"
+        },
+        {
+          "kind": "text",
+          "text": " - a boolean (or method that takes the Form's state and returns a boolean) @example``` const controller = new FormController({ name: { defaultValue: \"\", validation: (v) => v.includes(\" \"), errorText: \"Please provide a first and last name.\", required: true, hidden: false"
+        },
+        {
+          "kind": "paragraph"
+        },
+        {
+          "kind": "text",
+          "text": "})```"
+        }
+      ],
+      "remarks": [],
+      "isBeta": false,
+      "isSealed": false,
+      "members": {
+        "__constructor": {
+          "kind": "constructor",
+          "signature": "constructor(options: Options);",
+          "parameters": {
+            "options": {
+              "name": "options",
+              "description": [],
+              "isOptional": false,
+              "isSpread": false,
+              "type": "Options"
+            }
+          },
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Constructs a new instance of the "
+            },
+            {
+              "kind": "api-link",
+              "elements": [
+                {
+                  "kind": "text",
+                  "text": "FormController"
+                }
+              ],
+              "target": {
+                "scopeName": "",
+                "packageName": "framer-controller",
+                "exportName": "FormController",
+                "memberName": ""
+              }
+            },
+            {
+              "kind": "text",
+              "text": " class"
+            }
+          ],
+          "remarks": []
+        },
+        "data": {
+          "kind": "property",
+          "signature": "readonly data: Entries;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "Entries",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "The form's data entries. For each field, the - "
+            },
+            {
+              "kind": "code",
+              "text": "value",
+              "highlighter": "plain"
+            },
+            {
+              "kind": "text",
+              "text": " - The entry's value. - "
+            },
+            {
+              "kind": "code",
+              "text": "valid",
+              "highlighter": "plain"
+            },
+            {
+              "kind": "text",
+              "text": " - Whether that value is "
+            },
+            {
+              "kind": "code",
+              "text": "valid",
+              "highlighter": "plain"
+            },
+            {
+              "kind": "text",
+              "text": ", according to its "
+            },
+            {
+              "kind": "code",
+              "text": "field.validation",
+              "highlighter": "plain"
+            },
+            {
+              "kind": "text",
+              "text": ". - "
+            },
+            {
+              "kind": "code",
+              "text": "errorText",
+              "highlighter": "plain"
+            },
+            {
+              "kind": "text",
+              "text": " - Any current "
+            },
+            {
+              "kind": "code",
+              "text": "errorText",
+              "highlighter": "plain"
+            },
+            {
+              "kind": "text",
+              "text": " set on invalid fields. - "
+            },
+            {
+              "kind": "code",
+              "text": "required",
+              "highlighter": "plain"
+            },
+            {
+              "kind": "text",
+              "text": " - Whether the field is currently required. - "
+            },
+            {
+              "kind": "code",
+              "text": "hidden",
+              "highlighter": "plain"
+            },
+            {
+              "kind": "text",
+              "text": " - Whether the field is currently hidden."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "fields": {
+          "kind": "property",
+          "signature": "readonly fields: Options;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "Options",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "The form's fields."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "ready": {
+          "kind": "property",
+          "signature": "readonly ready: boolean;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "boolean",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Whether all required data entries are valid."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "setValue": {
+          "kind": "property",
+          "signature": "setValue: (id: string | number, value: any) => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(id: string | number, value: any) => void",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Set the value of one of the form's data entries."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        }
+      }
+    },
+    "IndexController": {
+      "kind": "class",
+      "extends": "Controller",
+      "implements": "",
+      "typeParameters": [],
+      "deprecatedMessage": [],
+      "summary": [
+        {
+          "kind": "text",
+          "text": "Control a set of index values for a given set of Frames."
+        }
+      ],
+      "remarks": [],
+      "isBeta": false,
+      "isSealed": false,
+      "members": {
+        "__constructor": {
+          "kind": "constructor",
+          "signature": "constructor(options?: Options);",
+          "parameters": {
+            "options": {
+              "name": "options",
+              "description": [],
+              "isOptional": true,
+              "isSpread": false,
+              "type": "Options"
+            }
+          },
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Constructs a new instance of the "
+            },
+            {
+              "kind": "api-link",
+              "elements": [
+                {
+                  "kind": "text",
+                  "text": "IndexController"
+                }
+              ],
+              "target": {
+                "scopeName": "",
+                "packageName": "framer-controller",
+                "exportName": "IndexController",
+                "memberName": ""
+              }
+            },
+            {
+              "kind": "text",
+              "text": " class"
+            }
+          ],
+          "remarks": []
+        },
+        "items": {
+          "kind": "property",
+          "signature": "items: Array<string | number>;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "Array<string | number>",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "The controller's current items."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "loop": {
+          "kind": "property",
+          "signature": "loop: boolean;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "boolean",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Whether this controller is set to loop values (e.g. back from min to max)."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "max": {
+          "kind": "property",
+          "signature": "readonly max: number;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "number",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "The maximum index for an item in this controller."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "min": {
+          "kind": "property",
+          "signature": "readonly min: number;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "number",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "The minimum index for an item in this controller."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "moveBackward": {
+          "kind": "property",
+          "signature": "moveBackward: (item: string | number) => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(item: string | number) => void",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Send an item backward in the order."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "moveForward": {
+          "kind": "property",
+          "signature": "moveForward: (item: string | number) => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(item: string | number) => void",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Send an item forward by in the order."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "moveToBack": {
+          "kind": "property",
+          "signature": "moveToBack: (item: string | number) => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(item: string | number) => void",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Send an item back to the bottom of the order."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "moveToFront": {
+          "kind": "property",
+          "signature": "moveToFront: (item: string | number) => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(item: string | number) => void",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Send an item forward to the top of the order."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "order": {
+          "kind": "property",
+          "signature": "order: {\n        [key in ValuesOf<Options[\"items\"]>]: number;\n    };",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "{\n        [key in ValuesOf<Options[\"items\"]>]: number;\n    }",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "The current order of items."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "swap": {
+          "kind": "method",
+          "signature": "swap(itemA: Item, itemB: Item): void;",
+          "accessModifier": "",
+          "isOptional": false,
+          "isStatic": false,
+          "returnValue": {
+            "type": "void",
+            "description": []
+          },
+          "parameters": {
+            "itemA": {
+              "name": "itemA",
+              "description": [],
+              "isOptional": false,
+              "isSpread": false,
+              "type": "Item"
+            },
+            "itemB": {
+              "name": "itemB",
+              "description": [],
+              "isOptional": false,
+              "isSpread": false,
+              "type": "Item"
+            }
+          },
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false
+        }
+      }
+    },
+    "IntervalController": {
+      "kind": "class",
+      "extends": "Controller",
+      "implements": "",
+      "typeParameters": [],
+      "deprecatedMessage": [],
+      "summary": [],
+      "remarks": [],
+      "isBeta": false,
+      "isSealed": false,
+      "members": {
+        "__constructor": {
+          "kind": "constructor",
+          "signature": "constructor(options?: Options);",
+          "parameters": {
+            "options": {
+              "name": "options",
+              "description": [],
+              "isOptional": true,
+              "isSpread": false,
+              "type": "Options"
+            }
+          },
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Constructs a new instance of the "
+            },
+            {
+              "kind": "api-link",
+              "elements": [
+                {
+                  "kind": "text",
+                  "text": "IntervalController"
+                }
+              ],
+              "target": {
+                "scopeName": "",
+                "packageName": "framer-controller",
+                "exportName": "IntervalController",
+                "memberName": ""
+              }
+            },
+            {
+              "kind": "text",
+              "text": " class"
+            }
+          ],
+          "remarks": []
+        },
+        "_timeout": {
+          "kind": "property",
+          "signature": "_timeout: any;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "any",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "delay": {
+          "kind": "property",
+          "signature": "delay: number;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "number",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": " The controller's delay between intervals."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "frame": {
+          "kind": "property",
+          "signature": "readonly frame: number;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "number",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": " The controller's current frame."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "paused": {
+          "kind": "property",
+          "signature": "paused: boolean;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "boolean",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": " Whether the controller is paused."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "start": {
+          "kind": "property",
+          "signature": "start: () => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "() => void",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": " Start the interval."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "stop": {
+          "kind": "property",
+          "signature": "stop: () => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "() => void",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": " Stop the interval."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "tick": {
+          "kind": "property",
+          "signature": "protected tick: () => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "() => void",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": " Begin a new interval."
+            },
+            {
+              "kind": "paragraph"
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "toggle": {
+          "kind": "property",
+          "signature": "toggle: () => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "() => void",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": " Toggle the controller from paused to unpaused."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        }
+      }
+    },
+    "PageController": {
+      "kind": "class",
+      "extends": "Controller",
+      "implements": "",
+      "typeParameters": [
+        "Options"
+      ],
+      "deprecatedMessage": [],
+      "summary": [
+        {
+          "kind": "text",
+          "text": "A controller for Framer X's Page component."
+        }
+      ],
+      "remarks": [],
+      "isBeta": false,
+      "isSealed": false,
+      "members": {
+        "__constructor": {
+          "kind": "constructor",
+          "signature": "constructor(options?: Options);",
+          "parameters": {
+            "options": {
+              "name": "options",
+              "description": [],
+              "isOptional": true,
+              "isSpread": false,
+              "type": "Options"
+            }
+          },
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Constructs a new instance of the "
+            },
+            {
+              "kind": "api-link",
+              "elements": [
+                {
+                  "kind": "text",
+                  "text": "PageController"
+                }
+              ],
+              "target": {
+                "scopeName": "",
+                "packageName": "framer-controller",
+                "exportName": "PageController",
+                "memberName": ""
+              }
+            },
+            {
+              "kind": "text",
+              "text": " class"
+            }
+          ],
+          "remarks": []
+        },
+        "changePage": {
+          "kind": "property",
+          "signature": "changePage: (delta: number) => number;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(delta: number) => number",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Change the pager's current page number by a given number of pages."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "currentPage": {
+          "kind": "property",
+          "signature": "currentPage: number;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "number",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Get or set the controller's "
+            },
+            {
+              "kind": "code",
+              "text": "state.currentPage",
+              "highlighter": "plain"
+            },
+            {
+              "kind": "text",
+              "text": " value. The result will be clamped between zero and the total number of pages."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "loop": {
+          "kind": "property",
+          "signature": "loop: boolean;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "boolean",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "onConnect": {
+          "kind": "property",
+          "signature": "protected onConnect: (state: any, props: any) => Partial<State & {\n        controller?: any;\n    }>;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(state: any, props: any) => Partial<State & {\n        controller?: any;\n    }>",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "progress": {
+          "kind": "property",
+          "signature": "progress: number;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "number",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Get or set the controller's progress from the first page (0) to the last page (1)."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "snapToNextPage": {
+          "kind": "property",
+          "signature": "snapToNextPage: (direction?: \"left\" | \"right\") => number;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(direction?: \"left\" | \"right\") => number",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Change the page to the next page in a given direction ('right' or 'left')."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "snapToPage": {
+          "kind": "property",
+          "signature": "snapToPage: (currentPage: number) => number;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(currentPage: number) => number",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Set the pager's current page to a given number."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "syncCurrentPage": {
+          "kind": "property",
+          "signature": "syncCurrentPage: (currentPage: number) => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(currentPage: number) => void",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "An event handler that syncs a page component with the controller."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "totalPages": {
+          "kind": "property",
+          "signature": "readonly totalPages: number;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "number",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        }
+      }
+    },
+    "PlacesController": {
+      "kind": "class",
+      "extends": "Controller",
+      "implements": "",
+      "typeParameters": [],
+      "deprecatedMessage": [],
+      "summary": [
+        {
+          "kind": "text",
+          "text": "Load autocomplete predictions and place details from Google's Places library. Creating a PlacesController requires an "
+        },
+        {
+          "kind": "code",
+          "text": "apiKey",
+          "highlighter": "plain"
+        },
+        {
+          "kind": "text",
+          "text": " from Google. [Learn more](https://developers.google.com/maps/documentation/javascript/get-api-key)."
+        }
+      ],
+      "remarks": [],
+      "isBeta": false,
+      "isSealed": false,
+      "members": {
+        "__constructor": {
+          "kind": "constructor",
+          "signature": "constructor(options?: Options);",
+          "parameters": {
+            "options": {
+              "name": "options",
+              "description": [],
+              "isOptional": true,
+              "isSpread": false,
+              "type": "Options"
+            }
+          },
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Constructs a new instance of the "
+            },
+            {
+              "kind": "api-link",
+              "elements": [
+                {
+                  "kind": "text",
+                  "text": "PlacesController"
+                }
+              ],
+              "target": {
+                "scopeName": "",
+                "packageName": "framer-controller",
+                "exportName": "PlacesController",
+                "memberName": ""
+              }
+            },
+            {
+              "kind": "text",
+              "text": " class"
+            }
+          ],
+          "remarks": []
+        },
+        "_autoCompleteService": {
+          "kind": "property",
+          "signature": "_autoCompleteService: any;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "any",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "_geocoder": {
+          "kind": "property",
+          "signature": "_geocoder: any;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "any",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "autocompleteService": {
+          "kind": "property",
+          "signature": "readonly autocompleteService: any;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "any",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "clearDetails": {
+          "kind": "property",
+          "signature": "clearDetails: () => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "() => void",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "clearPredictions": {
+          "kind": "property",
+          "signature": "clearPredictions: () => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "() => void",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "details": {
+          "kind": "property",
+          "signature": "readonly details: any;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "any",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "geocoder": {
+          "kind": "property",
+          "signature": "readonly geocoder: any;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "any",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "getPlaceDetails": {
+          "kind": "property",
+          "signature": "getPlaceDetails: (placeId: string, fields?: (\"icon\" | \"id\" | \"name\" | \"url\" | \"address_component\" | \"adr_address\" | \"alt_id\" | \"formatted_address\" | \"geometry\" | \"permanently_closed\" | \"photo\" | \"place_id\" | \"plus_code\" | \"scope\" | \"type\" | \"user_ratings_total\" | \"utc_offset\" | \"vicinity\")[]) => Promise<any>;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(placeId: string, fields?: (\"icon\" | \"id\" | \"name\" | \"url\" | \"address_component\" | \"adr_address\" | \"alt_id\" | \"formatted_address\" | \"geometry\" | \"permanently_closed\" | \"photo\" | \"place_id\" | \"plus_code\" | \"scope\" | \"type\" | \"user_ratings_total\" | \"utc_offset\" | \"vicinity\")[]) => Promise<any>",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Get place details from a placeId"
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "getPlacePredictions": {
+          "kind": "property",
+          "signature": "getPlacePredictions: (input: string, location?: {\n        lat: number;\n        lng: number;\n    }, radius?: number, language?: string, types?: any, sessionToken?: string) => Promise<any[]>;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(input: string, location?: {\n        lat: number;\n        lng: number;\n    }, radius?: number, language?: string, types?: any, sessionToken?: string) => Promise<any[]>",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Get a place prediction from an input string."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "hasPredictions": {
+          "kind": "property",
+          "signature": "readonly hasPredictions: boolean;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "boolean",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "predictions": {
+          "kind": "property",
+          "signature": "readonly predictions: any[];",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "any[]",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        }
+      }
+    },
+    "SelectionController": {
+      "kind": "class",
+      "extends": "Controller",
+      "implements": "",
+      "typeParameters": [],
+      "deprecatedMessage": [],
+      "summary": [],
+      "remarks": [],
+      "isBeta": false,
+      "isSealed": false,
+      "members": {
+        "__constructor": {
+          "kind": "constructor",
+          "signature": "constructor(options?: Options);",
+          "parameters": {
+            "options": {
+              "name": "options",
+              "description": [],
+              "isOptional": true,
+              "isSpread": false,
+              "type": "Options"
+            }
+          },
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Constructs a new instance of the "
+            },
+            {
+              "kind": "api-link",
+              "elements": [
+                {
+                  "kind": "text",
+                  "text": "SelectionController"
+                }
+              ],
+              "target": {
+                "scopeName": "",
+                "packageName": "framer-controller",
+                "exportName": "SelectionController",
+                "memberName": ""
+              }
+            },
+            {
+              "kind": "text",
+              "text": " class"
+            }
+          ],
+          "remarks": []
+        },
+        "clear": {
+          "kind": "property",
+          "signature": "clear: () => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "() => void",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Clear all selections."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "deselect": {
+          "kind": "property",
+          "signature": "deselect: (item: any) => void;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(item: any) => void",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Deselect a given item."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "hasSelected": {
+          "kind": "property",
+          "signature": "readonly hasSelected: boolean;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "boolean",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "isSelected": {
+          "kind": "property",
+          "signature": "isSelected: (item: any) => any;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(item: any) => any",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Check whether a given item is selected."
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "multiple": {
+          "kind": "property",
+          "signature": "multiple: boolean;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "boolean",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "select": {
+          "kind": "property",
+          "signature": "select: (item: any) => any;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(item: any) => any",
+          "deprecatedMessage": [],
+          "summary": [
+            {
+              "kind": "text",
+              "text": "Select the given item. (If toggle is enabled, )"
+            }
+          ],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "selected": {
+          "kind": "property",
+          "signature": "readonly selected: any;",
+          "isOptional": false,
+          "isReadOnly": true,
+          "isStatic": false,
+          "type": "any",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "toggle": {
+          "kind": "property",
+          "signature": "toggle: boolean;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "boolean",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        },
+        "validation": {
+          "kind": "property",
+          "signature": "validation: (item: any | any[]) => boolean;",
+          "isOptional": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "type": "(item: any | any[]) => boolean",
+          "deprecatedMessage": [],
+          "summary": [],
+          "remarks": [],
+          "isBeta": false,
+          "isSealed": false,
+          "isVirtual": false,
+          "isOverride": false,
+          "isEventProperty": false
+        }
+      }
+    }
+  }
+}

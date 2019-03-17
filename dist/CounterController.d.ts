@@ -1,12 +1,12 @@
 import { Controller } from "./Controller";
-interface Config {
+interface Options {
     initial?: number;
 }
-interface State extends Config {
+interface State extends Options {
     value: number;
 }
-export declare class CounterController<Config> extends Controller<State> {
-    constructor(config?: Config);
+export declare class CounterController extends Controller<State> {
+    constructor(config?: Options);
     readonly count: number;
     readonly value: number;
     increment: () => void;

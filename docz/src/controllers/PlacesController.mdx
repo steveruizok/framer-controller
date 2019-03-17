@@ -1,0 +1,83 @@
+---
+name: PlacesController
+route: /PlacesController
+---
+
+# PlacesController
+
+A `PlacesController` uses the Google Maps API to get place `predictions` and `details`.
+
+| Option | Type   | DefaultValue | Description                                                                                            |
+| :----- | :----- | :----------- | :----------------------------------------------------------------------------------------------------- |
+| apiKey | string |              | Your [Google Places API Key](https://developers.google.com/maps/documentation/javascript/get-api-key). |
+
+| Property            | Type     | Description                                           |
+| :------------------ | :------- | :---------------------------------------------------- |
+| predictions         | object[] | The results of a `getPlacePredictions` call.          |
+| details             | object   | The results of a `getPlaceDetails` call.              |
+| hasPredictions      | boolean  | Whether the controller has predictions.               |
+| autocompleteService | object   | The controller's Google AutoCompleteService instance. |
+| geocoder            | object   | The controller's Google Geocoder instance.            |
+
+| Method                            | Description                                                                                                                                                                                 |
+| :-------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| getPlacePredictions(string)       | Fetch place predictions using a string, such as an address or city name.                                                                                                                    |
+| getPlaceDetails(placeId, options) | Fetch place details using a (such as a prediction's `place_id`), with [additional options](https://developers.google.com/maps/documentation/javascript/reference/geocoder#GeocoderRequest). |
+
+Example:
+
+```tsx
+import * as React from "react"
+import { Override, Frame } from "framer"
+import { PlacesController } from "framer-controller"
+import { Prediction } from "./canvas"
+
+const controller = new PlacesController({
+	apiKey: "YOUR_GOOGLE_PLACES_API_KEY",
+})
+
+export const PlacesInput: Override = () => ({
+	onValueChange: v => {
+		if (v.length > 2) {
+			controller.getPlacePredictions(v)
+		} else {
+			controller.clearPredictions()
+		}
+	},
+})
+
+export const PredictionContainer: Override = () => ({
+	children: controller.predictions.map((p, i) => (
+		<Frame
+			top={i * 64}
+			left={0}
+			width={"100%"}
+			background={null}
+			height={64}
+			onClick={() => controller.getPlaceDetails(p.place_id)}
+		>
+			<Prediction $value={p.description} width={"100%"} />
+		</Frame>
+	)),
+})
+
+export const ViewDetailsLink: Override = props => ({
+	top: controller.predictions.length === 0 ? 2000 : props.top,
+})
+
+export const ViewDetailsButton: Override = () => ({
+	disabled: controller.predictions.length === 0,
+})
+
+export const DetailsLabel: Override = () => {
+	const { details } = controller
+	return {
+		visible: details,
+		$value:
+			details &&
+			`${details.geometry.location
+				.lng()
+				.toFixed(2)}, ${details.geometry.location.lat().toFixed(2)}`,
+	}
+}
+```

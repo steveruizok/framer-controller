@@ -1,0 +1,186 @@
+---
+name: Build Your Own
+route: /BuildYourOwn
+---
+
+# Build Your Own
+
+You can create your own controllers by extending the `Controller` class.
+
+1. Import the `Controller` class and create a new class that extends `Controller`.
+
+2. Create a type for the controller's constructor, and a second for the controller's state.
+
+3. In the controller's constructor, super an object that matches your state type, spreading in the provided options with any additional state properties.
+
+4. Add methods for manipulating state.
+
+5. If desired, add alias definitions for accessing state properties.
+
+## SimpleCounterController
+
+In the example below, we create a controller that will increment and decrement a number. Its constructor takes a parameter, `options`, an object with one optional property, `initial`, that the constructor uses to set the initial `state.value` property. Both properties are stored in state as `{ value: number, initial: number}`.
+
+The `increment` and `decrement` methods set a new state based on the current state. The `value` property is a read-only alias for `state.value`. The `diff` property is a read only value expressing the difference between the controller's current value and its initial value.
+
+Example:
+
+```ts
+import { Controller } from "./Controller"
+
+interface Options {
+	initial?: number
+}
+
+interface State extends Options {
+	value: number
+}
+
+export class SimpleCounterController extends Controller<State> {
+	constructor(options: Options = { initial: 0 } as Options) {
+		super({
+			value: options.initial,
+			...options,
+		})
+	}
+
+	public increment = () => {
+		const { value } = this.state
+		this.setState({
+			value: value + 1,
+		})
+	}
+
+	public decrement = () => {
+		const { value } = this.state
+		this.setState({
+			value: value - 1,
+		})
+	}
+
+	get value() {
+		return this.state.value
+	}
+
+	get diff() {
+		return this.state.initial - this.state
+	}
+}
+```
+
+Assuming we've defined our controller in its own `.ts` file (in our project's code folder), we could use the controller like so:
+
+```ts
+import { Overrider } from "framer"
+import { SimpleCounterController } from "./SimpleCounterController"
+
+const controller = new SimpleCounterController({
+	initial: 10,
+})
+
+export const DecrementButton = () => ({
+	onClick: controller.decrement,
+})
+
+export const IncrementButton = () => ({
+	onClick: controller.increment,
+})
+
+export const ValueDisplay = () => ({
+	$value: controller.value,
+})
+```
+
+## DataTableController
+
+In this example, we'll assume we've created a code component, `DataTable`, that displays some data passed into its `data` prop. We want to fetch the data from an API endpoint, however the response includes an array of several `pages` of data. Each page could be passed in as `DataTable`'s `data` prop, however the `DataTable` component should only display one page at a time.
+
+As the component's authors, we _could_ decide to accept an array of data objects through the `data` prop and store the current page in the component's state. If we did so, however, our component would also have to contain all controls necessary for changing the current page.
+
+Instead, we'll store this state _outside_ of the component, so that designers using our component will be free to implement page controls however they wish. In order to help our designers, we'll also provide them with a _controller_ for managing page state.
+
+```ts
+import { Controller } from "./Controller"
+
+interface Options {
+	url: string
+	currentPage?: number
+}
+
+interface State extends Options {
+	pages: object[]
+}
+
+export class DataTableController extends Controller<State> {
+	constructor(options: Options) {
+		super({
+			pages: [],
+			currentPage: 0,
+			...options,
+		})
+
+		this.refresh()
+	}
+
+	refresh = async () => {
+		const response = await fetch(this.state.url)
+		const data = await response.json()
+		this.setState({
+			pages: data.pages,
+		})
+	}
+
+	public prevPage = () => {
+		const { currentPage } = this.state
+		if (this.progress === 0) return
+		this.setState({
+			currentPage: currentPage - 1,
+		})
+	}
+
+	public nextPage = () => {
+		const { currentPage } = this.state
+		if (this.progress === 1) return
+		this.setState({
+			currentPage: currentPage + 1,
+		})
+	}
+
+	get progress() {
+		return this.state.currentPage / this.state.pages.length - 1
+	}
+
+	get currentPage() {
+		return this.state.currentPage
+	}
+
+	get data() {
+		return this.state.pages[this.state.currentPage]
+	}
+}
+```
+
+In our Overrides file, we could then use this controller like so:
+
+```ts
+import { Overrider } from "framer"
+import { DataTableController } from "./DataTableController"
+
+const controller = new DataTableController({
+	url: "https://www.largeco.com/api/tabledata",
+})
+
+export const DataTable = () => controller.state
+
+export const PrevPage = () => ({
+	opacity: controller.progress === 0 ? 0.5 : 1,
+	onClick: controller.nextPage,
+})
+
+export const NextPage = () => ({
+	opacity: controller.progress === 1 ? 0.5 : 1,
+	$value: controller.prevPage,
+})
+```
+
+Because we've located state outside of the component, designers can connect these overrides to whatever Frames or components that they wish.

@@ -1,25 +1,27 @@
 import { Controller } from "./Controller"
 
-type Props = {
+interface Options {
 	apiKey: string
+}
+
+interface State extends Options {
 	predictions?: any[]
 	details?: any
 }
-
 /**
  * Load autocomplete predictions and place details from Google's Places library. Creating a PlacesController requires an `apiKey` from Google. [Learn more](https://developers.google.com/maps/documentation/javascript/get-api-key).
  * @example
  * const controller = new PlacesController({apiKey: "..."})
  */
-export class PlacesController extends Controller<Props> {
+export class PlacesController extends Controller<State> {
 	_autoCompleteService: any
 	_geocoder: any
 
-	constructor(props: Props) {
+	constructor(options: Options = {} as Options) {
 		super({
 			predictions: [],
 			details: null,
-			...props,
+			...options,
 		})
 
 		this.loadLibrary(this.state.apiKey)
@@ -91,14 +93,14 @@ export class PlacesController extends Controller<Props> {
 	/**
 	 * Get place details from a placeId
 	 */
-	getPlaceDetails = async (placeId: string, fields?: Array<keyof Fields>) => {
+	getPlaceDetails = async (placeId: string, fields: PlaceOptions = {}) => {
 		const getDetails = () =>
 			new Promise(resolve => {
 				if (!this.geocoder) {
 					return
 				}
 
-				this.geocoder.geocode({ placeId }, resolve)
+				this.geocoder.geocode({ placeId, ...fields }, resolve)
 			})
 
 		const [details] = ((await getDetails()) as any[]) || [null]
@@ -118,6 +120,10 @@ export class PlacesController extends Controller<Props> {
 		})
 	}
 
+	get hasPredictions() {
+		return this.state.predictions.length > 0
+	}
+
 	get predictions() {
 		return this.state.predictions
 	}
@@ -135,23 +141,10 @@ export class PlacesController extends Controller<Props> {
 	}
 }
 
-interface Fields {
-	address_component: string
-	adr_address: string
-	alt_id: string
-	formatted_address: string
-	geometry: string
-	icon: string
-	id: string
-	name: string
-	permanently_closed: string
-	photo: string
-	place_id: string
-	plus_code: string
-	scope: string
-	type: string
-	url: string
-	user_ratings_total: string
-	utc_offset: string
-	vicinity: string
+interface PlaceOptions {
+	address?: string
+	bounds?: any
+	componentRestrictions?: any
+	location?: any
+	region?: any
 }

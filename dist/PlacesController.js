@@ -15,8 +15,8 @@ const Controller_1 = require("./Controller");
  * const controller = new PlacesController({apiKey: "..."})
  */
 class PlacesController extends Controller_1.Controller {
-    constructor(props) {
-        super(Object.assign({ predictions: [], details: null }, props));
+    constructor(options = {}) {
+        super(Object.assign({ predictions: [], details: null }, options));
         /**
          * Get a place prediction from an input string.
          */
@@ -41,12 +41,12 @@ class PlacesController extends Controller_1.Controller {
         /**
          * Get place details from a placeId
          */
-        this.getPlaceDetails = (placeId, fields) => __awaiter(this, void 0, void 0, function* () {
+        this.getPlaceDetails = (placeId, fields = {}) => __awaiter(this, void 0, void 0, function* () {
             const getDetails = () => new Promise(resolve => {
                 if (!this.geocoder) {
                     return;
                 }
-                this.geocoder.geocode({ placeId }, resolve);
+                this.geocoder.geocode(Object.assign({ placeId }, fields), resolve);
             });
             const [details] = (yield getDetails()) || [null];
             this.setState({ details });
@@ -82,6 +82,9 @@ class PlacesController extends Controller_1.Controller {
         script.id = "google_maps_library";
         script.src = `https://maps.googleapis.com/maps/api/js?key=${key}&libraries=places&callback=initMap`;
         document.head.appendChild(script);
+    }
+    get hasPredictions() {
+        return this.state.predictions.length > 0;
     }
     get predictions() {
         return this.state.predictions;

@@ -2,21 +2,36 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Controller_1 = require("./Controller");
 class IntervalController extends Controller_1.Controller {
-    constructor(config = {}) {
-        super(Object.assign({ delay: 1, paused: false, frame: 0, cleanResume: true, onChange: () => null }, config));
+    constructor(options = {}) {
+        super(Object.assign({ delay: 1, paused: false, frame: 0, cleanResume: true, onChange: () => null }, options));
+        /**
+         * Start the interval.
+         *
+         */
         this.start = () => {
             if (!this.paused)
                 return;
             this.paused = false;
         };
+        /**
+         * Stop the interval.
+         *
+         */
         this.stop = () => {
             if (this.paused)
                 return;
             this.paused = true;
         };
+        /**
+         * Toggle the controller from paused to unpaused.
+         *
+         */
         this.toggle = () => {
             this.paused = !this.paused;
         };
+        /**
+         * Begin a new interval.
+         */
         this.tick = () => {
             this._timeout = window.setTimeout(() => {
                 this.tick();
@@ -28,8 +43,14 @@ class IntervalController extends Controller_1.Controller {
                 }
             }, this.delay * 1000);
         };
-        this.tick();
+        if (!this.paused) {
+            this.tick();
+        }
     }
+    /**
+     * Whether the controller is paused.
+     *
+     */
     get paused() {
         return this.state.paused;
     }
@@ -44,12 +65,19 @@ class IntervalController extends Controller_1.Controller {
         }
         this.setState({ paused });
     }
+    /**
+     * The controller's delay between intervals.
+     *
+     */
     get delay() {
         return this.state.delay;
     }
     set delay(delay) {
         this.setState({ delay });
     }
+    /**
+     * The controller's current frame.
+     */
     get frame() {
         return this.state.frame;
     }

@@ -3,18 +3,7 @@ import { Data } from "framer"
 type State<T> = Partial<T & { controller?: any }>
 
 /**
- * A Controller is a tool for managing a small piece of application state.
- * On its own, it can be used much like a regular Data object, except that
- * changes to state are made using the `setState` method.
- *
- *
- * However, the real value of Controller is through extension: it can be
- * easily extended, allowing a user to abstract away common-but-complex
- * stateful relationships behind simple imperative commands -- think
- * `const [lat, lng] = await controller.findTheNearestCoffeeshop()`.
- *
- *
- * @template T An interface for the controlled component's state.
+ * A Controller provides an interface for updating a Framer X Data object.
  */
 
 export class Controller<T> {
@@ -24,7 +13,6 @@ export class Controller<T> {
 
 	/**
 	 * Creates a new instance of Controller.
-	 * @param {T} initial The initial state of the controller.
 	 */
 	constructor(initial: T) {
 		const initialState: State<T> = initial
@@ -37,13 +25,11 @@ export class Controller<T> {
 	/**
 	 * A method that fires automatically after a controller's state
 	 * is reset using the `reset` method.
-	 * @param state The controller's initial state.
 	 */
 	protected onReset = (state?: State<T>, connected?: any) => this.state
 
 	/**
 	 * A method that fires automatically after each state change.
-	 * @param state The controller's initial state.
 	 */
 	protected onUpdate = (state?: State<T>, connected?: any) => this.state
 
@@ -57,7 +43,6 @@ export class Controller<T> {
 	 * Connect this controller to a component or set of props. This
 	 * could be called from a component's `onComponentDidMount` method,
 	 * or using the props from an override.
-	 * @param {*} connected - The data to connect.
 	 */
 	public connect = (connected: any) => {
 		if (connected !== this._connected) {
@@ -70,9 +55,6 @@ export class Controller<T> {
 
 	/**
 	 * Set the controller's state.
-	 * @param {Options} state The changes you wish to make to the controller's state.
-	 * @param {(state: State<T>, position: number) => void} [callback] An optional callback function to run after the new state has loaded.
-	 * @returns {State<T>} The controller's new state.
 	 */
 	public setState = (state: State<T> = {}): State<T> => {
 		Object.assign(this._state, {
@@ -85,13 +67,11 @@ export class Controller<T> {
 
 	/**
 	 * Return the state to its initial value.
-	 * @returns {State<T>} The controller's new state.
 	 */
 	public reset = (): State<T> => this.setState(this._initial)
 
 	/**
 	 * The controller's current state.
-	 * @readonly
 	 */
 	get state(): State<T> {
 		return this._state
@@ -99,7 +79,6 @@ export class Controller<T> {
 
 	/**
 	 * The data connected using `controller.connect`.
-	 * @readonly
 	 */
 	get connected(): any {
 		return this._connected

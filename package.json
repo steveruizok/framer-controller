@@ -1,11 +1,14 @@
 {
 	"name": "framer-controller",
-	"version": "1.5.1",
+	"version": "1.5.4",
 	"description": "Control state in Framer X with reusable controllers.",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"files": [
+		"/dist"
+	],
 	"scripts": {
-		"build": "tsc",
+		"build": "tsc && typedoc",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {

@@ -23,11 +23,11 @@ const controller = new FormController({
 })```
  */
 class FormController extends Controller_1.Controller {
-    constructor(fields) {
+    constructor(options) {
         super({
-            fields,
-            data: Object.keys(fields).reduce((a, id) => (Object.assign({}, a, { [id]: {
-                    value: fields[id].defaultValue,
+            fields: options,
+            data: Object.keys(options).reduce((a, id) => (Object.assign({}, a, { [id]: {
+                    value: options[id].defaultValue,
                     errorText: "",
                     valid: false,
                     hidden: false,

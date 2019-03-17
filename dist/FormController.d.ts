@@ -9,7 +9,7 @@ declare type FormField = {
     errorText?: string | StringFromValue;
     hidden?: boolean | BooleanFromStatus;
 };
-declare type FormFields = {
+declare type Options = {
     [key: string]: FormField;
 };
 declare type Entry = {
@@ -20,10 +20,10 @@ declare type Entry = {
     required: boolean;
 };
 declare type Entries = {
-    [key in keyof FormFields]: Entry;
+    [key in keyof Options]: Entry;
 };
 interface Form {
-    fields: FormFields;
+    fields: Options;
     data: Entries;
     ready: boolean;
 }
@@ -49,7 +49,7 @@ const controller = new FormController({
 })```
  */
 export declare class FormController extends Controller<Form> {
-    constructor(fields: FormFields);
+    constructor(options: Options);
     /**
      * Return the next state, given a set of incoming entries.
      * @param incoming
@@ -63,7 +63,7 @@ export declare class FormController extends Controller<Form> {
     setValue: (id: string | number, value: any) => void;
     /**
      * The form's fields. 	 */
-    readonly fields: FormFields;
+    readonly fields: Options;
     /**
      * The form's data entries. For each field, the
      * - `value` - The entry's value.

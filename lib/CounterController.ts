@@ -1,15 +1,15 @@
 import { Controller } from "./Controller"
 
-interface Config {
+interface Options {
 	initial?: number
 }
 
-interface State extends Config {
+interface State extends Options {
 	value: number
 }
 
-export class CounterController<Config> extends Controller<State> {
-	constructor(config: Config = {} as Config) {
+export class CounterController extends Controller<State> {
+	constructor(config: Options = {} as Options) {
 		super({
 			initial: 0,
 			value: 0,
