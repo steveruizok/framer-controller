@@ -7,12 +7,13 @@ route: /FetchController
 
 A `FetchController` fetches data from a URL and stores it in its `data` property.
 
-| Option | Type     | DefaultValue   | Description                                                                                        |
-| :----- | :------- | :------------- | :------------------------------------------------------------------------------------------------- |
-| url    | string   |                | The URL to fetch data from.                                                                        |
-| parse  | function | (data) => data | _Optional_ - A function that accepts the raw fetched data and returns the data to store as `data`. |
-| log    | boolean  | false          | _Optional_ - When `true`, the controller will log its `data` on each change.                       |
-| data   | any      | false          | _Optional_ - An initial value for the controller's `data` property.                                |
+| Option | Type     | DefaultValue   | Description                                                                                                                                                                                    |
+| :----- | :------- | :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| url    | string   |                | The URL to fetch data from.                                                                                                                                                                    |
+| init   | object   | {}             | _Optional_ - A [fetch RequestInit object](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters) containing any custom settings to apply to the request. |
+| parse  | function | (data) => data | _Optional_ - A function that accepts the raw fetched data and returns the data to store as `data`.                                                                                             |
+| log    | boolean  | false          | _Optional_ - When `true`, the controller will log its `data` on each change.                                                                                                                   |
+| data   | any      | false          | _Optional_ - An initial value for the controller's `data` property.                                                                                                                            |
 
 | Property | Type    | Description                                                                                                 |
 | :------- | :------ | :---------------------------------------------------------------------------------------------------------- |
@@ -32,6 +33,9 @@ import { FetchController } from "framer-controller"
 
 const controller = new FetchController({
 	url: "https://randomuser.me/api/",
+	init: {
+		mode: "no-cors",
+	},
 	parse: data => data.results[0],
 })
 

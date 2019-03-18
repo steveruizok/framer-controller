@@ -110,23 +110,6 @@
         }
       ]
     },
-    "src/controllers/FetchController.mdx": {
-      "name": "FetchController",
-      "route": "/FetchController",
-      "id": "c37dc158db9e7b51e5ed2f8fc600bb53",
-      "filepath": "src/controllers/FetchController.mdx",
-      "link": null,
-      "slug": "src-controllers-fetch-controller",
-      "order": 0,
-      "menu": null,
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "fetchcontroller",
-          "value": "FetchController"
-        }
-      ]
-    },
     "src/controllers/FormController.mdx": {
       "name": "FormController",
       "route": "/FormController",
@@ -175,6 +158,23 @@
           "depth": 1,
           "slug": "intervalcontroller",
           "value": "IntervalController"
+        }
+      ]
+    },
+    "src/controllers/FetchController.mdx": {
+      "name": "FetchController",
+      "route": "/FetchController",
+      "id": "c37dc158db9e7b51e5ed2f8fc600bb53",
+      "filepath": "src/controllers/FetchController.mdx",
+      "link": null,
+      "slug": "src-controllers-fetch-controller",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "fetchcontroller",
+          "value": "FetchController"
         }
       ]
     },

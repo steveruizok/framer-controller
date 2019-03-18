@@ -2,6 +2,7 @@ import { Controller } from "./Controller"
 
 interface Options {
 	url: string
+	init?: RequestInit
 	parse?: (data: any) => any
 	log?: boolean
 	data?: any
@@ -12,12 +13,14 @@ interface State extends Options {
 }
 
 /**
- * Fetch data from an API endpoint (a `url`) and return it as `data`.
- * Accepts manual refrsehing (`refresh()`) and handles `loading` state, too.
+ * Fetch data from an API endpoint (a `url` and optional `init` object),
+ * perhaps `parse` the results, and then return it as `data`.
+ * Accepts manual `refrseh`ing and handles `loading` state, too.
  */
 export class FetchController extends Controller<State> {
 	constructor(options: Options = {} as Options) {
 		super({
+			init: {},
 			log: false,
 			loading: true,
 			parse: d => d,
@@ -37,8 +40,12 @@ export class FetchController extends Controller<State> {
 	 * @example
 	 * FetchController.fetch("https://www.myData.com/users")
 	 */
-	static fetch = async (url?: string, callback?: (data: any) => void) => {
-		const response = await fetch(url)
+	static fetch = async (
+		url?: string,
+		init?: RequestInit,
+		callback?: (data: any) => void
+	) => {
+		const response = await fetch(url, init)
 		const data = await response.json()
 		callback && callback(data)
 		return data
@@ -52,13 +59,15 @@ export class FetchController extends Controller<State> {
 	 * controller.refresh((data) => console.log(data))
 	 */
 	refresh = async () => {
+		const { parse, init, url } = this.state
+
 		this.setState({ loading: true })
-		let data = await FetchController.fetch(this.state.url).catch(e =>
-			console.warn(`⚠️Error refreshing from ${this.state.url}`, e)
+		let data = await FetchController.fetch(url, init).catch(e =>
+			console.warn(`⚠️Error refreshing from ${url}`, e)
 		)
 
-		if (this.state.parse) {
-			data = this.state.parse(data)
+		if (parse) {
+			data = parse(data)
 		}
 
 		this.setState({ data, loading: false })

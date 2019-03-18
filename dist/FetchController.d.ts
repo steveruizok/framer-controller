@@ -1,6 +1,7 @@
 import { Controller } from "./Controller";
 interface Options {
     url: string;
+    init?: RequestInit;
     parse?: (data: any) => any;
     log?: boolean;
     data?: any;
@@ -9,8 +10,9 @@ interface State extends Options {
     loading?: boolean;
 }
 /**
- * Fetch data from an API endpoint (a `url`) and return it as `data`.
- * Accepts manual refrsehing (`refresh()`) and handles `loading` state, too.
+ * Fetch data from an API endpoint (a `url` and optional `init` object),
+ * perhaps `parse` the results, and then return it as `data`.
+ * Accepts manual `refrseh`ing and handles `loading` state, too.
  */
 export declare class FetchController extends Controller<State> {
     constructor(options?: Options);
@@ -22,7 +24,7 @@ export declare class FetchController extends Controller<State> {
      * @example
      * FetchController.fetch("https://www.myData.com/users")
      */
-    static fetch: (url?: string, callback?: (data: any) => void) => Promise<any>;
+    static fetch: (url?: string, init?: RequestInit, callback?: (data: any) => void) => Promise<any>;
     /**
      * Load a new set of data from the controller's `url`.
      * @param callback - An optional callback to run once the data arrives.

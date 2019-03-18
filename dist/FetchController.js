@@ -10,12 +10,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const Controller_1 = require("./Controller");
 /**
- * Fetch data from an API endpoint (a `url`) and return it as `data`.
- * Accepts manual refrsehing (`refresh()`) and handles `loading` state, too.
+ * Fetch data from an API endpoint (a `url` and optional `init` object),
+ * perhaps `parse` the results, and then return it as `data`.
+ * Accepts manual `refrseh`ing and handles `loading` state, too.
  */
 class FetchController extends Controller_1.Controller {
     constructor(options = {}) {
-        super(Object.assign({ log: false, loading: true, parse: d => d, data: false }, options));
+        super(Object.assign({ init: {}, log: false, loading: true, parse: d => d, data: false }, options));
         this.onUpdate = state => {
             this.state.log && console.log(state.data);
             return this.state;
@@ -28,10 +29,11 @@ class FetchController extends Controller_1.Controller {
          * controller.refresh((data) => console.log(data))
          */
         this.refresh = () => __awaiter(this, void 0, void 0, function* () {
+            const { parse, init, url } = this.state;
             this.setState({ loading: true });
-            let data = yield FetchController.fetch(this.state.url).catch(e => console.warn(`⚠️Error refreshing from ${this.state.url}`, e));
-            if (this.state.parse) {
-                data = this.state.parse(data);
+            let data = yield FetchController.fetch(url, init).catch(e => console.warn(`⚠️Error refreshing from ${url}`, e));
+            if (parse) {
+                data = parse(data);
             }
             this.setState({ data, loading: false });
         });
@@ -65,8 +67,8 @@ class FetchController extends Controller_1.Controller {
  * @example
  * FetchController.fetch("https://www.myData.com/users")
  */
-FetchController.fetch = (url, callback) => __awaiter(this, void 0, void 0, function* () {
-    const response = yield fetch(url);
+FetchController.fetch = (url, init, callback) => __awaiter(this, void 0, void 0, function* () {
+    const response = yield fetch(url, init);
     const data = yield response.json();
     callback && callback(data);
     return data;
