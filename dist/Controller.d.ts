@@ -1,10 +1,10 @@
-declare type State<T> = Partial<T & {
-    controller?: any;
-}>;
+import anime from 'animejs';
+import { State, AnimateOptions } from './types';
 /**
  * A Controller provides an interface for updating a Framer X Data object.
  */
 export declare class Controller<T> {
+    protected _animation?: anime.AnimeInstance;
     private _initial;
     private _state;
     private _connected;
@@ -54,6 +54,11 @@ export declare class Controller<T> {
     }>) => Partial<T & {
         controller?: any;
     }>;
+    animate: (options: AnimateOptions | Partial<T & {
+        controller?: any;
+    }> | {
+        [key: string]: any;
+    }, target?: keyof T | "controller") => void;
     /**
      * Return the state to its initial value.
      */
@@ -68,5 +73,5 @@ export declare class Controller<T> {
      * The data connected using `controller.connect`.
      */
     readonly connected: any;
+    readonly animation: anime.AnimeInstance;
 }
-export {};

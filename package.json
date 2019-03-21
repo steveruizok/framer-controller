@@ -1,6 +1,6 @@
 {
 	"name": "framer-controller",
-	"version": "1.5.5",
+	"version": "1.5.7",
 	"description": "Control state in Framer X with reusable controllers.",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -29,8 +29,10 @@
 	},
 	"homepage": "https://github.com/steveruizok/framer-controller#readme",
 	"dependencies": {
+		"@types/animejs": "^2.0.2",
 		"@types/react": "^16.8.5",
 		"@types/react-dom": "^16.8.2",
+		"animejs": "^3.0.1",
 		"framer": "^0.10.9"
 	},
 	"devDependencies": {

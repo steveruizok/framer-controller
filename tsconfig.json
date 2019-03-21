@@ -4,9 +4,10 @@
 		"lib": ["es2015", "dom", "esnext"],
 		"module": "commonjs",
 		"declaration": true,
-		"outDir": "./dist"
+		"outDir": "./dist",
+		"allowSyntheticDefaultImports": true
 	},
-	"exclude": ["node_modules", "dist", "examples", "docs"],
+	"exclude": ["node_modules", "dist", "examples", "docs", "test"],
 	"typedocOptions": {
 		"mode": "modules",
 		"out": "docs"

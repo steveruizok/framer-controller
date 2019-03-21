@@ -3,27 +3,43 @@ name: Get Started
 route: /
 ---
 
-import { Link } from "docz"
+import { Link } from 'docz'
 
 # Framer Controller
 
 `npm install framer-controller`
 
-👉 [Click here](https://www.dropbox.com/s/tinpzhdbsdek1f3/ControllerExamples001.framerx?dl=0) to download an **example project** with demos for each controller.
+👉
+[Click here](https://www.dropbox.com/s/tinpzhdbsdek1f3/ControllerExamples001.framerx?dl=0)
+to download an **example project** with demos for each controller.
 
 ## Introduction
 
-The `framer-controller` library provides tools for managing state in Framer X overrides.
+The `framer-controller` library provides tools for managing state in Framer X
+overrides.
 
-The library includes `Controller`, a class that provides an interface for setting the values of a Framer X `Data` object. As in React classes, the controller's `setState` method will merge the provided values into the controller's state. Because the `Controller`'s state is stored in a `Data` object, changing its state will refresh overrides with the new values.
+The library includes `Controller`, a class that provides an interface for
+setting the values of a Framer X `Data` object. As in React classes, the
+controller's `setState` method will merge the provided values into the
+controller's state. Because the `Controller`'s state is stored in a `Data`
+object, changing its state will refresh overrides with the new values.
 
-While this might already be a useful pattern, the `Controller` class is really just a starting point for building more task- and component-specific controllers. By extending `Controller`, a designer can create an interface of methods related to a certain component or state management pattern.
+Controlled state simplifies many things that would otherwise take plenty of
+boilerplate. For example, `Controller` now supports a simple `animate` method
+that works with [`animejs`](https://animejs.com/), animating props and setting
+state automatically.
+
+While `Controller` might already be a useful pattern, the class is really just a
+starting point for building more task- and component-specific controllers. By
+extending `Controller`, a designer can create an interface of methods related to
+a certain component or state management pattern.
 
 The library comes with several such controllers:
 
 - <Link to="/CounterController">CounterController</Link> - for incrementing and decrementing a value
 - <Link to="/IntervalController">IntervalController</Link> - for making state changes on an interval
 - <Link to="/SelectionController">SelectionController</Link> - for tracking a selected item or items
+- <Link to="/RelativeController">RelativeController</Link> -  for setting props relative to another state or set of prosp
 - <Link to="/IndexController">IndexController</Link> - for tracking and changing an order of items
 - <Link to="/FetchController">FetchController</Link> - for fetching data from a REST API
 - <Link to="/FormController">FormController</Link> - for managing form values, validation and state
@@ -32,21 +48,23 @@ The library comes with several such controllers:
 
 ## Installation
 
-1. In your Framer X project's Project Folder, run `npm install framer-controller`.
+1. In your Framer X project's Project Folder, run
+   `npm install framer-controller`.
 
 ## Usage
 
-1. In an Overrides file, import the desired controllers from `framer-controller`.
+1. In an Overrides file, import the desired controllers from
+   `framer-controller`.
 2. Create an instance of your controller.
 3. Assign its properties and methods to components using Overrides.
 
 ```jsx
-import { Override } from "framer"
-import Controller, { FetchController } from "framer-controller"
+import { Override } from 'framer'
+import Controller, { FetchController } from 'framer-controller'
 
 const controller = new FetchController({
-	url: "https://randomuser.me/api/",
-	parse: data => data.results[0],
+	url: 'https://randomuser.me/api/',
+	parse: (data) => data.results[0],
 })
 
 export const ImageContainer: Override = () => ({
@@ -58,11 +76,13 @@ export const FetchButton: Override = () => ({
 })
 ```
 
-See each controller's documentation for information on how to use the controller and examples.
+See each controller's documentation for information on how to use the controller
+and examples.
 
 ## Extension
 
-For help creating your own controllers, see the [Build Your Own](/BuildYOurOwn) section.
+For help creating your own controllers, see the [Build Your Own](/BuildYOurOwn)
+section.
 
 ---
 

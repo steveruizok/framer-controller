@@ -1,0 +1,60 @@
+---
+name: RelativeController
+route: /RelativeController
+---
+
+# FetchController
+
+A `FetchController` fetches data from a URL and stores it in its `data`
+property.
+
+| Option    | Type     | DefaultValue      | Description                                                                     |
+| :-------- | :------- | :---------------- | :------------------------------------------------------------------------------ |
+| input     | object   |                   | _Optional_ The controller's initial `state.input` value.                        |
+| converter | function | (input) => output | _Optional_ - A function that accepts the input and returns the value of output. |
+
+| Property  | Type     | Description                                                                   |
+| :-------- | :------- | :---------------------------------------------------------------------------- |
+| input     | string   | The props to convert.                                                         |
+| output    | any      | The controller's converted input props.                                       |
+| converter | function | Get or set a function that accepts the input and returns the value of output. |
+
+| Method                   | Description                                                                              |
+| :----------------------- | :--------------------------------------------------------------------------------------- |
+| animate()                | Animate the controller's input (and convert it to output).                               |
+| setInput(props, initial) | Set the controller's input state. If `initial` is true, this method will only fire once. |
+
+Example:
+
+```tsx
+import { Override } from 'framer'
+import { RelativeController } from 'framer-controller'
+
+const controller = new FetchController({
+	output: (input) => ({
+    frameBLeft: input.left / 2,
+    frameCTop: input.left
+  })
+})
+
+export const FrameA: Override = (props) => {
+  controller.setInput(props, true)
+  return {
+    left: controller.input.left
+    onClick: () => {
+      controller.animate({
+        left: 100,
+        duration: 2000
+      })
+    }
+  }
+})
+
+export const FrameB: Override = () => ({
+	left: controller.output.frameBLeft,
+})
+
+export const FrameC: Override = () => ({
+	left: controller.output.frameCLeft,
+})
+```

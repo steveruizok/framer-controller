@@ -110,6 +110,23 @@
         }
       ]
     },
+    "src/controllers/FetchController.mdx": {
+      "name": "FetchController",
+      "route": "/FetchController",
+      "id": "c37dc158db9e7b51e5ed2f8fc600bb53",
+      "filepath": "src/controllers/FetchController.mdx",
+      "link": null,
+      "slug": "src-controllers-fetch-controller",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "fetchcontroller",
+          "value": "FetchController"
+        }
+      ]
+    },
     "src/controllers/FormController.mdx": {
       "name": "FormController",
       "route": "/FormController",
@@ -161,23 +178,6 @@
         }
       ]
     },
-    "src/controllers/FetchController.mdx": {
-      "name": "FetchController",
-      "route": "/FetchController",
-      "id": "c37dc158db9e7b51e5ed2f8fc600bb53",
-      "filepath": "src/controllers/FetchController.mdx",
-      "link": null,
-      "slug": "src-controllers-fetch-controller",
-      "order": 0,
-      "menu": null,
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "fetchcontroller",
-          "value": "FetchController"
-        }
-      ]
-    },
     "src/controllers/PageController.mdx": {
       "name": "PageController",
       "route": "/PageController",
@@ -209,6 +209,23 @@
           "depth": 1,
           "slug": "placescontroller",
           "value": "PlacesController"
+        }
+      ]
+    },
+    "src/controllers/RelativeController.mdx": {
+      "name": "RelativeController",
+      "route": "/RelativeController",
+      "id": "e2248f93fc95013087cccea0c03a03b7",
+      "filepath": "src/controllers/RelativeController.mdx",
+      "link": null,
+      "slug": "src-controllers-relative-controller",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "fetchcontroller",
+          "value": "FetchController"
         }
       ]
     },

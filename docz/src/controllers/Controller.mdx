@@ -7,20 +7,25 @@ route: /Controllerç
 
 A `Controller` maintains state for an arbitrary set of properties.
 
-When a controller is created, all properties passed into its constructor will be stored in state.
+When a controller is created, all properties passed into its constructor will be
+stored in state.
 
-| Property  | Type   | Description                                 |
-| :-------- | :----- | :------------------------------------------ |
-| state     | object | The controller's current state.             |
-| connected | any    | Any data stored using the `connect` method. |
+| Property  | Type                                                                                                         | Description                                 |
+| :-------- | :----------------------------------------------------------------------------------------------------------- | :------------------------------------------ |
+| state     | object                                                                                                       | The controller's current state.             |
+| connected | any                                                                                                          | Any data stored using the `connect` method. |
+| animation | [AnimeInstance](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/animejs/index.d.ts#L77) | Any data stored using the `connect` method. |
 
-| Method          | Description                                                          |
-| :-------------- | :------------------------------------------------------------------- |
-| setState(state) | Merges the provided values into the controller's `state`.            |
-| connect(data)   | Stores the provided `data` as the controller's `connected` property. |
-| reset()         | Resets the controller to its initial state.                          |
+| Method                  | Description                                                                                                                                                                                                                                                                                     |
+| :---------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| setState(state)         | Merges the provided values into the controller's `state`.                                                                                                                                                                                                                                       |
+| animate(options, path?) | Animate the controller's state. Uses [`animejs`](https://animejs.com/). If animating an object property, use the key of the object property as the second parameter. (e.g. If animating the `top` property of `controller.state.something`, use `controller.animate({top: 100}, 'something')`.) |
+| connect(data)           | Stores the provided `data` as the controller's `connected` property.                                                                                                                                                                                                                            |
+| reset()                 | Resets the controller to its initial state.                                                                                                                                                                                                                                                     |
 
-In addition, the `Controller` class has three `protected` life cycle methods. If you're writing a class that extends `Controller`, you can overwrite these methods in your class.
+In addition, the `Controller` class has three `protected` life cycle methods. If
+you're writing a class that extends `Controller`, you can overwrite these
+methods in your class.
 
 | Protected Method                        | Description                                                    |
 | :-------------------------------------- | :------------------------------------------------------------- |

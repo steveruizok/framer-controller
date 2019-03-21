@@ -1,12 +1,13 @@
-import { Data } from "framer"
+import { Data } from 'framer'
+import anime from 'animejs'
 
-type State<T> = Partial<T & { controller?: any }>
-
+import { State, AnimateOptions } from './types'
 /**
  * A Controller provides an interface for updating a Framer X Data object.
  */
 
 export class Controller<T> {
+	protected _animation?: anime.AnimeInstance
 	private _initial: State<T> = {}
 	private _state: State<T> = {}
 	private _connected: any
@@ -65,6 +66,27 @@ export class Controller<T> {
 		return this._state
 	}
 
+	public animate = (
+		options: AnimateOptions | State<T> | { [key: string]: any },
+		target?: keyof State<T>
+	) => {
+		const targets = target ? { ...this.state[target] } : { ...this.state }
+
+		this._animation = anime({
+			targets,
+			...(options as any),
+			update: () => {
+				if (target) {
+					this.setState({
+						[target]: targets,
+					} as State<T>)
+				} else {
+					this.setState(targets)
+				}
+			},
+		})
+	}
+
 	/**
 	 * Return the state to its initial value.
 	 */
@@ -82,5 +104,9 @@ export class Controller<T> {
 	 */
 	get connected(): any {
 		return this._connected
+	}
+
+	get animation() {
+		return this._animation
 	}
 }
