@@ -1,6 +1,6 @@
-import { Controller } from './Controller'
-import { AnimateOptions } from './types'
-import anime from 'animejs'
+import { Controller } from "./Controller"
+import { AnimateOptions } from "./types"
+import anime from "animejs"
 
 type Input = { [key: string]: any }
 type Converter<T> = (props: T) => { [key: string]: any }
@@ -39,6 +39,8 @@ export class RelativeController extends Controller<State> {
 				this.setInput(targets)
 			},
 		})
+
+		return this._animation
 	}
 
 	setInput = (props: Input, initial: boolean = false) => {

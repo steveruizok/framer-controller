@@ -1,5 +1,6 @@
-import { Controller } from './Controller';
-import { AnimateOptions } from './types';
+import { Controller } from "./Controller";
+import { AnimateOptions } from "./types";
+import anime from "animejs";
 declare type Input = {
     [key: string]: any;
 };
@@ -20,7 +21,7 @@ export declare class RelativeController extends Controller<State> {
     constructor(options?: Options);
     animate: (options: AnimateOptions | State | {
         [key: string]: any;
-    }) => void;
+    }) => anime.AnimeInstance;
     setInput: (props: Input, initial?: boolean) => void;
     converter: Converter<Input>;
     readonly input: Input;

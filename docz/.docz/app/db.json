@@ -229,6 +229,28 @@
         }
       ]
     },
+    "src/controllers/ScrollController.mdx": {
+      "name": "ScrollController",
+      "route": "/ScrollController",
+      "id": "285587610e93eda5e49ad2d8d4a20aa1",
+      "filepath": "src/controllers/ScrollController.mdx",
+      "link": null,
+      "slug": "src-controllers-scroll-controller",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "scrollcontroller",
+          "value": "ScrollController"
+        },
+        {
+          "depth": 2,
+          "slug": "markers",
+          "value": "Markers"
+        }
+      ]
+    },
     "src/controllers/SelectionController.mdx": {
       "name": "SelectionController",
       "route": "/SelectionController",

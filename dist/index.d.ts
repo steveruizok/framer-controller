@@ -9,3 +9,4 @@ export { IndexController } from "./IndexController";
 export { PageController } from "./PageController";
 export { PlacesController } from "./PlacesController";
 export { SelectionController } from "./SelectionController";
+export { ScrollController } from "./ScrollController";

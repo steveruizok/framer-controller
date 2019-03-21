@@ -1,7 +1,7 @@
-import { Data } from 'framer'
-import anime from 'animejs'
+import { Data } from "framer"
+import anime from "animejs"
 
-import { State, AnimateOptions } from './types'
+import { State, AnimateOptions } from "./types"
 /**
  * A Controller provides an interface for updating a Framer X Data object.
  */
@@ -66,6 +66,9 @@ export class Controller<T> {
 		return this._state
 	}
 
+	/**
+	 * Animate state using animejs.
+	 */
 	public animate = (
 		options: AnimateOptions | State<T> | { [key: string]: any },
 		target?: keyof State<T>
@@ -85,6 +88,17 @@ export class Controller<T> {
 				}
 			},
 		})
+
+		return this._animation
+	}
+
+	/**
+	 * Stop the current animation.
+	 */
+	public stopAnimation = () => {
+		if (this.animation) {
+			this.animation.pause()
+		}
 	}
 
 	/**

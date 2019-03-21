@@ -1,5 +1,5 @@
-import Controller from '../../../lib'
-import { Override } from 'framer'
+import Controller from "../../../lib"
+import { Override } from "framer"
 
 const controller = new Controller({
 	left: 0,
@@ -27,7 +27,7 @@ export const Animated2: Override = () => {
 				{
 					top: 200,
 				},
-				'subState'
+				"subState"
 			)
 		},
 	}

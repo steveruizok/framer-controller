@@ -4,3 +4,4 @@
  * @param item
  */
 export declare function without(array: any[], items: any | any[]): any[];
+export declare const throttle: (fn: (...params: any) => any, wait: number) => () => void;

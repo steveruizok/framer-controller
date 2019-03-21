@@ -20,3 +20,5 @@ var PlacesController_1 = require("./PlacesController");
 exports.PlacesController = PlacesController_1.PlacesController;
 var SelectionController_1 = require("./SelectionController");
 exports.SelectionController = SelectionController_1.SelectionController;
+var ScrollController_1 = require("./ScrollController");
+exports.ScrollController = ScrollController_1.ScrollController;

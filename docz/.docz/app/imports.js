@@ -21,6 +21,8 @@ export const imports = {
     import(/* webpackPrefetch: true, webpackChunkName: "src-controllers-places-controller" */ 'src/controllers/PlacesController.mdx'),
   'src/controllers/RelativeController.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "src-controllers-relative-controller" */ 'src/controllers/RelativeController.mdx'),
+  'src/controllers/ScrollController.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "src-controllers-scroll-controller" */ 'src/controllers/ScrollController.mdx'),
   'src/controllers/SelectionController.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "src-controllers-selection-controller" */ 'src/controllers/SelectionController.mdx'),
 }

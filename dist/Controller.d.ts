@@ -1,5 +1,5 @@
-import anime from 'animejs';
-import { State, AnimateOptions } from './types';
+import anime from "animejs";
+import { State, AnimateOptions } from "./types";
 /**
  * A Controller provides an interface for updating a Framer X Data object.
  */
@@ -54,11 +54,18 @@ export declare class Controller<T> {
     }>) => Partial<T & {
         controller?: any;
     }>;
+    /**
+     * Animate state using animejs.
+     */
     animate: (options: AnimateOptions | Partial<T & {
         controller?: any;
     }> | {
         [key: string]: any;
-    }, target?: keyof T | "controller") => void;
+    }, target?: keyof T | "controller") => anime.AnimeInstance;
+    /**
+     * Stop the current animation.
+     */
+    stopAnimation: () => void;
     /**
      * Return the state to its initial value.
      */

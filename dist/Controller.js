@@ -46,6 +46,9 @@ class Controller {
             this.onUpdate(this._state);
             return this._state;
         };
+        /**
+         * Animate state using animejs.
+         */
         this.animate = (options, target) => {
             const targets = target ? Object.assign({}, this.state[target]) : Object.assign({}, this.state);
             this._animation = animejs_1.default(Object.assign({ targets }, options, { update: () => {
@@ -58,6 +61,15 @@ class Controller {
                         this.setState(targets);
                     }
                 } }));
+            return this._animation;
+        };
+        /**
+         * Stop the current animation.
+         */
+        this.stopAnimation = () => {
+            if (this.animation) {
+                this.animation.pause();
+            }
         };
         /**
          * Return the state to its initial value.

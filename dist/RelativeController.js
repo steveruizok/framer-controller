@@ -11,6 +11,7 @@ class RelativeController extends Controller_1.Controller {
             this._animation = animejs_1.default(Object.assign({ targets }, options, { update: () => {
                     this.setInput(targets);
                 } }));
+            return this._animation;
         };
         this.setInput = (props, initial = false) => {
             if (initial && !this._firstLoad) {
