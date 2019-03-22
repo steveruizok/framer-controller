@@ -1,6 +1,6 @@
 import { Controller } from "./Controller"
 import { Edge, Point, Directions, MarkerState, MarkerDetails } from "./types"
-import { throttle } from "./utils"
+import { throttle, modulate } from "./utils"
 
 interface Options {
 	throttle?: number
@@ -174,6 +174,8 @@ export class ScrollController<Options> extends Controller<Props> {
 
 			let visible = false
 
+			let progress = { x: 0, y: 0 }
+
 			let clip = { x: "", y: "" }
 
 			const absolute = { top, bottom, left, right }
@@ -245,12 +247,16 @@ export class ScrollController<Options> extends Controller<Props> {
 				visible = true
 			}
 
+			progress.y = modulate(offset.top, [containerHeight, -height], [0, 1])
+			progress.x = modulate(offset.left, [containerWidth, -width], [0, 1])
+
 			markers[key] = {
 				intersect,
 				absolute,
 				offset,
 				clip,
 				visible,
+				progress,
 			}
 		}
 

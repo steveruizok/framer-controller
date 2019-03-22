@@ -100,6 +100,7 @@ class ScrollController extends Controller_1.Controller {
                     y: 0,
                 };
                 let visible = false;
+                let progress = { x: 0, y: 0 };
                 let clip = { x: "", y: "" };
                 const absolute = { top, bottom, left, right };
                 const offset = {
@@ -168,12 +169,15 @@ class ScrollController extends Controller_1.Controller {
                     clip.x = "contain";
                     visible = true;
                 }
+                progress.y = utils_1.modulate(offset.top, [containerHeight, -height], [0, 1]);
+                progress.x = utils_1.modulate(offset.left, [containerWidth, -width], [0, 1]);
                 markers[key] = {
                     intersect,
                     absolute,
                     offset,
                     clip,
                     visible,
+                    progress,
                 };
             }
             this._markerStates = markers;

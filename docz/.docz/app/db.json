@@ -76,23 +76,6 @@
         }
       ]
     },
-    "src/controllers/Controller.mdx": {
-      "name": "Controller",
-      "route": "/Controllerç",
-      "id": "8bfc5f200d33fabcc8cf0be737c9254d",
-      "filepath": "src/controllers/Controller.mdx",
-      "link": null,
-      "slug": "src-controllers-controller",
-      "order": 0,
-      "menu": null,
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "controller",
-          "value": "Controller"
-        }
-      ]
-    },
     "src/controllers/CounterController.mdx": {
       "name": "CounterController",
       "route": "/CounterController",
@@ -141,6 +124,23 @@
           "depth": 1,
           "slug": "formcontroller",
           "value": "FormController"
+        }
+      ]
+    },
+    "src/controllers/Controller.mdx": {
+      "name": "Controller",
+      "route": "/Controllerç",
+      "id": "8bfc5f200d33fabcc8cf0be737c9254d",
+      "filepath": "src/controllers/Controller.mdx",
+      "link": null,
+      "slug": "src-controllers-controller",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "controller",
+          "value": "Controller"
         }
       ]
     },

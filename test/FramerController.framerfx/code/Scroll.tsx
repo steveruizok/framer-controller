@@ -49,6 +49,8 @@ export const ScrollBox: Override = props => {
 		$absolute_right: marker.absolute.right.toFixed(2),
 		$absolute_bottom: marker.absolute.bottom.toFixed(2),
 		$absolute_left: marker.absolute.left.toFixed(2),
+		$progress_x: marker.progress.x.toFixed(2),
+		$progress_y: marker.progress.y.toFixed(2),
 	}
 }
 

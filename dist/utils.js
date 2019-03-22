@@ -41,3 +41,9 @@ exports.throttle = (fn, wait) => {
         }
     };
 };
+exports.modulate = (value, from, to) => {
+    const [fromLow, fromHigh] = from;
+    const [toLow, toHigh] = to;
+    const result = toLow + ((value - fromLow) / (fromHigh - fromLow)) * (toHigh - toLow);
+    return Math.min(Math.max(toLow, result), toHigh);
+};

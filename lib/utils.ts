@@ -43,3 +43,16 @@ export const throttle = (fn: (...params: any) => any, wait: number) => {
 		}
 	}
 }
+
+export const modulate = (
+	value: number,
+	from: [number, number],
+	to: [number, number]
+) => {
+	const [fromLow, fromHigh] = from
+	const [toLow, toHigh] = to
+
+	const result =
+		toLow + ((value - fromLow) / (fromHigh - fromLow)) * (toHigh - toLow)
+	return Math.min(Math.max(toLow, result), toHigh)
+}
