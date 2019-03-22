@@ -15,6 +15,7 @@ interface Props extends Options {
 	markers: {
 		[key: string]: MarkerState
 	}
+	onTapStart: any
 	onMove: (point: Point) => void
 }
 
@@ -48,9 +49,10 @@ export class ScrollController<Options> extends Controller<Props> {
 				x: 0,
 				y: 0,
 			},
-			throttle: 125,
+			throttle: 16,
 			markers: {},
 			onMove: point => this.handleScroll(point),
+			onTapStart: () => this.stopAnimation(),
 			...options,
 		})
 
@@ -92,7 +94,7 @@ export class ScrollController<Options> extends Controller<Props> {
 	}
 
 	/** Find a child with a given prop / value pair somewhere in its children */
-	getMarkersFromContent = () => {
+	private getMarkersFromContent = () => {
 		const { height: contentHeight, width: contentWidth } = this.content.props
 
 		const ids = []
@@ -131,7 +133,7 @@ export class ScrollController<Options> extends Controller<Props> {
 
 			if (acc[id]) {
 				console.warn(
-					"Warning: Found markers with the same markerId value! The second will overwrite the first."
+					`Warning: Found markers with the same markerId value, ${id}! The second will overwrite the first.`
 				)
 			}
 
@@ -148,7 +150,7 @@ export class ScrollController<Options> extends Controller<Props> {
 		}, {})
 	}
 
-	updateMarkers = () => {
+	private updateMarkers = () => {
 		const { _scrollPoint, _markersProps, connected } = this
 		const { x, y } = _scrollPoint
 		if (!connected) return
@@ -262,8 +264,6 @@ export class ScrollController<Options> extends Controller<Props> {
 
 		this._markerStates = markers
 
-		const isAnimating = this.animation && !this.animation.completed
-
 		this.setState({
 			markers,
 			progress: {
@@ -271,10 +271,26 @@ export class ScrollController<Options> extends Controller<Props> {
 				y: y / -(contentHeight - containerHeight),
 			},
 			direction: this._direction,
-			...(isAnimating
+			...(this.isAnimating
 				? {}
 				: { scrollX: -this._scrollPoint.x, scrollY: -this._scrollPoint.y }),
 		})
+	}
+
+	public getMarker = (props: any) => {
+		if (props.componentIdentifier) {
+			if (!props.children) {
+				console.warn(
+					`Error: you must call getMarkers with the props provided by your component's override.`
+				)
+				return
+			}
+			const [component] = props.children as any
+			const { markerId } = component.props
+			return this.markers[markerId]
+		}
+
+		return this.markers[props.id]
 	}
 
 	public handleScroll = (point: Point) => {
@@ -327,10 +343,13 @@ export class ScrollController<Options> extends Controller<Props> {
 		const edgeY = edge.find(e => e === "top" || e === "bottom")
 
 		let anim: any = {}
+
 		if (edgeX) {
-			anim.scrollX = -marker.absolute[edgeX] + offset
-		} else if (edgeY) {
-			anim.scrollY = -marker.absolute[edgeY] + offset
+			anim.scrollX = marker.absolute[edgeX] - offset
+		}
+
+		if (edgeY) {
+			anim.scrollY = marker.absolute[edgeY] - offset
 		}
 
 		return this.animate({
@@ -386,6 +405,13 @@ export class ScrollController<Options> extends Controller<Props> {
 		this.setState({
 			scrollX,
 		})
+	}
+
+	get contentOffset() {
+		return {
+			contentOffsetX: -this.scrollX,
+			contentOffsetY: -this.scrollY,
+		}
 	}
 
 	get content() {

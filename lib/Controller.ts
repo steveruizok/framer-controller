@@ -7,6 +7,7 @@ import { State, AnimateOptions } from "./types"
  */
 
 export class Controller<T> {
+	protected _isAnimating = false
 	protected _animation?: anime.AnimeInstance
 	private _initial: State<T> = {}
 	private _state: State<T> = {}
@@ -87,6 +88,8 @@ export class Controller<T> {
 					this.setState(targets)
 				}
 			},
+			begin: () => (this._isAnimating = true),
+			complete: () => (this._isAnimating = false),
 		})
 
 		return this._animation
@@ -98,6 +101,17 @@ export class Controller<T> {
 	public stopAnimation = () => {
 		if (this.animation) {
 			this.animation.pause()
+			this._isAnimating = false
+		}
+	}
+
+	/**
+	 * Resume the current animation.
+	 */
+	public resumeAnimation = () => {
+		if (this.animation) {
+			this.animation.play()
+			this._isAnimating = true
 		}
 	}
 
@@ -120,7 +134,17 @@ export class Controller<T> {
 		return this._connected
 	}
 
+	/**
+	 * The controller's current animation.
+	 */
 	get animation() {
 		return this._animation
+	}
+
+	/**
+	 * Whether the controller is animating.
+	 */
+	get isAnimating() {
+		return this._isAnimating
 	}
 }

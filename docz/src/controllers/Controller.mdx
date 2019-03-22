@@ -10,11 +10,12 @@ A `Controller` maintains state for an arbitrary set of properties.
 When a controller is created, all properties passed into its constructor will be
 stored in state.
 
-| Property  | Type                                                                                                         | Description                                 |
-| :-------- | :----------------------------------------------------------------------------------------------------------- | :------------------------------------------ |
-| state     | object                                                                                                       | The controller's current state.             |
-| connected | any                                                                                                          | Any data stored using the `connect` method. |
-| animation | [AnimeInstance](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/animejs/index.d.ts#L77) | Any data stored using the `connect` method. |
+| Property    | Type                                                                                                         | Description                                 |
+| :---------- | :----------------------------------------------------------------------------------------------------------- | :------------------------------------------ |
+| state       | object                                                                                                       | The controller's current state.             |
+| connected   | any                                                                                                          | Any data stored using the `connect` method. |
+| animation   | [AnimeInstance](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/animejs/index.d.ts#L77) | Any data stored using the `connect` method. |
+| isAnimating | Whether the controller's current animation is animating.                                                     |
 
 | Method                  | Description                                                                                                                                                                                                                                                                                                                                               |
 | :---------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -23,6 +24,7 @@ stored in state.
 | connect(data)           | Stores the provided `data` as the controller's `connected` property.                                                                                                                                                                                                                                                                                      |
 | reset()                 | Resets the controller to its initial state.                                                                                                                                                                                                                                                                                                               |
 | stopAnimation()         | Stop any current animation.                                                                                                                                                                                                                                                                                                                               |
+| resumeAnimation()       | Resume any current animation.                                                                                                                                                                                                                                                                                                                             |
 
 In addition, the `Controller` class has three `protected` life cycle methods. If
 you're writing a class that extends `Controller`, you can overwrite these

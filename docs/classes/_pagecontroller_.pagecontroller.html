@@ -111,6 +111,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_pagecontroller_.pagecontroller.html#_animation" class="tsd-kind-icon">_animation</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_pagecontroller_.pagecontroller.html#_isanimating" class="tsd-kind-icon">_is<wbr>Animating</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -119,6 +120,7 @@
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="_pagecontroller_.pagecontroller.html#animation" class="tsd-kind-icon">animation</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="_pagecontroller_.pagecontroller.html#connected" class="tsd-kind-icon">connected</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_pagecontroller_.pagecontroller.html#currentpage" class="tsd-kind-icon">current<wbr>Page</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="_pagecontroller_.pagecontroller.html#isanimating" class="tsd-kind-icon">is<wbr>Animating</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_pagecontroller_.pagecontroller.html#loop" class="tsd-kind-icon">loop</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_pagecontroller_.pagecontroller.html#progress" class="tsd-kind-icon">progress</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="_pagecontroller_.pagecontroller.html#state" class="tsd-kind-icon">state</a></li>
@@ -135,6 +137,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_pagecontroller_.pagecontroller.html#onreset" class="tsd-kind-icon">on<wbr>Reset</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_pagecontroller_.pagecontroller.html#onupdate" class="tsd-kind-icon">on<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_pagecontroller_.pagecontroller.html#reset" class="tsd-kind-icon">reset</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_pagecontroller_.pagecontroller.html#resumeanimation" class="tsd-kind-icon">resume<wbr>Animation</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_pagecontroller_.pagecontroller.html#setstate" class="tsd-kind-icon">set<wbr>State</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_pagecontroller_.pagecontroller.html#snaptonextpage" class="tsd-kind-icon">snap<wbr>ToNext<wbr>Page</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_pagecontroller_.pagecontroller.html#snaptopage" class="tsd-kind-icon">snap<wbr>ToPage</a></li>
@@ -158,7 +161,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/PageController.ts#L21">PageController.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/PageController.ts#L21">PageController.ts:21</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -181,7 +184,18 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#_animation">_animation</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L10">Controller.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L11">Controller.ts:11</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="_isanimating" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _is<wbr>Animating</h3>
+					<div class="tsd-signature tsd-kind-icon">_is<wbr>Animating<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#_isanimating">_isAnimating</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L10">Controller.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -199,9 +213,14 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#animation">animation</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L123">Controller.ts:123</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L140">Controller.ts:140</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The controller&#39;s current animation.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AnimeInstance</span></h4>
 						</li>
 					</ul>
@@ -217,7 +236,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#connected">connected</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L119">Controller.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L133">Controller.ts:133</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -240,7 +259,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/PageController.ts#L120">PageController.ts:120</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/PageController.ts#L120">PageController.ts:120</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -255,7 +274,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/PageController.ts#L124">PageController.ts:124</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/PageController.ts#L124">PageController.ts:124</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -275,6 +294,29 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+					<a name="isanimating" class="tsd-anchor"></a>
+					<h3>is<wbr>Animating</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> isAnimating<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#isanimating">isAnimating</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L147">Controller.ts:147</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Whether the controller is animating.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="loop" class="tsd-anchor"></a>
 					<h3>loop</h3>
@@ -286,7 +328,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/PageController.ts#L132">PageController.ts:132</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/PageController.ts#L132">PageController.ts:132</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -294,7 +336,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/PageController.ts#L136">PageController.ts:136</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/PageController.ts#L136">PageController.ts:136</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -318,7 +360,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/PageController.ts#L105">PageController.ts:105</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/PageController.ts#L105">PageController.ts:105</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -332,7 +374,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/PageController.ts#L109">PageController.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/PageController.ts#L109">PageController.ts:109</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -362,7 +404,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#state">state</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L112">Controller.ts:112</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L126">Controller.ts:126</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -384,7 +426,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/PageController.ts#L128">PageController.ts:128</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/PageController.ts#L128">PageController.ts:128</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -405,7 +447,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#animate">animate</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L72">Controller.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L73">Controller.ts:73</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -436,7 +478,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/PageController.ts#L66">PageController.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/PageController.ts#L66">PageController.ts:66</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -470,7 +512,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#connect">connect</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L48">Controller.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L49">Controller.ts:49</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -503,7 +545,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#onconnect">onConnect</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/PageController.ts#L32">PageController.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/PageController.ts#L32">PageController.ts:32</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -532,7 +574,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#onreset">onReset</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L30">Controller.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L31">Controller.ts:31</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -567,7 +609,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#onupdate">onUpdate</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L35">Controller.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L36">Controller.ts:36</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -601,7 +643,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#reset">reset</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L107">Controller.ts:107</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L121">Controller.ts:121</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -610,6 +652,29 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_pagecontroller_.state.html" class="tsd-signature-type">State</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_pagecontroller_.state.html" class="tsd-signature-type">State</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="resumeanimation" class="tsd-anchor"></a>
+					<h3>resume<wbr>Animation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">resume<wbr>Animation<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#resumeanimation">resumeAnimation</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L111">Controller.ts:111</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Resume the current animation.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -624,7 +689,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#setstate">setState</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L60">Controller.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L61">Controller.ts:61</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -652,7 +717,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/PageController.ts#L92">PageController.ts:92</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/PageController.ts#L92">PageController.ts:92</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -680,7 +745,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/PageController.ts#L75">PageController.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/PageController.ts#L75">PageController.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -714,7 +779,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#stopanimation">stopAnimation</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L98">Controller.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L101">Controller.ts:101</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -736,7 +801,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/PageController.ts#L57">PageController.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/PageController.ts#L57">PageController.ts:57</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -830,6 +895,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="_pagecontroller_.pagecontroller.html#_animation" class="tsd-kind-icon">_animation</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="_pagecontroller_.pagecontroller.html#_isanimating" class="tsd-kind-icon">_is<wbr>Animating</a>
+							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
 								<a href="_pagecontroller_.pagecontroller.html#animation" class="tsd-kind-icon">animation</a>
 							</li>
@@ -838,6 +906,9 @@
 							</li>
 							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="_pagecontroller_.pagecontroller.html#currentpage" class="tsd-kind-icon">current<wbr>Page</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+								<a href="_pagecontroller_.pagecontroller.html#isanimating" class="tsd-kind-icon">is<wbr>Animating</a>
 							</li>
 							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="_pagecontroller_.pagecontroller.html#loop" class="tsd-kind-icon">loop</a>
@@ -871,6 +942,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_pagecontroller_.pagecontroller.html#reset" class="tsd-kind-icon">reset</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_pagecontroller_.pagecontroller.html#resumeanimation" class="tsd-kind-icon">resume<wbr>Animation</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_pagecontroller_.pagecontroller.html#setstate" class="tsd-kind-icon">set<wbr>State</a>

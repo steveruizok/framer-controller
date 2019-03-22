@@ -4,6 +4,7 @@ import { State, AnimateOptions } from "./types";
  * A Controller provides an interface for updating a Framer X Data object.
  */
 export declare class Controller<T> {
+    protected _isAnimating: boolean;
     protected _animation?: anime.AnimeInstance;
     private _initial;
     private _state;
@@ -67,6 +68,10 @@ export declare class Controller<T> {
      */
     stopAnimation: () => void;
     /**
+     * Resume the current animation.
+     */
+    resumeAnimation: () => void;
+    /**
      * Return the state to its initial value.
      */
     reset: () => Partial<T & {
@@ -80,5 +85,12 @@ export declare class Controller<T> {
      * The data connected using `controller.connect`.
      */
     readonly connected: any;
+    /**
+     * The controller's current animation.
+     */
     readonly animation: anime.AnimeInstance;
+    /**
+     * Whether the controller is animating.
+     */
+    readonly isAnimating: boolean;
 }

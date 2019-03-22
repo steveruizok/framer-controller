@@ -16,6 +16,7 @@ interface Props extends Options {
     markers: {
         [key: string]: MarkerState;
     };
+    onTapStart: any;
     onMove: (point: Point) => void;
 }
 export declare class ScrollController<Options> extends Controller<Props> {
@@ -30,8 +31,9 @@ export declare class ScrollController<Options> extends Controller<Props> {
         controller?: any;
     }>;
     /** Find a child with a given prop / value pair somewhere in its children */
-    getMarkersFromContent: () => any;
-    updateMarkers: () => void;
+    private getMarkersFromContent;
+    private updateMarkers;
+    getMarker: (props: any) => MarkerState;
     handleScroll: (point: Point) => void;
     scrollToPoint: (point: Point, options?: {
         [key: string]: any;
@@ -42,6 +44,10 @@ export declare class ScrollController<Options> extends Controller<Props> {
     scrollPoint: Point;
     scrollY: number;
     scrollX: number;
+    readonly contentOffset: {
+        contentOffsetX: number;
+        contentOffsetY: number;
+    };
     readonly content: any;
     readonly markers: {
         [key: string]: MarkerState;

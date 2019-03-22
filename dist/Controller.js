@@ -10,6 +10,7 @@ class Controller {
      * Creates a new instance of Controller.
      */
     constructor(initial) {
+        this._isAnimating = false;
         this._initial = {};
         this._state = {};
         /**
@@ -60,7 +61,7 @@ class Controller {
                     else {
                         this.setState(targets);
                     }
-                } }));
+                }, begin: () => (this._isAnimating = true), complete: () => (this._isAnimating = false) }));
             return this._animation;
         };
         /**
@@ -69,6 +70,16 @@ class Controller {
         this.stopAnimation = () => {
             if (this.animation) {
                 this.animation.pause();
+                this._isAnimating = false;
+            }
+        };
+        /**
+         * Resume the current animation.
+         */
+        this.resumeAnimation = () => {
+            if (this.animation) {
+                this.animation.play();
+                this._isAnimating = true;
             }
         };
         /**
@@ -92,8 +103,17 @@ class Controller {
     get connected() {
         return this._connected;
     }
+    /**
+     * The controller's current animation.
+     */
     get animation() {
         return this._animation;
+    }
+    /**
+     * Whether the controller is animating.
+     */
+    get isAnimating() {
+        return this._isAnimating;
     }
 }
 exports.Controller = Controller;

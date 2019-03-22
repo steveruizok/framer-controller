@@ -105,6 +105,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_fetchcontroller_.fetchcontroller.html#_animation" class="tsd-kind-icon">_animation</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_fetchcontroller_.fetchcontroller.html#_isanimating" class="tsd-kind-icon">_is<wbr>Animating</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -113,6 +114,7 @@
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="_fetchcontroller_.fetchcontroller.html#animation" class="tsd-kind-icon">animation</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="_fetchcontroller_.fetchcontroller.html#connected" class="tsd-kind-icon">connected</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_fetchcontroller_.fetchcontroller.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="_fetchcontroller_.fetchcontroller.html#isanimating" class="tsd-kind-icon">is<wbr>Animating</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_fetchcontroller_.fetchcontroller.html#loading" class="tsd-kind-icon">loading</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="_fetchcontroller_.fetchcontroller.html#state" class="tsd-kind-icon">state</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_fetchcontroller_.fetchcontroller.html#url" class="tsd-kind-icon">url</a></li>
@@ -128,6 +130,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_fetchcontroller_.fetchcontroller.html#onupdate" class="tsd-kind-icon">on<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_fetchcontroller_.fetchcontroller.html#refresh" class="tsd-kind-icon">refresh</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_fetchcontroller_.fetchcontroller.html#reset" class="tsd-kind-icon">reset</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_fetchcontroller_.fetchcontroller.html#resumeanimation" class="tsd-kind-icon">resume<wbr>Animation</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_fetchcontroller_.fetchcontroller.html#setstate" class="tsd-kind-icon">set<wbr>State</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_fetchcontroller_.fetchcontroller.html#stopanimation" class="tsd-kind-icon">stop<wbr>Animation</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_fetchcontroller_.fetchcontroller.html#fetch" class="tsd-kind-icon">fetch</a></li>
@@ -149,7 +152,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/FetchController.ts#L20">FetchController.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/FetchController.ts#L20">FetchController.ts:20</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -172,7 +175,18 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#_animation">_animation</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L10">Controller.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L11">Controller.ts:11</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="_isanimating" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _is<wbr>Animating</h3>
+					<div class="tsd-signature tsd-kind-icon">_is<wbr>Animating<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#_isanimating">_isAnimating</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L10">Controller.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -190,9 +204,14 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#animation">animation</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L123">Controller.ts:123</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L140">Controller.ts:140</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The controller&#39;s current animation.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AnimeInstance</span></h4>
 						</li>
 					</ul>
@@ -208,7 +227,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#connected">connected</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L119">Controller.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L133">Controller.ts:133</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -230,7 +249,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/FetchController.ts#L91">FetchController.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/FetchController.ts#L91">FetchController.ts:91</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -239,6 +258,29 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+					<a name="isanimating" class="tsd-anchor"></a>
+					<h3>is<wbr>Animating</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> isAnimating<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#isanimating">isAnimating</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L147">Controller.ts:147</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Whether the controller is animating.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -252,7 +294,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/FetchController.ts#L98">FetchController.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/FetchController.ts#L98">FetchController.ts:98</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -275,7 +317,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#state">state</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L112">Controller.ts:112</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L126">Controller.ts:126</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -298,7 +340,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/FetchController.ts#L79">FetchController.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/FetchController.ts#L79">FetchController.ts:79</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -311,7 +353,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/FetchController.ts#L83">FetchController.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/FetchController.ts#L83">FetchController.ts:83</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -343,7 +385,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#animate">animate</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L72">Controller.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L73">Controller.ts:73</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -375,7 +417,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#connect">connect</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L48">Controller.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L49">Controller.ts:49</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -408,7 +450,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#onconnect">onConnect</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L41">Controller.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L42">Controller.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -443,7 +485,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#onreset">onReset</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L30">Controller.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L31">Controller.ts:31</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -478,7 +520,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#onupdate">onUpdate</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/FetchController.ts#L33">FetchController.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/FetchController.ts#L33">FetchController.ts:33</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -503,7 +545,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/FetchController.ts#L61">FetchController.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/FetchController.ts#L61">FetchController.ts:61</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -526,7 +568,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#reset">reset</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L107">Controller.ts:107</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L121">Controller.ts:121</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -535,6 +577,29 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_fetchcontroller_.state.html" class="tsd-signature-type">State</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_fetchcontroller_.state.html" class="tsd-signature-type">State</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="resumeanimation" class="tsd-anchor"></a>
+					<h3>resume<wbr>Animation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">resume<wbr>Animation<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#resumeanimation">resumeAnimation</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L111">Controller.ts:111</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Resume the current animation.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -549,7 +614,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#setstate">setState</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L60">Controller.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L61">Controller.ts:61</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -578,7 +643,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_controller_.controller.html">Controller</a>.<a href="_controller_.controller.html#stopanimation">stopAnimation</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/Controller.ts#L98">Controller.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/Controller.ts#L101">Controller.ts:101</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -600,7 +665,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/0809da1/lib/FetchController.ts#L43">FetchController.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/2aab295/lib/FetchController.ts#L43">FetchController.ts:43</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -713,6 +778,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="_fetchcontroller_.fetchcontroller.html#_animation" class="tsd-kind-icon">_animation</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="_fetchcontroller_.fetchcontroller.html#_isanimating" class="tsd-kind-icon">_is<wbr>Animating</a>
+							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
 								<a href="_fetchcontroller_.fetchcontroller.html#animation" class="tsd-kind-icon">animation</a>
 							</li>
@@ -721,6 +789,9 @@
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="_fetchcontroller_.fetchcontroller.html#data" class="tsd-kind-icon">data</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+								<a href="_fetchcontroller_.fetchcontroller.html#isanimating" class="tsd-kind-icon">is<wbr>Animating</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="_fetchcontroller_.fetchcontroller.html#loading" class="tsd-kind-icon">loading</a>
@@ -751,6 +822,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_fetchcontroller_.fetchcontroller.html#reset" class="tsd-kind-icon">reset</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_fetchcontroller_.fetchcontroller.html#resumeanimation" class="tsd-kind-icon">resume<wbr>Animation</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_fetchcontroller_.fetchcontroller.html#setstate" class="tsd-kind-icon">set<wbr>State</a>

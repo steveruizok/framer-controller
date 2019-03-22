@@ -11,21 +11,23 @@ A `ScrollController` is specially written to control Framer's Scroll component.
 | :------- | :----- | :----------- | :------------------------------------------------------- |
 | throttle | number | 150          | _Optional_ - How often to update the controller's state. |
 
-| Property    | Type                   | Description                                                                                                                                                               |
-| :---------- | :--------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| scrollX     | number                 | The controller's current scroll position on the x axis.                                                                                                                   |
-| scrollY     | number                 | The controller's current scroll position on the y axis.                                                                                                                   |
-| scrollPoint | {x: number, y: number} | A normalized value, 0 when the current page is the pager's first page and 1 when the current page is the pager's last page.                                               |
-| direction   | {x: string, y: string} | A point with either `"left"`, `"right"`, `"none"` for `x`, and `"up"`, `"down"`, or `"none"` for `y`.                                                                     |
-| progress    | {x: number, y: number} | Normalized values for each scroll axis. For `progress.x`, a value of 0 is full left and 1 is full right; for `progress.y`, a value of 0 is full top and 1 is full bottom. |
-| markers     | Marker[]               | A stateful object containing data about each tracked marker Frame.                                                                                                        |
-| content     | React.Element          | The connected Scroll component's content frame.                                                                                                                           |
+| Property      | Type                   | Description                                                                                                                                                               |
+| :------------ | :--------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| scrollX       | number                 | The controller's current scroll position on the x axis.                                                                                                                   |
+| scrollY       | number                 | The controller's current scroll position on the y axis.                                                                                                                   |
+| scrollPoint   | {x: number, y: number} | A normalized value, 0 when the current page is the pager's first page and 1 when the current page is the pager's last page.                                               |
+| direction     | {x: string, y: string} | A point with either `"left"`, `"right"`, `"none"` for `x`, and `"up"`, `"down"`, or `"none"` for `y`.                                                                     |
+| progress      | {x: number, y: number} | Normalized values for each scroll axis. For `progress.x`, a value of 0 is full left and 1 is full right; for `progress.y`, a value of 0 is full top and 1 is full bottom. |
+| markers       | Marker[]               | A stateful object containing data about each tracked marker Frame.                                                                                                        |
+| content       | React.Element          | The connected Scroll component's content frame.                                                                                                                           |
+| contentOffset | object                 | The `contentOffsetX` and `contentOffsetY` values, for controlling a Scroll component's scroll position.                                                                   |
 
 | Method                                                                         | Description                                                                                                     |
 | :----------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
 | handleScroll(point: {x: number, y: number})                                    | Update the scroll controller using a point. Often, this is connected to a Scroll component's `onMove` callback. |
 | scrollToPoint(point: {x: number, y: number}, options)                          | Change the page `left` or `right`.                                                                              |
 | scrollToMarker(id: string, edges: string or string[], offset: number, options) | Scroll to a given marker, edge, with an offset and animation options.                                           |
+| getMarker(props)                                                               | Get the current marker entry from a given set of Override props.                                                |
 
 ## Markers
 
@@ -55,10 +57,8 @@ const controller = new ScrollController()
 export const Scroll: Override = props => {
 	controller.connect(props)
 	return {
-		contentOffsetY: -controller.scrollY,
-		contentOffsetX: -controller.scrollX,
-		onTapStart: controller.stopAnimation,
-		onMove: controller.handleScroll,
+		...controller.contentOffset,
+		...controller.state,
 	}
 }
 
@@ -76,7 +76,7 @@ export const ScrollToMarkerButton: Override = props => ({
 
 // May be applied to many different markers, and will produce a unique marker for each.
 export const ScrollMarker: Override = props => {
-	const marker = controller.markers[props.id]
+	const marker = controller.getMarker(props)
 	if (!marker) return
 	return {
 		opacity: marker.intersect.y,

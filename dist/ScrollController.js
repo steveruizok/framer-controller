@@ -13,7 +13,7 @@ class ScrollController extends Controller_1.Controller {
             }, progress: {
                 x: 0,
                 y: 0,
-            }, throttle: 125, markers: {}, onMove: point => this.handleScroll(point) }, options));
+            }, throttle: 16, markers: {}, onMove: point => this.handleScroll(point), onTapStart: () => this.stopAnimation() }, options));
         this._scrollPoint = {
             x: 0,
             y: 0,
@@ -70,7 +70,7 @@ class ScrollController extends Controller_1.Controller {
                 const cy = parseFloat(centerY) / 100;
                 let id = ids[index];
                 if (acc[id]) {
-                    console.warn("Warning: Found markers with the same markerId value! The second will overwrite the first.");
+                    console.warn(`Warning: Found markers with the same markerId value, ${id}! The second will overwrite the first.`);
                 }
                 acc[id] = {
                     top: contentHeight * cy - height / 2,
@@ -181,13 +181,24 @@ class ScrollController extends Controller_1.Controller {
                 };
             }
             this._markerStates = markers;
-            const isAnimating = this.animation && !this.animation.completed;
             this.setState(Object.assign({ markers, progress: {
                     x: x / -(contentWidth - containerWidth),
                     y: y / -(contentHeight - containerHeight),
-                }, direction: this._direction }, (isAnimating
+                }, direction: this._direction }, (this.isAnimating
                 ? {}
                 : { scrollX: -this._scrollPoint.x, scrollY: -this._scrollPoint.y })));
+        };
+        this.getMarker = (props) => {
+            if (props.componentIdentifier) {
+                if (!props.children) {
+                    console.warn(`Error: you must call getMarkers with the props provided by your component's override.`);
+                    return;
+                }
+                const [component] = props.children;
+                const { markerId } = component.props;
+                return this.markers[markerId];
+            }
+            return this.markers[props.id];
         };
         this.handleScroll = (point) => {
             this.scrollPoint = point;
@@ -214,10 +225,10 @@ class ScrollController extends Controller_1.Controller {
             const edgeY = edge.find(e => e === "top" || e === "bottom");
             let anim = {};
             if (edgeX) {
-                anim.scrollX = -marker.absolute[edgeX] + offset;
+                anim.scrollX = marker.absolute[edgeX] - offset;
             }
-            else if (edgeY) {
-                anim.scrollY = -marker.absolute[edgeY] + offset;
+            if (edgeY) {
+                anim.scrollY = marker.absolute[edgeY] - offset;
             }
             return this.animate(Object.assign({}, anim, { duration: 1500 }, options));
         };
@@ -261,6 +272,12 @@ class ScrollController extends Controller_1.Controller {
         this.setState({
             scrollX,
         });
+    }
+    get contentOffset() {
+        return {
+            contentOffsetX: -this.scrollX,
+            contentOffsetY: -this.scrollY,
+        };
     }
     get content() {
         return this._content;

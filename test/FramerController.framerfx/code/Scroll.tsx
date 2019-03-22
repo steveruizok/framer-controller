@@ -32,7 +32,7 @@ export const ScrollToMarkerButton: Override = props => {
 }
 
 export const ScrollBox: Override = props => {
-	const marker = controller.markers[props.id]
+	const marker = controller.getMarker(props)
 	if (!marker) return
 
 	return {
