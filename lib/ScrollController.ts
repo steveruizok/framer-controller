@@ -275,7 +275,7 @@ export class ScrollController<Options> extends Controller<Props> {
 		this.scrollPoint = point
 	}
 
-	public scrollToPosition = (
+	public scrollToPoint = (
 		point: Point,
 		options: { [key: string]: any } = {}
 	) => {
@@ -322,9 +322,9 @@ export class ScrollController<Options> extends Controller<Props> {
 
 		let anim: any = {}
 		if (edgeX) {
-			anim.scrollX = marker.absolute[edgeX] - offset
+			anim.scrollX = -marker.absolute[edgeX] + offset
 		} else if (edgeY) {
-			anim.scrollY = marker.absolute[edgeY] - offset
+			anim.scrollY = -marker.absolute[edgeY] + offset
 		}
 
 		return this.animate({

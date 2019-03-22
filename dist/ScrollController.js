@@ -188,7 +188,7 @@ class ScrollController extends Controller_1.Controller {
         this.handleScroll = (point) => {
             this.scrollPoint = point;
         };
-        this.scrollToPosition = (point, options = {}) => {
+        this.scrollToPoint = (point, options = {}) => {
             if (this.animation) {
                 this.animation.pause();
             }
@@ -210,10 +210,10 @@ class ScrollController extends Controller_1.Controller {
             const edgeY = edge.find(e => e === "top" || e === "bottom");
             let anim = {};
             if (edgeX) {
-                anim.scrollX = marker.absolute[edgeX] - offset;
+                anim.scrollX = -marker.absolute[edgeX] + offset;
             }
             else if (edgeY) {
-                anim.scrollY = marker.absolute[edgeY] - offset;
+                anim.scrollY = -marker.absolute[edgeY] + offset;
             }
             return this.animate(Object.assign({}, anim, { duration: 1500 }, options));
         };

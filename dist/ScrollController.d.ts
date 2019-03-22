@@ -33,7 +33,7 @@ export declare class ScrollController<Options> extends Controller<Props> {
     getMarkersFromContent: () => any;
     updateMarkers: () => void;
     handleScroll: (point: Point) => void;
-    scrollToPosition: (point: Point, options?: {
+    scrollToPoint: (point: Point, options?: {
         [key: string]: any;
     }) => import("animejs").AnimeInstance;
     scrollToMarker: (id: string, edge: "left" | "right" | "top" | "bottom" | Edge[], offset?: number, options?: {

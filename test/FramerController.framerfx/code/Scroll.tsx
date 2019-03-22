@@ -18,7 +18,7 @@ export const Scroll: Override = props => {
 export const ScrollToButton: Override = props => {
 	return {
 		onClick() {
-			controller.scrollToPosition({ x: 150, y: 500 })
+			controller.scrollToPoint({ x: 150, y: 500 })
 		},
 	}
 }
