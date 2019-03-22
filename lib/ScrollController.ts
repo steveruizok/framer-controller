@@ -52,7 +52,7 @@ export class ScrollController<Options> extends Controller<Props> {
 			throttle: 16,
 			markers: {},
 			onMove: point => this.handleScroll(point),
-			onTapStart: () => this.stopAnimation(),
+			onTapStart: () => this.pauseAnimation(),
 			...options,
 		})
 

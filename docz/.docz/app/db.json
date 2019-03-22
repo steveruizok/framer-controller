@@ -76,20 +76,20 @@
         }
       ]
     },
-    "src/controllers/CounterController.mdx": {
-      "name": "CounterController",
-      "route": "/CounterController",
-      "id": "5b11231fb4f12423d8f422da42b63a77",
-      "filepath": "src/controllers/CounterController.mdx",
+    "src/controllers/Controller.mdx": {
+      "name": "Controller",
+      "route": "/Controllerç",
+      "id": "8bfc5f200d33fabcc8cf0be737c9254d",
+      "filepath": "src/controllers/Controller.mdx",
       "link": null,
-      "slug": "src-controllers-counter-controller",
+      "slug": "src-controllers-controller",
       "order": 0,
       "menu": null,
       "headings": [
         {
           "depth": 1,
-          "slug": "countercontroller",
-          "value": "CounterController"
+          "slug": "controller",
+          "value": "Controller"
         }
       ]
     },
@@ -110,6 +110,23 @@
         }
       ]
     },
+    "src/controllers/CounterController.mdx": {
+      "name": "CounterController",
+      "route": "/CounterController",
+      "id": "5b11231fb4f12423d8f422da42b63a77",
+      "filepath": "src/controllers/CounterController.mdx",
+      "link": null,
+      "slug": "src-controllers-counter-controller",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "countercontroller",
+          "value": "CounterController"
+        }
+      ]
+    },
     "src/controllers/FormController.mdx": {
       "name": "FormController",
       "route": "/FormController",
@@ -124,23 +141,6 @@
           "depth": 1,
           "slug": "formcontroller",
           "value": "FormController"
-        }
-      ]
-    },
-    "src/controllers/Controller.mdx": {
-      "name": "Controller",
-      "route": "/Controllerç",
-      "id": "8bfc5f200d33fabcc8cf0be737c9254d",
-      "filepath": "src/controllers/Controller.mdx",
-      "link": null,
-      "slug": "src-controllers-controller",
-      "order": 0,
-      "menu": null,
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "controller",
-          "value": "Controller"
         }
       ]
     },

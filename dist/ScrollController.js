@@ -13,7 +13,7 @@ class ScrollController extends Controller_1.Controller {
             }, progress: {
                 x: 0,
                 y: 0,
-            }, throttle: 16, markers: {}, onMove: point => this.handleScroll(point), onTapStart: () => this.stopAnimation() }, options));
+            }, throttle: 16, markers: {}, onMove: point => this.handleScroll(point), onTapStart: () => this.pauseAnimation() }, options));
         this._scrollPoint = {
             x: 0,
             y: 0,

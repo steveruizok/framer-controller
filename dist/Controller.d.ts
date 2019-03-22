@@ -68,9 +68,17 @@ export declare class Controller<T> {
      */
     stopAnimation: () => void;
     /**
+     * Pause the current animation.
+     */
+    pauseAnimation: () => void;
+    /**
      * Resume the current animation.
      */
     resumeAnimation: () => void;
+    /**
+     * Seek the current animation to a given normalised point.
+     */
+    seekAnimation: (value: number, frame?: boolean, pause?: boolean) => void;
     /**
      * Return the state to its initial value.
      */

@@ -52,7 +52,7 @@ class Controller {
          */
         this.animate = (options, target) => {
             const targets = target ? Object.assign({}, this.state[target]) : Object.assign({}, this.state);
-            this._animation = animejs_1.default(Object.assign({ targets }, options, { update: () => {
+            this._animation = animejs_1.default(Object.assign({ targets }, options, { change: () => {
                     if (target) {
                         this.setState({
                             [target]: targets,
@@ -67,19 +67,50 @@ class Controller {
         /**
          * Stop the current animation.
          */
-        this.stopAnimation = () => {
-            if (this.animation) {
-                this.animation.pause();
-                this._isAnimating = false;
+        this.stopAnimation = () => this.pauseAnimation();
+        /**
+         * Pause the current animation.
+         */
+        this.pauseAnimation = () => {
+            const { animation } = this;
+            if (!animation) {
+                return;
             }
+            animation.pause();
+            this._isAnimating = false;
         };
         /**
          * Resume the current animation.
          */
         this.resumeAnimation = () => {
-            if (this.animation) {
-                this.animation.play();
-                this._isAnimating = true;
+            const { animation } = this;
+            if (!animation) {
+                return;
+            }
+            animation.play();
+            this._isAnimating = true;
+        };
+        /**
+         * Seek the current animation to a given normalised point.
+         */
+        this.seekAnimation = (value, frame = false, pause = true) => {
+            const { animation } = this;
+            if (!animation) {
+                return;
+            }
+            if (frame) {
+                value = Math.max(Math.min(value, animation.duration), 0);
+            }
+            else {
+                value = Math.floor(Math.max(Math.min(value, 1), 0) * animation.duration);
+            }
+            animation.pause();
+            animation.seek(value);
+            if (pause) {
+                this.pauseAnimation();
+            }
+            else {
+                animation.play();
             }
         };
         /**

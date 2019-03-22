@@ -79,7 +79,7 @@ export class Controller<T> {
 		this._animation = anime({
 			targets,
 			...(options as any),
-			update: () => {
+			change: () => {
 				if (target) {
 					this.setState({
 						[target]: targets,
@@ -98,20 +98,56 @@ export class Controller<T> {
 	/**
 	 * Stop the current animation.
 	 */
-	public stopAnimation = () => {
-		if (this.animation) {
-			this.animation.pause()
-			this._isAnimating = false
+	public stopAnimation = () => this.pauseAnimation()
+
+	/**
+	 * Pause the current animation.
+	 */
+	public pauseAnimation = () => {
+		const { animation } = this
+		if (!animation) {
+			return
 		}
+
+		animation.pause()
+		this._isAnimating = false
 	}
 
 	/**
 	 * Resume the current animation.
 	 */
 	public resumeAnimation = () => {
-		if (this.animation) {
-			this.animation.play()
-			this._isAnimating = true
+		const { animation } = this
+		if (!animation) {
+			return
+		}
+
+		animation.play()
+		this._isAnimating = true
+	}
+
+	/**
+	 * Seek the current animation to a given normalised point.
+	 */
+	public seekAnimation = (value: number, frame = false, pause = true) => {
+		const { animation } = this
+		if (!animation) {
+			return
+		}
+
+		if (frame) {
+			value = Math.max(Math.min(value, animation.duration), 0)
+		} else {
+			value = Math.floor(Math.max(Math.min(value, 1), 0) * animation.duration)
+		}
+
+		animation.pause()
+		animation.seek(value)
+
+		if (pause) {
+			this.pauseAnimation()
+		} else {
+			animation.play()
 		}
 	}
 
