@@ -1,0 +1,9 @@
+{
+	"framer": {
+		"id": "d8b5a015-03f3-4fb9-93f2-bdd82c24678b"
+	},
+	"author": "Steve Ruiz",
+	"peerDependencies": {
+		"framer": "^0.10"
+	}
+}
