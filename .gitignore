@@ -61,3 +61,5 @@ typings/
 .next
 
 ./docs/node_modules
+.DS_Store
+test/.DS_Store
