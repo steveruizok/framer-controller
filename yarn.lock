@@ -42,10 +42,10 @@ eventemitter3@^3.1.0:
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-3.1.0.tgz#090b4d6cdbd645ed10bf750d4b5407942d7ba163"
   integrity sha512-ivIvhpq/Y0uSjcHDcOIccjmYjGLcP09MFGE7ysAwkAvkXfpZlC985pH2/ui64DKazbTW/4kN3yqozUxlXzI6cA==
 
-framer@^0.10.9:
-  version "0.10.9"
-  resolved "https://registry.yarnpkg.com/framer/-/framer-0.10.9.tgz#6bdf801303ef801a4345d701a3f6098d59231a2c"
-  integrity sha512-pfis3ukgh4btEXtiBlJN4qWvw0ylauouYOrn2SGlVepDjXlQJl9Zut1W9BlhHWFpS6dS6xVjQ6jS8dSoj+pjng==
+framer@^0.10.10:
+  version "0.10.10"
+  resolved "https://registry.yarnpkg.com/framer/-/framer-0.10.10.tgz#36bb2ae82d620944cf43adea295d6ec7000f7942"
+  integrity sha512-9w0Y7p/2HsYQqtiaPgLqwiEFDBTwGwPbufJP8XRek5j/nojcFdm6995l/uBzbpddSgR3oFB1SKcGO2W64KHlzQ==
 
 immutable@^4.0.0-rc.12:
   version "4.0.0-rc.12"

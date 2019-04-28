@@ -1,6 +1,6 @@
 {
 	"name": "framer-controller",
-	"version": "1.6.31",
+	"version": "1.6.32",
 	"description": "Control state in Framer X with reusable controllers.",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -34,7 +34,7 @@
 		"@types/react": "^16.8.5",
 		"@types/react-dom": "^16.8.2",
 		"animejs": "^3.0.1",
-		"framer": "^0.10.9"
+		"framer": "^0.10.10"
 	},
 	"devDependencies": {
 		"eventemitter3": "^3.1.0",

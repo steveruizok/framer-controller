@@ -1,4 +1,4 @@
-import anime from "animejs"
+import anime from 'animejs'
 
 export type State<T> = Partial<T & { controller?: any }>
 
@@ -7,34 +7,34 @@ export type FunctionBasedParameter = (index: number, length: number) => number
 export type AnimeCallbackFunction = (anim: anime.AnimeInstance) => void
 
 export type EasingOptions =
-	| "linear"
-	| "easeInQuad"
-	| "easeInCubic"
-	| "easeInQuart"
-	| "easeInQuint"
-	| "easeInSine"
-	| "easeInExpo"
-	| "easeInCirc"
-	| "easeInBack"
-	| "easeInElastic"
-	| "easeOutQuad"
-	| "easeOutCubic"
-	| "easeOutQuart"
-	| "easeOutQuint"
-	| "easeOutSine"
-	| "easeOutExpo"
-	| "easeOutCirc"
-	| "easeOutBack"
-	| "easeOutElastic"
-	| "easeInOutQuad"
-	| "easeInOutCubic"
-	| "easeInOutQuart"
-	| "easeInOutQuint"
-	| "easeInOutSine"
-	| "easeInOutExpo"
-	| "easeInOutCirc"
-	| "easeInOutBack"
-	| "easeInOutElastic"
+	| 'linear'
+	| 'easeInQuad'
+	| 'easeInCubic'
+	| 'easeInQuart'
+	| 'easeInQuint'
+	| 'easeInSine'
+	| 'easeInExpo'
+	| 'easeInCirc'
+	| 'easeInBack'
+	| 'easeInElastic'
+	| 'easeOutQuad'
+	| 'easeOutCubic'
+	| 'easeOutQuart'
+	| 'easeOutQuint'
+	| 'easeOutSine'
+	| 'easeOutExpo'
+	| 'easeOutCirc'
+	| 'easeOutBack'
+	| 'easeOutElastic'
+	| 'easeInOutQuad'
+	| 'easeInOutCubic'
+	| 'easeInOutQuart'
+	| 'easeInOutQuint'
+	| 'easeInOutSine'
+	| 'easeInOutExpo'
+	| 'easeInOutCirc'
+	| 'easeInOutBack'
+	| 'easeInOutElastic'
 
 export type AnimateOptions = {
 	duration?: number | FunctionBasedParameter
@@ -50,8 +50,6 @@ export type AnimateOptions = {
 	complete?: AnimeCallbackFunction
 }
 
-export type Point = { x: number; y: number }
-
 export interface Directions {
 	x: {
 		left: string
@@ -64,6 +62,8 @@ export interface Directions {
 		none: string
 	}
 }
+
+export type Point = { x: number; y: number }
 
 export interface Rect {
 	top: number
@@ -86,11 +86,11 @@ export type MarkerState = {
 	offset: Rect
 	intersect: Point
 	clip: {
-		x: "none" | "both" | "both-left" | "both-right" | "left" | "right"
-		y: "none" | "both" | "both-top" | "both-bottom" | "top" | "bottom"
+		x: 'none' | 'both' | 'both-left' | 'both-right' | 'left' | 'right'
+		y: 'none' | 'both' | 'both-top' | 'both-bottom' | 'top' | 'bottom'
 	}
 	progress: Point
 	visible: boolean
 }
 
-export type Edge = "top" | "bottom" | "left" | "right"
+export type Edge = 'top' | 'bottom' | 'left' | 'right'
