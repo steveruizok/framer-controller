@@ -41,12 +41,14 @@ const controller = new IntervalController({
 	},
 })
 
+// Apply this one to a text element
 const SecondDisplay: Override = () => ({
-	$textLabel: controller.frame % 60,
+	text: controller.frame % 60,
 })
 
+// Apply this one to a text element
 const MinuteDisplay: Override = () => ({
-	$textLabel: Math.floor(controller.frame / 60) % 60,
+	text: Math.floor(controller.frame / 60) % 60,
 })
 
 const stopButton: Override = () => ({

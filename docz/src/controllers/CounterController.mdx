@@ -33,8 +33,9 @@ const controller = new CounterController({
 	initial: 10,
 })
 
+// Apply this one to a text node
 const ValueDisplay: Override = () => ({
-	$textLabel: controller.value,
+	text: controller.value,
 })
 
 const IncrementButton: Override = () => ({

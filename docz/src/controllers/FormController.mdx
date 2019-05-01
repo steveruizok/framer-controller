@@ -63,29 +63,27 @@ const controller = new FormController({
 	},
 })
 
-// Name
-
+// Apply this one to a text element
 export const NameErrorText: Override = () => ({
-	$value: controller.data.name.errorText,
+	text: controller.data.name.errorText,
 })
 
+// Apply this one to a text input
 export const NameInput: Override = () => ({
 	value: controller.data.name.value,
 	onValueChange: value => controller.setValue("name", value),
 })
 
-// Email
-
+// Apply this one to a text element
 export const EmailErrorText: Override = () => ({
-	$value: controller.data.email.errorText,
+	text: controller.data.email.errorText,
 })
 
+// Apply this one to a text input
 export const EmailInput: Override = () => ({
 	value: controller.data.email.value,
 	onValueChange: value => controller.setValue("email", value),
 })
-
-// Button
 
 export const ContinueButton: Override = () => ({
 	disabled: !controller.ready,
