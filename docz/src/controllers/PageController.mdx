@@ -44,4 +44,9 @@ export const PrevPage: Override = () => ({
 	opacity: controller.progress > 0 ? 1 : 0.5,
 	onClick: () => controller.snapToNextPage("left"),
 })
+
+// Apply this one to a text element
+export const PageNumber: Override = () => ({
+	text: controller.currentPage,
+})
 ```

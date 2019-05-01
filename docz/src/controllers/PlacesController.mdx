@@ -36,6 +36,7 @@ const controller = new PlacesController({
 	apiKey: "YOUR_GOOGLE_PLACES_API_KEY",
 })
 
+// Apply this one to a text input
 export const PlacesInput: Override = () => ({
 	onValueChange: v => {
 		if (v.length > 2) {
@@ -69,11 +70,12 @@ export const ViewDetailsButton: Override = () => ({
 	disabled: controller.predictions.length === 0,
 })
 
+// Apply this one to a text element
 export const DetailsLabel: Override = () => {
 	const { details } = controller
 	return {
 		visible: details,
-		$value:
+		text:
 			details &&
 			`${details.geometry.location
 				.lng()
