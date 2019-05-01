@@ -1,10 +1,10 @@
-import anime from "animejs";
+import anime from 'animejs';
 export declare type State<T> = Partial<T & {
     controller?: any;
 }>;
 export declare type FunctionBasedParameter = (index: number, length: number) => number;
 export declare type AnimeCallbackFunction = (anim: anime.AnimeInstance) => void;
-export declare type EasingOptions = "linear" | "easeInQuad" | "easeInCubic" | "easeInQuart" | "easeInQuint" | "easeInSine" | "easeInExpo" | "easeInCirc" | "easeInBack" | "easeInElastic" | "easeOutQuad" | "easeOutCubic" | "easeOutQuart" | "easeOutQuint" | "easeOutSine" | "easeOutExpo" | "easeOutCirc" | "easeOutBack" | "easeOutElastic" | "easeInOutQuad" | "easeInOutCubic" | "easeInOutQuart" | "easeInOutQuint" | "easeInOutSine" | "easeInOutExpo" | "easeInOutCirc" | "easeInOutBack" | "easeInOutElastic";
+export declare type EasingOptions = 'linear' | 'easeInQuad' | 'easeInCubic' | 'easeInQuart' | 'easeInQuint' | 'easeInSine' | 'easeInExpo' | 'easeInCirc' | 'easeInBack' | 'easeInElastic' | 'easeOutQuad' | 'easeOutCubic' | 'easeOutQuart' | 'easeOutQuint' | 'easeOutSine' | 'easeOutExpo' | 'easeOutCirc' | 'easeOutBack' | 'easeOutElastic' | 'easeInOutQuad' | 'easeInOutCubic' | 'easeInOutQuart' | 'easeInOutQuint' | 'easeInOutSine' | 'easeInOutExpo' | 'easeInOutCirc' | 'easeInOutBack' | 'easeInOutElastic';
 export declare type AnimateOptions = {
     duration?: number | FunctionBasedParameter;
     delay?: number | FunctionBasedParameter;
@@ -15,10 +15,6 @@ export declare type AnimateOptions = {
     run?: AnimeCallbackFunction;
     update?: AnimeCallbackFunction;
     complete?: AnimeCallbackFunction;
-};
-export declare type Point = {
-    x: number;
-    y: number;
 };
 export interface Directions {
     x: {
@@ -32,6 +28,10 @@ export interface Directions {
         none: string;
     };
 }
+export declare type Point = {
+    x: number;
+    y: number;
+};
 export interface Rect {
     top: number;
     bottom: number;
@@ -50,10 +50,10 @@ export declare type MarkerState = {
     offset: Rect;
     intersect: Point;
     clip: {
-        x: "none" | "both" | "both-left" | "both-right" | "left" | "right";
-        y: "none" | "both" | "both-top" | "both-bottom" | "top" | "bottom";
+        x: 'none' | 'both' | 'both-left' | 'both-right' | 'left' | 'right';
+        y: 'none' | 'both' | 'both-top' | 'both-bottom' | 'top' | 'bottom';
     };
     progress: Point;
     visible: boolean;
 };
-export declare type Edge = "top" | "bottom" | "left" | "right";
+export declare type Edge = 'top' | 'bottom' | 'left' | 'right';

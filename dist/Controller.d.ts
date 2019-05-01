@@ -13,6 +13,8 @@ export declare class Controller<T> {
      * Creates a new instance of Controller.
      */
     constructor(initial: T);
+    /** Find a child with a given prop / value pair somewhere in its children */
+    protected getFlaggedChildren: (container: any, source: any[], flag?: string) => any;
     /**
      * A method that fires automatically after a controller's state
      * is reset using the `reset` method.

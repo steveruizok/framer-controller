@@ -30,8 +30,6 @@ export declare class ScrollController<Options> extends Controller<Props> {
     onConnect: (_: any, props: any) => Partial<Props & {
         controller?: any;
     }>;
-    /** Find a child with a given prop / value pair somewhere in its children */
-    private getMarkersFromContent;
     private updateMarkers;
     getMarker: (props: any) => MarkerState;
     handleScroll: (point: Point) => void;

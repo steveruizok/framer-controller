@@ -4,7 +4,7 @@ const Controller_1 = require("./Controller");
 const utils_1 = require("./utils");
 class ScrollController extends Controller_1.Controller {
     constructor(options = {}) {
-        super(Object.assign({ scrollX: 0, scrollY: 0, useMarkers: true, direction: {
+        super(Object.assign({ scrollX: 0, scrollY: 0, direction: {
                 x: "none",
                 y: "none",
             }, scrollPoint: {
@@ -31,57 +31,13 @@ class ScrollController extends Controller_1.Controller {
             }
             this._scrollComponent = component;
             this._content = content;
-            this._markersProps = this.getMarkersFromContent();
+            this._markersProps = this.getFlaggedChildren(this.content, this.content.children, "markerId");
             this.scrollPoint = {
                 x: component.props.contentOffsetX || 0,
                 y: component.props.contentOffsetY || 0,
             };
             this.updateMarkers();
             return this.state;
-        };
-        /** Find a child with a given prop / value pair somewhere in its children */
-        this.getMarkersFromContent = () => {
-            const { height: contentHeight, width: contentWidth } = this.content.props;
-            const ids = [];
-            const markers = [];
-            const recursivelySearchForProp = (parent, component) => {
-                const { props } = component;
-                const { _overrideForwardingDescription: overrides } = props;
-                if (props["markerId"]) {
-                    ids.push(props["markerId"]);
-                    markers.push(parent);
-                }
-                else if (overrides) {
-                    let key = Object.keys(overrides).find(k => overrides[k] === "markerId");
-                    if (key) {
-                        ids.push(props.id);
-                        markers.push(component);
-                    }
-                }
-                if (Array.isArray(props.children)) {
-                    props.children.forEach(c => recursivelySearchForProp(component, c));
-                }
-                return false;
-            };
-            recursivelySearchForProp(this, this.content);
-            return markers.reduce((acc, marker, index) => {
-                const { centerX, centerY, height, width } = marker.props;
-                const cx = parseFloat(centerX) / 100;
-                const cy = parseFloat(centerY) / 100;
-                let id = ids[index];
-                if (acc[id]) {
-                    console.warn(`Warning: Found markers with the same markerId value, ${id}! The second will overwrite the first.`);
-                }
-                acc[id] = {
-                    top: contentHeight * cy - height / 2,
-                    bottom: contentHeight * cy + height / 2,
-                    left: contentWidth * cx - width / 2,
-                    right: contentWidth * cx + width / 2,
-                    height,
-                    width,
-                };
-                return acc;
-            }, {});
         };
         this.updateMarkers = () => {
             const { _scrollPoint, _markersProps, connected } = this;

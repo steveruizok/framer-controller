@@ -22,3 +22,5 @@ var SelectionController_1 = require("./SelectionController");
 exports.SelectionController = SelectionController_1.SelectionController;
 var ScrollController_1 = require("./ScrollController");
 exports.ScrollController = ScrollController_1.ScrollController;
+var DragController_1 = require("./DragController");
+exports.DragController = DragController_1.DragController;
