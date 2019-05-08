@@ -88,13 +88,13 @@ export class ScrollController {
 		this._content = content
 
 		this._scrollSize = {
-			height: props.constraints.height,
-			width: props.constraints.width,
+			height: props.height,
+			width: props.width,
 		}
 
 		this._contentSize = {
-			height: content.props.constraints.height,
-			width: content.props.constraints.width,
+			height: content.props.height,
+			width: content.props.width,
 		}
 
 		let direction = {
@@ -139,7 +139,7 @@ export class ScrollController {
 
 		return this._content.props.children.reduce(
 			(acc: { [key: string]: Marker }, marker, index) => {
-				const { centerX, centerY, height, width } = marker.props.constraints
+				const { centerX, centerY, height, width } = marker.props
 				const cx = parseFloat(centerX) / 100
 				const cy = parseFloat(centerY) / 100
 

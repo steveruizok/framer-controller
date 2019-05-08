@@ -91,10 +91,19 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="_flowcontroller_.state.html#current" class="tsd-kind-icon">current</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_flowcontroller_.state.html#direction" class="tsd-kind-icon">direction</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="_flowcontroller_.state.html#pagestotal" class="tsd-kind-icon">pages<wbr>Total</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_flowcontroller_.state.html#oncloseoverlay" class="tsd-kind-icon">on<wbr>Close<wbr>Overlay</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_flowcontroller_.state.html#onswipedown" class="tsd-kind-icon">on<wbr>Swipe<wbr>Down</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_flowcontroller_.state.html#onswipeleft" class="tsd-kind-icon">on<wbr>Swipe<wbr>Left</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_flowcontroller_.state.html#onswiperight" class="tsd-kind-icon">on<wbr>Swipe<wbr>Right</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_flowcontroller_.state.html#onswipeup" class="tsd-kind-icon">on<wbr>Swipe<wbr>Up</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="_flowcontroller_.state.html#overlay" class="tsd-kind-icon">overlay</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="_flowcontroller_.state.html#overlays" class="tsd-kind-icon">overlays</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="_flowcontroller_.state.html#pages" class="tsd-kind-icon">pages</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_flowcontroller_.state.html#root" class="tsd-kind-icon">root</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="_flowcontroller_.state.html#stack" class="tsd-kind-icon">stack</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="_flowcontroller_.state.html#transitions" class="tsd-kind-icon">transitions</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="_flowcontroller_.state.html#swipeback" class="tsd-kind-icon">swipe<wbr>Back</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="_flowcontroller_.state.html#swipedistance" class="tsd-kind-icon">swipe<wbr>Distance</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="_flowcontroller_.state.html#variants" class="tsd-kind-icon">variants</a></li>
 							</ul>
 						</section>
 					</div>
@@ -109,7 +118,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_flowcontroller_.config.html">Config</a>.<a href="_flowcontroller_.config.html#current">current</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/b728e5e/lib/FlowController.ts#L9">FlowController.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/5d9aab9/lib/FlowController.ts#L16">FlowController.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -119,18 +128,189 @@
 					<div class="tsd-signature tsd-kind-icon">direction<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">keyof Directions</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/b728e5e/lib/FlowController.ts#L20">FlowController.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/5d9aab9/lib/FlowController.ts#L31">FlowController.ts:31</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="oncloseoverlay" class="tsd-anchor"></a>
+					<h3>on<wbr>Close<wbr>Overlay</h3>
+					<div class="tsd-signature tsd-kind-icon">on<wbr>Close<wbr>Overlay<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/5d9aab9/lib/FlowController.ts#L37">FlowController.ts:37</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="onswipedown" class="tsd-anchor"></a>
+					<h3>on<wbr>Swipe<wbr>Down</h3>
+					<div class="tsd-signature tsd-kind-icon">on<wbr>Swipe<wbr>Down<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/5d9aab9/lib/FlowController.ts#L35">FlowController.ts:35</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>event: <span class="tsd-signature-type">any</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="onswipeleft" class="tsd-anchor"></a>
+					<h3>on<wbr>Swipe<wbr>Left</h3>
+					<div class="tsd-signature tsd-kind-icon">on<wbr>Swipe<wbr>Left<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/5d9aab9/lib/FlowController.ts#L36">FlowController.ts:36</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>event: <span class="tsd-signature-type">any</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="onswiperight" class="tsd-anchor"></a>
+					<h3>on<wbr>Swipe<wbr>Right</h3>
+					<div class="tsd-signature tsd-kind-icon">on<wbr>Swipe<wbr>Right<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/5d9aab9/lib/FlowController.ts#L34">FlowController.ts:34</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>event: <span class="tsd-signature-type">any</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="onswipeup" class="tsd-anchor"></a>
+					<h3>on<wbr>Swipe<wbr>Up</h3>
+					<div class="tsd-signature tsd-kind-icon">on<wbr>Swipe<wbr>Up<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/5d9aab9/lib/FlowController.ts#L33">FlowController.ts:33</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>event: <span class="tsd-signature-type">any</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+					<a name="overlay" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> overlay</h3>
+					<div class="tsd-signature tsd-kind-icon">overlay<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_flowcontroller_.config.html">Config</a>.<a href="_flowcontroller_.config.html#overlay">overlay</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/5d9aab9/lib/FlowController.ts#L18">FlowController.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-					<a name="pagestotal" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> pages<wbr>Total</h3>
-					<div class="tsd-signature tsd-kind-icon">pages<wbr>Total<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="overlays" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> overlays</h3>
+					<div class="tsd-signature tsd-kind-icon">overlays<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="_flowcontroller_.config.html">Config</a>.<a href="_flowcontroller_.config.html#pagestotal">pagesTotal</a></p>
+						<p>Inherited from <a href="_flowcontroller_.config.html">Config</a>.<a href="_flowcontroller_.config.html#overlays">overlays</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/b728e5e/lib/FlowController.ts#L10">FlowController.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/5d9aab9/lib/FlowController.ts#L19">FlowController.ts:19</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+					<a name="pages" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> pages</h3>
+					<div class="tsd-signature tsd-kind-icon">pages<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_flowcontroller_.config.html">Config</a>.<a href="_flowcontroller_.config.html#pages">pages</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/5d9aab9/lib/FlowController.ts#L20">FlowController.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -140,7 +320,7 @@
 					<div class="tsd-signature tsd-kind-icon">root<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/b728e5e/lib/FlowController.ts#L21">FlowController.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/5d9aab9/lib/FlowController.ts#L32">FlowController.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -151,31 +331,53 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_flowcontroller_.config.html">Config</a>.<a href="_flowcontroller_.config.html#stack">stack</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/b728e5e/lib/FlowController.ts#L11">FlowController.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/5d9aab9/lib/FlowController.ts#L17">FlowController.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-					<a name="transitions" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> transitions</h3>
-					<div class="tsd-signature tsd-kind-icon">transitions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<a name="swipeback" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> swipe<wbr>Back</h3>
+					<div class="tsd-signature tsd-kind-icon">swipe<wbr>Back<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">keyof SwipeDirections</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="_flowcontroller_.config.html">Config</a>.<a href="_flowcontroller_.config.html#transitions">transitions</a></p>
+						<p>Inherited from <a href="_flowcontroller_.config.html">Config</a>.<a href="_flowcontroller_.config.html#swipeback">swipeBack</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/b728e5e/lib/FlowController.ts#L12">FlowController.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/5d9aab9/lib/FlowController.ts#L26">FlowController.ts:26</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+					<a name="swipedistance" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> swipe<wbr>Distance</h3>
+					<div class="tsd-signature tsd-kind-icon">swipe<wbr>Distance<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_flowcontroller_.config.html">Config</a>.<a href="_flowcontroller_.config.html#swipedistance">swipeDistance</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/5d9aab9/lib/FlowController.ts#L27">FlowController.ts:27</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+					<a name="variants" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> variants</h3>
+					<div class="tsd-signature tsd-kind-icon">variants<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_flowcontroller_.config.html">Config</a>.<a href="_flowcontroller_.config.html#variants">variants</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/5d9aab9/lib/FlowController.ts#L21">FlowController.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter">
-								<h5>ahead<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CSSProperties</span></h5>
+								<h5>ahead<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CSSProperties</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span></h5>
 							</li>
 							<li class="tsd-parameter">
-								<h5>behind<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CSSProperties</span></h5>
+								<h5>behind<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CSSProperties</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span></h5>
 							</li>
 							<li class="tsd-parameter">
-								<h5>current<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CSSProperties</span></h5>
+								<h5>current<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CSSProperties</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span></h5>
 							</li>
 						</ul>
 					</div>
@@ -225,6 +427,9 @@
 						<a href="../modules/_scrollcontroller_.html">"<wbr>Scroll<wbr>Controller"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="../modules/_scrollcontroller_deprecated_.html">"<wbr>Scroll<wbr>Controller_<wbr>deprecated"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_selectioncontroller_.html">"<wbr>Selection<wbr>Controller"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -260,8 +465,29 @@
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="_flowcontroller_.state.html#direction" class="tsd-kind-icon">direction</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_flowcontroller_.state.html#oncloseoverlay" class="tsd-kind-icon">on<wbr>Close<wbr>Overlay</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_flowcontroller_.state.html#onswipedown" class="tsd-kind-icon">on<wbr>Swipe<wbr>Down</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_flowcontroller_.state.html#onswipeleft" class="tsd-kind-icon">on<wbr>Swipe<wbr>Left</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_flowcontroller_.state.html#onswiperight" class="tsd-kind-icon">on<wbr>Swipe<wbr>Right</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_flowcontroller_.state.html#onswipeup" class="tsd-kind-icon">on<wbr>Swipe<wbr>Up</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="_flowcontroller_.state.html#pagestotal" class="tsd-kind-icon">pages<wbr>Total</a>
+								<a href="_flowcontroller_.state.html#overlay" class="tsd-kind-icon">overlay</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+								<a href="_flowcontroller_.state.html#overlays" class="tsd-kind-icon">overlays</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+								<a href="_flowcontroller_.state.html#pages" class="tsd-kind-icon">pages</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="_flowcontroller_.state.html#root" class="tsd-kind-icon">root</a>
@@ -270,12 +496,21 @@
 								<a href="_flowcontroller_.state.html#stack" class="tsd-kind-icon">stack</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="_flowcontroller_.state.html#transitions" class="tsd-kind-icon">transitions</a>
+								<a href="_flowcontroller_.state.html#swipeback" class="tsd-kind-icon">swipe<wbr>Back</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+								<a href="_flowcontroller_.state.html#swipedistance" class="tsd-kind-icon">swipe<wbr>Distance</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+								<a href="_flowcontroller_.state.html#variants" class="tsd-kind-icon">variants</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_flowcontroller_.swipedirections.html" class="tsd-kind-icon">Swipe<wbr>Directions</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

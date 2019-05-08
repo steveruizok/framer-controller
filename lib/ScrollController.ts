@@ -1,432 +1,495 @@
-import { Controller } from "./Controller"
-import { Edge, Point, Directions, MarkerState, MarkerDetails } from "./types"
-import { throttle, modulate } from "./utils"
+import * as anime from 'animejs'
+import { motionValue, transform, useTransform, MotionValue } from 'framer'
 
-interface Options {
-	throttle?: number
+export interface Directions {
+	x: {
+		left: string
+		right: string
+		none: string
+	}
+	y: {
+		up: string
+		down: string
+		none: string
+	}
 }
 
-interface Props extends Options {
-	scrollX: number
-	scrollY: number
-	direction: { x: keyof Directions["x"]; y: keyof Directions["y"] }
-	scrollPoint: Point
-	progress: Point
-	markers: {
-		[key: string]: MarkerState
+export type Tracked = {
+	absolute: {
+		top: number
+		bottom: number
+		left: number
+		right: number
 	}
-	onTapStart: any
-	onMove: (point: Point) => void
+	offset: {
+		top: MotionValue<number>
+		bottom: MotionValue<number>
+		left: MotionValue<number>
+		right: MotionValue<number>
+	}
+	intersect: { x: MotionValue<number>; y: MotionValue<number> }
+	clip: {
+		x: MotionValue<
+			'contain' | 'overflow' | 'clip-left' | 'clip-right' | 'left' | 'right'
+		>
+		y: MotionValue<
+			'contain' | 'overflow' | 'clip-top' | 'clip-bottom' | 'top' | 'bottom'
+		>
+	}
+	travel: { x: MotionValue<number>; y: MotionValue<number> }
+	progress: { x: MotionValue<number>; y: MotionValue<number> }
 }
 
-export class ScrollController<Options> extends Controller<Props> {
-	private _scrollComponent: any
-	private _content: any
-	private _direction: { x: keyof Directions["x"]; y: keyof Directions["y"] }
-	private _markerStates: {
-		[key: string]: MarkerState
-	}
+export type Edge = 'top' | 'bottom' | 'left' | 'right'
+
+export class ScrollController {
 	private _scrollPoint = {
-		x: 0,
-		y: 0,
-	}
-	private _markersProps: { [key: string]: MarkerDetails }
-
-	constructor(options: Options = {} as Options) {
-		super({
-			scrollX: 0,
-			scrollY: 0,
-			useMarkers: true,
-			direction: {
-				x: "none",
-				y: "none",
-			},
-			scrollPoint: {
-				x: 0,
-				y: 0,
-			},
-			progress: {
-				x: 0,
-				y: 0,
-			},
-			throttle: 16,
-			markers: {},
-			onMove: point => this.handleScroll(point),
-			onTapStart: () => this.pauseAnimation(),
-			...options,
-		})
-
-		this.updateMarkers = throttle(this.updateMarkers, this.state.throttle)
-		this.updateMarkers()
+		x: motionValue(0),
+		y: motionValue(0),
 	}
 
-	onConnect = (_: any, props: any) => {
+	private _direction: {
+		x: MotionValue<keyof Directions['x']>
+		y: MotionValue<keyof Directions['y']>
+	} = {
+		x: motionValue('none' as keyof Directions['x']),
+		y: motionValue('none' as keyof Directions['y']),
+	}
+
+	private _progress: {
+		x: MotionValue<number>
+		y: MotionValue<number>
+	} = {
+		x: motionValue(0),
+		y: motionValue(0),
+	}
+
+	private _scrollComponent: any
+
+	private _content: any
+
+	private _scrollSize: {
+		height: MotionValue<number>
+		width: MotionValue<number>
+	}
+	private _contentSize: {
+		height: number
+		width: number
+	}
+
+	private _tracked: Map<string, Tracked> = new Map()
+
+	// private _tracked: { [key: string]: Tracked } = {}
+
+	private _animation?: anime.AnimeInstance
+
+	private _isAnimating: boolean
+
+	// Connect to a scroll component's props
+	connect = (props: any) => {
+		// Guard against connecting to a Frame that isn't a Scroll component
 		if (!props || !props.children) {
 			console.error(
-				"Error: Connect this ScrollController to the props of a Scroll component (using an Override)."
+				'Error: Connect this ScrollController to the' +
+					' props of a Scroll component (using an Override).'
 			)
-			return this.state
+			return
 		}
 
 		const [component] = props.children
 		const [content] = component.props.children
 
+		// Guard against reconnecting to tthe same Scroll component
+		// if (component === this._scrollComponent) {
+		// 	return
+		// }
+
+		// Guard against connecting to a Scroll component without an attached Frame
 		if (!content) {
 			console.error(
-				"Error: Your Scroll component must be connected to a content Frame."
+				'Error: Your Scroll component must be connected ' +
+					'to a content Frame.'
 			)
-			return this.state
+			return
 		}
 
+		// Save scroll component to the class
 		this._scrollComponent = component
+
+		this._scrollSize = {
+			height: motionValue(props.height),
+			width: motionValue(props.width),
+		}
+
+		// Save scroll content to the class
 		this._content = content
 
-		this._markersProps = this.getMarkersFromContent()
-
-		this.scrollPoint = {
-			x: component.props.contentOffsetX || 0,
-			y: component.props.contentOffsetY || 0,
+		this._contentSize = {
+			height: content.props.height,
+			width: content.props.width,
 		}
 
-		this.updateMarkers()
+		// Set tthe controller's direction and progress
+		this.setControllerValues()
 
-		return this.state
+		this.tracked.clear()
+
+		// Track all children
+		// this._tracked = this._content.props.children.reduce(
+		// 	(acc: { [key: string]: Tracked }, tracked: any) => {
+		// 		acc[tracked.props.id] = this.trackFrame(tracked.props)
+		// 		return acc
+		// 	},
+		// 	{}
+		// )
+		return this.overrides
 	}
 
-	/** Find a child with a given prop / value pair somewhere in its children */
-	private getMarkersFromContent = () => {
-		const { height: contentHeight, width: contentWidth } = this.content.props
+	private setControllerValues = () => {
+		const { x, y } = this._scrollPoint
+		const { height: scrollHeight, width: scrollWidth } = this._scrollSize
+		const { height: contentHeight, width: contentWidth } = this._contentSize
 
-		const ids = []
-		const markers = []
+		// Direction:
+		// Which way is the scroll scrolling?
 
-		const recursivelySearchForProp = (parent: any, component: any) => {
-			const { props } = component
-			const { _overrideForwardingDescription: overrides } = props
-
-			if (props["markerId"]) {
-				ids.push(props["markerId"])
-				markers.push(parent)
-			} else if (overrides) {
-				let key = Object.keys(overrides).find(k => overrides[k] === "markerId")
-				if (key) {
-					ids.push(props.id)
-					markers.push(component)
-				}
-			}
-
-			if (Array.isArray(props.children)) {
-				props.children.forEach(c => recursivelySearchForProp(component, c))
-			}
-
-			return false
+		// closure
+		let direction = {
+			x: 0,
+			y: 0,
 		}
 
-		recursivelySearchForProp(this, this.content)
+		this._direction = {
+			x: useTransform(x, (x) => {
+				const next =
+					x < direction.x ? 'right' : x > direction.x ? 'left' : 'none'
 
-		return markers.reduce((acc, marker, index) => {
-			const { centerX, centerY, height, width } = marker.props
-			const cx = parseFloat(centerX) / 100
-			const cy = parseFloat(centerY) / 100
+				direction.x = x
+				return next
+			}),
+			y: useTransform(y, (y) => {
+				const next = y < direction.y ? 'down' : y > direction.y ? 'up' : 'none'
 
-			let id = ids[index]
+				direction.y = y
+				return next
+			}),
+		}
 
-			if (acc[id]) {
-				console.warn(
-					`Warning: Found markers with the same markerId value, ${id}! The second will overwrite the first.`
-				)
-			}
-
-			acc[id] = {
-				top: contentHeight * cy - height / 2,
-				bottom: contentHeight * cy + height / 2,
-				left: contentWidth * cx - width / 2,
-				right: contentWidth * cx + width / 2,
-				height,
-				width,
-			}
-
-			return acc
-		}, {})
+		// Declare controller's progress
+		this._progress = {
+			x: useTransform(x, (x) => x / -(contentWidth - scrollWidth.get())),
+			y: useTransform(y, (y) => y / -(contentHeight - scrollHeight.get())),
+		}
 	}
 
-	private updateMarkers = () => {
-		const { _scrollPoint, _markersProps, connected } = this
-		const { x, y } = _scrollPoint
-		if (!connected) return
+	// Connect to / track a child of the scroll's content
+	public trackFrame = (props: any, margin = { x: 0, y: 0 }) => {
+		const { id } = props
+		if (this.tracked[id]) return
 
-		const { height: containerHeight, width: containerWidth } = connected
-		const { height: contentHeight, width: contentWidth } = this.content.props
+		const { x, y } = this._scrollPoint
+		const { height: scrollHeight, width: scrollWidth } = this._scrollSize
+		const { height: contentHeight, width: contentWidth } = this._contentSize
+
+		const { centerX, centerY, height, width } = props
+		const cx = parseFloat(centerX) / 100
+		const cy = parseFloat(centerY) / 100
 
 		let minX = 0,
-			maxX = containerWidth,
+			maxX = scrollHeight.get(),
 			minY = 0,
-			maxY = containerHeight
+			maxY = scrollWidth.get()
 
-		let markers = {}
-
-		for (let key in _markersProps) {
-			const marker = _markersProps[key]
-			const { top, bottom, left, right, height, width } = marker
-
-			let intersect = {
-				x: 0,
-				y: 0,
-			}
-
-			let visible = false
-
-			let progress = { x: 0, y: 0 }
-
-			let clip = { x: "", y: "" }
-
-			const absolute = { top, bottom, left, right }
-
-			const offset = {
-				top: top + y,
-				right: right + x,
-				bottom: bottom + y,
-				left: left + x,
-			}
-
-			if (offset.top > maxY) {
-				clip.y = "below"
-			} else if (offset.bottom < minY) {
-				clip.y = "above"
-			} else if (
-				offset.top > minY &&
-				offset.top < maxY &&
-				offset.bottom > maxY
-			) {
-				intersect.y = (maxY - offset.top) / height
-				clip.y = "clip-bottom"
-				visible = true
-			} else if (
-				offset.top < minY &&
-				offset.bottom < maxY &&
-				offset.bottom > minY
-			) {
-				intersect.y = offset.bottom / height
-				clip.y = "clip-top"
-				visible = true
-			} else if (offset.top < minY && offset.bottom > maxY) {
-				intersect.y = containerHeight / height
-				clip.y = "overflow"
-				visible = true
-			} else {
-				intersect.y = 1
-				clip.y = "contain"
-				visible = true
-			}
-
-			if (offset.left > maxX) {
-				clip.x = "right"
-			} else if (offset.right < minX) {
-				clip.x = "left"
-			} else if (
-				offset.left > minX &&
-				offset.left < maxX &&
-				offset.right > maxX
-			) {
-				intersect.x = (maxX - offset.left) / width
-				clip.x = "clip-right"
-				visible = true
-			} else if (
-				offset.left < minX &&
-				offset.right < maxX &&
-				offset.right > minX
-			) {
-				intersect.x = offset.right / width
-				clip.x = "clip-left"
-				visible = true
-			} else if (offset.left < minX && offset.right > maxX) {
-				intersect.x = containerWidth / width
-				clip.x = "overflow"
-				visible = true
-			} else {
-				intersect.x = 1
-				clip.x = "contain"
-				visible = true
-			}
-
-			progress.y = modulate(offset.top, [containerHeight, -height], [0, 1])
-			progress.x = modulate(offset.left, [containerWidth, -width], [0, 1])
-
-			markers[key] = {
-				intersect,
-				absolute,
-				offset,
-				clip,
-				visible,
-				progress,
-			}
+		// calculate absolute position
+		const absolute = {
+			top: contentHeight * cy - height / 2,
+			bottom: contentHeight * cy + height / 2,
+			left: contentWidth * cx - width / 2,
+			right: contentWidth * cx + width / 2,
+			height: height,
+			width: height,
 		}
 
-		this._markerStates = markers
+		// offset:
+		// Where is the Frame now, relative to the scroll window?
+		const offset = {
+			top: useTransform(y, (value) => absolute.top + value),
+			right: useTransform(x, (value) => absolute.right + value),
+			bottom: useTransform(y, (value) => absolute.bottom + value),
+			left: useTransform(x, (value) => absolute.left + value),
+		}
 
-		this.setState({
-			markers,
-			progress: {
-				x: x / -(contentWidth - containerWidth),
-				y: y / -(contentHeight - containerHeight),
-			},
-			direction: this._direction,
-			...(this.isAnimating
-				? {}
-				: { scrollX: -this._scrollPoint.x, scrollY: -this._scrollPoint.y }),
+		// clip:
+		// Which edges of the tracked Frame are overlapping the edges of the scroll window?
+		const clip = {
+			x: useTransform(x, (x) => {
+				x += margin.x
+				const l = offset.left.get()
+				const r = offset.right.get()
+
+				return l > maxX
+					? 'right'
+					: r < minX
+					? 'left'
+					: isBetween(l, minX, maxX) && r > maxX
+					? 'clip-right'
+					: isBetween(r, minX, maxX) && l < minX
+					? 'clip-left'
+					: l < minX && r > maxX
+					? 'overflow'
+					: 'contain'
+			}),
+			y: useTransform(y, (y) => {
+				y += margin.y
+				const t = offset.top.get()
+				const b = offset.bottom.get()
+				return t > maxY
+					? 'below'
+					: b < minY
+					? 'above'
+					: isBetween(t, minY, maxY) && b > maxY
+					? 'clip-bottom'
+					: isBetween(b, minY, maxY) && t < minY
+					? 'clip-top'
+					: t < minY && b > maxY
+					? 'overflow'
+					: 'contain'
+			}),
+		}
+
+		// intersect:
+		// How much of the tracked Frame is within the scroll window?
+		const intersect = {
+			x: useTransform(clip.x, (c) => {
+				const l = offset.left.get()
+				const r = offset.right.get()
+
+				const intersects = {
+					'clip-right': (maxX - l) / width,
+					'clip-left': r / width,
+					overflow: maxX / width,
+					contain: 1,
+				}
+
+				return intersects[c] || 0
+			}),
+			y: useTransform(clip.y, (c) => {
+				const t = offset.top.get()
+				const b = offset.bottom.get()
+
+				const intersects = {
+					'clip-bottom': (maxY - t) / height,
+					'clip-top': b / height,
+					overflow: maxY / height,
+					contain: 1,
+				}
+
+				return intersects[c] || 0
+			}),
+		}
+
+		// progress:
+		// How far is the tracked frame from scrolling into view (0) to scrolling out (1)?
+		const progress = {
+			x: useTransform(offset.left, (l: any) => {
+				return transform(l, [maxX, -width], [0, 1] as any)
+			}),
+			y: useTransform(offset.top, (t: any) => {
+				return transform(t, [maxY, -height], [0, 1] as any)
+			}),
+		}
+
+		// travel:
+		// Is the tracked Frame below/right (-1), contained (0), or above/left (1)?
+		const travel = {
+			x: useTransform(clip.x, (c) => {
+				const l = offset.left.get()
+				const r = offset.right.get()
+
+				const intersects = {
+					left: 1,
+					right: -1,
+					'clip-right': -1 + (maxX - l) / width,
+					'clip-left': 1 - r / width,
+					overflow: 0,
+					contain: 0,
+				}
+
+				return intersects[c]
+			}),
+			y: useTransform(clip.y, (c) => {
+				const t = offset.top.get()
+				const b = offset.bottom.get()
+
+				const intersects = {
+					above: 1,
+					below: -1,
+					'clip-bottom': -1 + (maxY - t) / height,
+					'clip-top': 1 - b / height,
+					overflow: 0,
+					contain: 0,
+				}
+
+				return intersects[c]
+			}),
+		}
+
+		// Store everything to tracked
+		// under this Frame's id
+		this.tracked.set(id, {
+			absolute,
+			offset,
+			clip,
+			travel,
+			intersect,
+			progress,
 		})
+
+		return this.tracked.get(id)
 	}
 
-	public getMarker = (props: any) => {
-		if (props.componentIdentifier) {
-			if (!props.children) {
-				console.warn(
-					`Error: you must call getMarkers with the props provided by your component's override.`
-				)
-				return
-			}
-			const [component] = props.children as any
-			const { markerId } = component.props
-			return this.markers[markerId]
-		}
-
-		return this.markers[props.id]
-	}
-
-	public handleScroll = (point: Point) => {
-		this.scrollPoint = point
-	}
-
+	// Scroll to a point
 	public scrollToPoint = (
-		point: Point,
+		point: { x: number; y: number },
 		options: { [key: string]: any } = {}
 	) => {
+		const { x, y } = this._scrollPoint
+
 		if (this.animation) {
 			this.animation.pause()
 		}
 
-		point = { ...this.scrollPoint, ...point }
+		// Create the targets to animate
+		const targets = {
+			x: x.get(),
+			y: y.get(),
+		}
 
-		return this.animate({
-			scrollX: point.x,
-			scrollY: point.y,
-			duration: 1500,
+		// Use animejs to animate target to new values,
+		// and update the motionValues when these change
+		this._animation = anime({
+			targets,
+			x: -point.x,
+			y: -point.y,
+			change: () => {
+				x.set(targets.x)
+				y.set(targets.y)
+			},
+			begin: () => (this._isAnimating = true),
+			complete: () => (this._isAnimating = false),
 			...options,
 		})
+
+		return this._animation
 	}
 
-	public scrollToMarker = (
+	// Scroll to a specific child Frame
+	public scrollToFrame = (
 		id: string,
 		edge: Edge | Edge[],
 		offset: number = 0,
 		options: { [key: string]: any } = {}
 	) => {
-		const marker = this.state.markers[id]
-
-		if (!marker) {
-			console.warn(
-				`Error: No marker found for ${id}. Available ids are: ${Object.keys(
-					this.markers
-				).join(", ")}.`
-			)
-		}
-
+		const { x, y } = this._scrollPoint
 		if (this.animation) {
 			this.animation.pause()
+		}
+
+		const targets = {
+			x: x.get(),
+			y: y.get(),
 		}
 
 		if (!Array.isArray(edge)) {
 			edge = [edge]
 		}
 
-		const edgeX = edge.find(e => e === "left" || e === "right")
-		const edgeY = edge.find(e => e === "top" || e === "bottom")
+		let anim = {
+			x: 0,
+			y: 0,
+		}
 
-		let anim: any = {}
+		const tracked = this.tracked[id]
 
+		// Decide which edges to offset
+		const edgeX = edge.find((e) => e === 'left' || e === 'right')
+		const edgeY = edge.find((e) => e === 'top' || e === 'bottom')
+
+		// Set anim
 		if (edgeX) {
-			anim.scrollX = marker.absolute[edgeX] - offset
+			anim.x = -(tracked.absolute[edgeX] - offset)
 		}
 
 		if (edgeY) {
-			anim.scrollY = marker.absolute[edgeY] - offset
+			anim.y = -(tracked.absolute[edgeY] - offset)
 		}
 
-		return this.animate({
+		// Use animejs to animate target to new values,
+		// and update the motionValues when these change
+		this._animation = anime({
+			targets,
 			...anim,
-			duration: 1500,
+			change: () => {
+				x.set(targets.x)
+				y.set(targets.y)
+			},
+			begin: () => (this._isAnimating = true),
+			complete: () => (this._isAnimating = false),
 			...options,
 		})
+
+		return this._animation
 	}
 
-	get scrollPoint() {
+	get overrides() {
 		return {
-			x: this.state.scrollX,
-			y: this.state.scrollY,
+			contentOffsetX: this._scrollPoint.x,
+			contentOffsetY: this._scrollPoint.y,
+			height: this._scrollSize.height,
+			width: this._scrollSize.width,
 		}
 	}
 
-	set scrollPoint(point: Point) {
-		this._direction = {
-			y:
-				point.y < this._scrollPoint.y
-					? "down"
-					: point.y > this._scrollPoint.y
-					? "up"
-					: "none",
-			x:
-				point.x < this._scrollPoint.x
-					? "right"
-					: point.x > this._scrollPoint.x
-					? "left"
-					: "none",
-		}
-
-		this._scrollPoint = point
-		this.updateMarkers()
-	}
-
-	get scrollY() {
-		return this.state.scrollY
-	}
-
-	set scrollY(scrollY: number) {
-		this._scrollPoint.y = -scrollY
-		this.updateMarkers()
-	}
-
-	get scrollX() {
-		return this.state.scrollX
-	}
-
-	set scrollX(scrollX: number) {
-		this._scrollPoint.x = -scrollX
-
-		this.setState({
-			scrollX,
-		})
-	}
-
-	get contentOffset() {
-		return {
-			contentOffsetX: -this.scrollX,
-			contentOffsetY: -this.scrollY,
-		}
+	get scrollComponent() {
+		return this._scrollComponent
 	}
 
 	get content() {
 		return this._content
 	}
 
-	get markers() {
-		return this.state.markers
+	get contentSize() {
+		return this._contentSize
+	}
+
+	get scrollSize() {
+		return this._scrollSize
 	}
 
 	get direction() {
-		return this.state.direction
+		return this._direction
 	}
 
 	get progress() {
-		return this.state.progress
+		return this._progress
+	}
+
+	get scrollPoint() {
+		return this._scrollPoint
+	}
+
+	get tracked() {
+		return this._tracked
+	}
+
+	get animation() {
+		return this._animation
+	}
+
+	get isAnimating() {
+		return this._isAnimating
 	}
 }
+
+const isBetween = (a: number, b: number, c: number) => a >= b && a <= c
+const isntBetween = (a: number, b: number, c: number) => a < b && a > c

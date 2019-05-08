@@ -1,9 +1,10 @@
-import { Controller } from "./Controller"
+import { Controller } from './Controller'
 
 /**
  * IntervalController's options
  */
 interface Options {
+	id?: string
 	delay?: number
 	paused?: boolean
 	cleanResume?: boolean
@@ -20,6 +21,8 @@ interface State extends Options {
 
 export class IntervalController extends Controller<State> {
 	_timeout: any
+	_ticking: boolean
+	_id: string
 
 	constructor(options: Options = {} as Options) {
 		super({
@@ -30,7 +33,13 @@ export class IntervalController extends Controller<State> {
 			onChange: () => null,
 			...options,
 		})
-		if (!this.paused) {
+
+		this._id = options.id || 'fc_ticker'
+
+		if (this.paused) {
+			this._ticking = false
+		} else {
+			this._ticking = true
 			this.tick()
 		}
 	}
@@ -41,7 +50,19 @@ export class IntervalController extends Controller<State> {
 	 */
 	start = () => {
 		if (!this.paused) return
+		if (!this._ticking) {
+			this.tick()
+		}
 		this.paused = false
+	}
+
+	/**
+	 * Stop the interval.
+	 *
+	 */
+	pause = () => {
+		if (this.paused) return
+		this.paused = true
 	}
 
 	/**
@@ -50,6 +71,8 @@ export class IntervalController extends Controller<State> {
 	 */
 	stop = () => {
 		if (this.paused) return
+		this._ticking = false
+		this.clearTicker()
 		this.paused = true
 	}
 
@@ -99,10 +122,18 @@ export class IntervalController extends Controller<State> {
 		return this.state.frame
 	}
 
+	protected clearTicker = () => {
+		if (window['fc_ticker_' + this._id]) {
+			clearInterval(window['fc_ticker_' + this._id])
+		}
+	}
+
 	/**
 	 * Begin a new interval.
 	 */
 	protected tick = () => {
+		this.clearTicker()
+
 		this._timeout = window.setTimeout(() => {
 			this.tick()
 			if (!this.paused) {
@@ -112,5 +143,7 @@ export class IntervalController extends Controller<State> {
 				})
 			}
 		}, this.delay * 1000)
+
+		window['fc_ticker_' + this._id] = this._timeout
 	}
 }

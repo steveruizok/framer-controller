@@ -1,8 +1,9 @@
-import { Controller } from "./Controller";
+import { Controller } from './Controller';
 /**
  * IntervalController's options
  */
 interface Options {
+    id?: string;
     delay?: number;
     paused?: boolean;
     cleanResume?: boolean;
@@ -17,12 +18,19 @@ interface State extends Options {
 }
 export declare class IntervalController extends Controller<State> {
     _timeout: any;
+    _ticking: boolean;
+    _id: string;
     constructor(options?: Options);
     /**
      * Start the interval.
      *
      */
     start: () => void;
+    /**
+     * Stop the interval.
+     *
+     */
+    pause: () => void;
     /**
      * Stop the interval.
      *
@@ -47,6 +55,7 @@ export declare class IntervalController extends Controller<State> {
      * The controller's current frame.
      */
     readonly frame: number;
+    protected clearTicker: () => void;
     /**
      * Begin a new interval.
      */

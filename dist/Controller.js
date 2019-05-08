@@ -13,52 +13,6 @@ class Controller {
         this._isAnimating = false;
         this._initial = {};
         this._state = {};
-        /** Find a child with a given prop / value pair somewhere in its children */
-        this.getFlaggedChildren = (container, source, flag = "markerId") => {
-            const { height: contentHeight, width: contentWidth } = container;
-            const ids = [];
-            const markers = [];
-            const recursivelySearchForProp = (parent, component) => {
-                const { props } = component;
-                const { _overrideForwardingDescription: overrides } = props;
-                if (props[flag]) {
-                    ids.push(props[flag]);
-                    markers.push(parent);
-                }
-                else if (overrides) {
-                    let flagged = Object.keys(overrides).find(k => overrides[k] === flag);
-                    if (flagged) {
-                        ids.push(props.id);
-                        markers.push(component);
-                    }
-                }
-                if (Array.isArray(props.children)) {
-                    props.children.forEach((c) => recursivelySearchForProp(component, c));
-                }
-                return false;
-            };
-            recursivelySearchForProp(this, source);
-            return markers.reduce((acc, marker, index) => {
-                const { centerX, centerY, height, width } = marker.props;
-                const cx = parseFloat(centerX) / 100;
-                const cy = parseFloat(centerY) / 100;
-                let id = ids[index];
-                if (acc[id]) {
-                    console.warn(`Warning: Found markers with the same flagged prop: { ${flag}: ${id} }! The second will overwrite the first.`);
-                }
-                acc[id] = {
-                    centerX: contentWidth * cx,
-                    centerY: contentHeight * cy,
-                    top: contentHeight * cy - height / 2,
-                    bottom: contentHeight * cy + height / 2,
-                    left: contentWidth * cx - width / 2,
-                    right: contentWidth * cx + width / 2,
-                    height,
-                    width,
-                };
-                return acc;
-            }, {});
-        };
         /**
          * A method that fires automatically after a controller's state
          * is reset using the `reset` method.
@@ -98,7 +52,7 @@ class Controller {
          */
         this.animate = (options, target) => {
             const targets = target ? Object.assign({}, this.state[target]) : Object.assign({}, this.state);
-            this._animation = animejs_1.default(Object.assign({}, options, { targets, change: () => {
+            this._animation = animejs_1.default(Object.assign({ targets }, options, { change: () => {
                     if (target) {
                         this.setState({
                             [target]: targets,

@@ -1,0 +1,25 @@
+{
+	"main": "dist/index.js",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/react": "^16.8.17"
+	},
+	"peerDependencies": {
+		"framer": "^1",
+		"react": "^16.3.0",
+		"react-dom": "^16.3.0"
+	},
+	"framer": {
+		"id": "329b982b-2ddf-489c-b32d-9022bab2b6bd",
+		"displayName": "Framer Controller ✨"
+	},
+	"author": "Steve Ruiz",
+	"dependencies": {
+		"framer-controller": "^1.7.32",
+		"lottie-web": "^5.5.0",
+		"react": "^16.8.6",
+		"react-dom": "^16.8.6"
+	},
+	"name": "@framer/steveruizok.framer-controller",
+	"version": "1.4.0"
+}

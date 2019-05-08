@@ -11,7 +11,19 @@ class IntervalController extends Controller_1.Controller {
         this.start = () => {
             if (!this.paused)
                 return;
+            if (!this._ticking) {
+                this.tick();
+            }
             this.paused = false;
+        };
+        /**
+         * Stop the interval.
+         *
+         */
+        this.pause = () => {
+            if (this.paused)
+                return;
+            this.paused = true;
         };
         /**
          * Stop the interval.
@@ -20,6 +32,8 @@ class IntervalController extends Controller_1.Controller {
         this.stop = () => {
             if (this.paused)
                 return;
+            this._ticking = false;
+            this.clearTicker();
             this.paused = true;
         };
         /**
@@ -29,10 +43,16 @@ class IntervalController extends Controller_1.Controller {
         this.toggle = () => {
             this.paused = !this.paused;
         };
+        this.clearTicker = () => {
+            if (window['fc_ticker_' + this._id]) {
+                clearInterval(window['fc_ticker_' + this._id]);
+            }
+        };
         /**
          * Begin a new interval.
          */
         this.tick = () => {
+            this.clearTicker();
             this._timeout = window.setTimeout(() => {
                 this.tick();
                 if (!this.paused) {
@@ -42,8 +62,14 @@ class IntervalController extends Controller_1.Controller {
                     });
                 }
             }, this.delay * 1000);
+            window['fc_ticker_' + this._id] = this._timeout;
         };
-        if (!this.paused) {
+        this._id = options.id || 'fc_ticker';
+        if (this.paused) {
+            this._ticking = false;
+        }
+        else {
+            this._ticking = true;
             this.tick();
         }
     }

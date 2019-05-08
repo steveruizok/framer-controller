@@ -5,5 +5,8 @@
 	"author": "Steve Ruiz",
 	"peerDependencies": {
 		"framer": "^0.10"
+	},
+	"devDependencies": {
+		"framer": "^0.10"
 	}
 }

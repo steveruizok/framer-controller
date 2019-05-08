@@ -76,6 +76,23 @@
         }
       ]
     },
+    "src/controllers/Controller.mdx": {
+      "name": "Controller",
+      "route": "/Controllerç",
+      "id": "8bfc5f200d33fabcc8cf0be737c9254d",
+      "filepath": "src/controllers/Controller.mdx",
+      "link": null,
+      "slug": "src-controllers-controller",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "controller",
+          "value": "Controller"
+        }
+      ]
+    },
     "src/controllers/CounterController.mdx": {
       "name": "CounterController",
       "route": "/CounterController",
@@ -110,23 +127,6 @@
         }
       ]
     },
-    "src/controllers/Controller.mdx": {
-      "name": "Controller",
-      "route": "/Controllerç",
-      "id": "8bfc5f200d33fabcc8cf0be737c9254d",
-      "filepath": "src/controllers/Controller.mdx",
-      "link": null,
-      "slug": "src-controllers-controller",
-      "order": 0,
-      "menu": null,
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "controller",
-          "value": "Controller"
-        }
-      ]
-    },
     "src/controllers/FormController.mdx": {
       "name": "FormController",
       "route": "/FormController",
@@ -141,6 +141,23 @@
           "depth": 1,
           "slug": "formcontroller",
           "value": "FormController"
+        }
+      ]
+    },
+    "src/controllers/IndexController.mdx": {
+      "name": "IndexController",
+      "route": "/IndexController",
+      "id": "3ceef3684074d830f05e98d568f4a924",
+      "filepath": "src/controllers/IndexController.mdx",
+      "link": null,
+      "slug": "src-controllers-index-controller",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "indexcontroller",
+          "value": "IndexController"
         }
       ]
     },
@@ -175,23 +192,6 @@
           "depth": 1,
           "slug": "pagecontroller",
           "value": "PageController"
-        }
-      ]
-    },
-    "src/controllers/IndexController.mdx": {
-      "name": "IndexController",
-      "route": "/IndexController",
-      "id": "3ceef3684074d830f05e98d568f4a924",
-      "filepath": "src/controllers/IndexController.mdx",
-      "link": null,
-      "slug": "src-controllers-index-controller",
-      "order": 0,
-      "menu": null,
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "indexcontroller",
-          "value": "IndexController"
         }
       ]
     },

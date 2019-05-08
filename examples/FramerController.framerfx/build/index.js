@@ -1,10 +1,10 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory((function webpackLoadOptionalExternalModule() { try { return require("framer"); } catch(e) {} }()));
+		module.exports = factory(require("framer"));
 	else if(typeof define === 'function' && define.amd)
 		define(["framer"], factory);
 	else {
-		var a = typeof exports === 'object' ? factory((function webpackLoadOptionalExternalModule() { try { return require("framer"); } catch(e) {} }())) : factory(root["Framer"]);
+		var a = typeof exports === 'object' ? factory(require("framer")) : factory(root["Framer"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
 })(window, function(__WEBPACK_EXTERNAL_MODULE_framer__) {
@@ -46,17 +46,32 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
 /******/ 	};
 /******/
 /******/ 	// define __esModule on exports
 /******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
 /******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -93,17 +108,48 @@ return /******/ (function(modules) { // webpackBootstrap
   !*** ./code sync \.(t|j)s(x?)|\.css$ ***!
   \***************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function webpackEmptyContext(req) {
-	var e = new Error('Cannot find module "' + req + '".');
-	e.code = 'MODULE_NOT_FOUND';
-	throw e;
+var map = {
+	"./canvas.tsx": "./code/canvas.tsx"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
 }
-webpackEmptyContext.keys = function() { return []; };
-webpackEmptyContext.resolve = webpackEmptyContext;
-module.exports = webpackEmptyContext;
-webpackEmptyContext.id = "./code sync recursive \\.(t|j)s(x?)|\\.css$";
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./code sync recursive \\.(t|j)s(x?)|\\.css$";
+
+/***/ }),
+
+/***/ "./code/canvas.tsx":
+/*!*************************!*\
+  !*** ./code/canvas.tsx ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+// WARNING: this file is auto generated, any changes will be lost
+const framer_1 = __webpack_require__(/*! framer */ "framer");
+const canvas = framer_1.CanvasStore.shared({"children":[]});
+
 
 /***/ }),
 
@@ -158,10 +204,10 @@ exports.__framer__ = package
 /*!**********************!*\
   !*** ./package.json ***!
   \**********************/
-/*! exports provided: framer, author, peerDependencies, default */
+/*! exports provided: framer, author, peerDependencies, devDependencies, default */
 /***/ (function(module) {
 
-module.exports = {"framer":{"id":"d8b5a015-03f3-4fb9-93f2-bdd82c24678b"},"author":"Steve Ruiz","peerDependencies":{"framer":"^0.10"}};
+module.exports = {"framer":{"id":"d8b5a015-03f3-4fb9-93f2-bdd82c24678b"},"author":"Steve Ruiz","peerDependencies":{"framer":"^0.10"},"devDependencies":{"framer":"^0.10"}};
 
 /***/ }),
 
@@ -172,7 +218,6 @@ module.exports = {"framer":{"id":"d8b5a015-03f3-4fb9-93f2-bdd82c24678b"},"author
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-if(typeof __WEBPACK_EXTERNAL_MODULE_framer__ === 'undefined') {var e = new Error("Cannot find module \"undefined\""); e.code = 'MODULE_NOT_FOUND'; throw e;}
 module.exports = __WEBPACK_EXTERNAL_MODULE_framer__;
 
 /***/ })
