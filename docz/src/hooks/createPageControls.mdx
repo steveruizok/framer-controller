@@ -133,7 +133,7 @@ export function MiddleButton(props): Override {
 
 ### nextPage
 
-`(direction: 'right' | 'left' = 'right') => number`
+`(direction: 'right' | 'left' = 'right') => number | null`
 
 Returns the index of the next page in the given direction, or else `null` if no
 page exists in that direction.
@@ -150,7 +150,7 @@ export function NextIndicator(props): Override {
 
 ### previousPage
 
-`() => void`
+`() => number | null`
 
 Returns the index of the previous page in the hook's "history" of visited pages,
 or else `null` if no page exists.
@@ -168,6 +168,8 @@ export function BackIndicator(props): Override {
 ## Properties
 
 ### currentPage
+
+`number`
 
 The component's current page (as determined by the hook).
 

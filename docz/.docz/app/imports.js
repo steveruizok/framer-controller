@@ -1,8 +1,6 @@
 export const imports = {
   'src/index.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "src-index" */ 'src/index.mdx'),
-  'src/hooks/createPageControls.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "src-hooks-create-page-controls" */ 'src/hooks/createPageControls.mdx'),
   'src/controllers/BuildYourOwn.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "src-controllers-build-your-own" */ 'src/controllers/BuildYourOwn.mdx'),
   'src/controllers/Controller.mdx': () =>
@@ -23,8 +21,10 @@ export const imports = {
     import(/* webpackPrefetch: true, webpackChunkName: "src-controllers-places-controller" */ 'src/controllers/PlacesController.mdx'),
   'src/controllers/RelativeController.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "src-controllers-relative-controller" */ 'src/controllers/RelativeController.mdx'),
-  'src/controllers/SelectionController.mdx': () =>
-    import(/* webpackPrefetch: true, webpackChunkName: "src-controllers-selection-controller" */ 'src/controllers/SelectionController.mdx'),
   'src/controllers/ScrollController.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "src-controllers-scroll-controller" */ 'src/controllers/ScrollController.mdx'),
+  'src/controllers/SelectionController.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "src-controllers-selection-controller" */ 'src/controllers/SelectionController.mdx'),
+  'src/hooks/createPageControls.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "src-hooks-create-page-controls" */ 'src/hooks/createPageControls.mdx'),
 }
