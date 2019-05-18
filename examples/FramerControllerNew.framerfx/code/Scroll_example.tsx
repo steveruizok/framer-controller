@@ -1,5 +1,6 @@
 import { Override } from "framer"
-import { ScrollController } from "../../../dist/"
+import { useTransform } from "framer-motion"
+import { ScrollController } from "framer-controller"
 
 // Scroll Controller (Deprecated)
 
@@ -27,4 +28,8 @@ export const Scrubber_intersect: Override = props => {
 export const Scrubber2_travel: Override = props => {
     const { travel } = controller.trackFrame(props)
     return { progress: travel.y }
+}
+
+export const RegularFrame: Override = () => {
+    return { height: useTransform(controller.progress.y, v => v * 100) }
 }

@@ -165,9 +165,9 @@
                 "os" : "10_14",
                 "size" : {
                   "height" : 16,
-                  "width" : 101
+                  "width" : 326
                 },
-                "width" : 100
+                "width" : 325
               },
               "entityMap" : {
 
@@ -306,6 +306,75 @@
             "top" : 0,
             "visible" : true,
             "width" : 89,
+            "widthType" : 0
+          },
+          {
+            "__class" : "FrameNode",
+            "aspectRatio" : null,
+            "blendingEnabled" : 0,
+            "blendingMode" : "normal",
+            "bottom" : 263,
+            "centerAnchorX" : 0.87333333333333329,
+            "centerAnchorY" : 0.55233990147783252,
+            "children" : [
+
+            ],
+            "clip" : false,
+            "codeOverrideEnabled" : true,
+            "codeOverrideFile" : ".\/Scroll_example.tsx",
+            "codeOverrideIdentifier" : ".\/Scroll_example.tsx_RegularFrame",
+            "codeOverrideName" : "RegularFrame",
+            "constraintsLocked" : false,
+            "deviceType" : null,
+            "exportOptions" : [
+
+            ],
+            "fillColor" : "rgba(0, 153, 255, 0.5)",
+            "fillEnabled" : true,
+            "fillGradient" : {
+              "__class" : "LinearGradient",
+              "alpha" : 1,
+              "angle" : 0,
+              "end" : "rgba(0,0,0,0)",
+              "start" : "black"
+            },
+            "fillImage" : null,
+            "fillImagePixelHeight" : null,
+            "fillImagePixelWidth" : null,
+            "fillImageResize" : "fill",
+            "fillType" : "color",
+            "height" : 201,
+            "heightType" : 0,
+            "id" : "We8t3sB3n",
+            "intrinsicHeight" : null,
+            "intrinsicWidth" : null,
+            "isExternalMaster" : null,
+            "isMaster" : false,
+            "isTarget" : false,
+            "left" : null,
+            "locked" : false,
+            "name" : null,
+            "navigationTarget" : null,
+            "navigationTransition" : "push",
+            "navigationTransitionBackdropColor" : "rgba(4,4,15,.4)",
+            "navigationTransitionDirection" : "left",
+            "opacity" : 1,
+            "originalid" : null,
+            "parentid" : "s1mjXCLaR",
+            "previewSettings" : null,
+            "radius" : 0,
+            "radiusBottomLeft" : 0,
+            "radiusBottomRight" : 0,
+            "radiusIsRelative" : false,
+            "radiusPerCorner" : false,
+            "radiusTopLeft" : 0,
+            "radiusTopRight" : 0,
+            "replicaInfo" : null,
+            "right" : 25,
+            "rotation" : 0,
+            "top" : null,
+            "visible" : true,
+            "width" : 45,
             "widthType" : 0
           }
         ],
@@ -3980,17 +4049,17 @@
             "__class" : "TextNode",
             "autoSize" : true,
             "bottom" : null,
-            "centerAnchorX" : 0.49843749999999998,
-            "centerAnchorY" : 0.34507042253521125,
+            "centerAnchorX" : 0.5,
+            "centerAnchorY" : 0.301056338028169,
             "codeOverrideEnabled" : true,
-            "codeOverrideFile" : ".\/Counter_example.tsx",
-            "codeOverrideIdentifier" : ".\/Counter_example.tsx_text",
+            "codeOverrideFile" : ".\/Interval_example.tsx",
+            "codeOverrideIdentifier" : ".\/Interval_example.tsx_text",
             "codeOverrideName" : "text",
             "constraintsLocked" : false,
             "exportOptions" : [
 
             ],
-            "height" : 16,
+            "height" : 108,
             "heightType" : 0,
             "id" : "tnxxjwBJc",
             "isTarget" : false,
@@ -4010,9 +4079,9 @@
                     "emptyStyle" : [
                       "FONT:HelveticaNeue",
                       "COLOR:hsl(229, 75%, 51%)",
-                      "SIZE:14",
                       "LETTERSPACING:0",
-                      "LINEHEIGHT:1.2"
+                      "LINEHEIGHT:1.2",
+                      "SIZE:90"
                     ]
                   },
                   "depth" : 0,
@@ -4033,17 +4102,17 @@
                     {
                       "length" : 1,
                       "offset" : 0,
-                      "style" : "SIZE:14"
-                    },
-                    {
-                      "length" : 1,
-                      "offset" : 0,
                       "style" : "LETTERSPACING:0"
                     },
                     {
                       "length" : 1,
                       "offset" : 0,
                       "style" : "LINEHEIGHT:1.2"
+                    },
+                    {
+                      "length" : 1,
+                      "offset" : 0,
+                      "style" : "SIZE:90"
                     }
                   ],
                   "key" : "dr13c",
@@ -4052,11 +4121,11 @@
                 }
               ],
               "cached" : {
-                "html" : "<div data-offset-key=\"dr13c-0-0\" class=\"public-DraftStyleDefault-block public-DraftStyleDefault-ltr\"><span data-offset-key=\"dr13c-0-0\" style=\"tab-size:4;font-weight:400;font-family:&quot;HelveticaNeue&quot;, &quot;Helvetica Neue&quot;, sans-serif;-webkit-text-fill-color:hsl(229, 75%, 51%);font-size:14px;letter-spacing:0px;line-height:1.2\"><span data-text=\"true\">0<\/span><\/span><\/div>",
+                "html" : "<div data-offset-key=\"dr13c-0-0\" class=\"public-DraftStyleDefault-block public-DraftStyleDefault-ltr\"><span data-offset-key=\"dr13c-0-0\" style=\"tab-size:4;font-weight:400;font-family:&quot;HelveticaNeue&quot;, &quot;Helvetica Neue&quot;, sans-serif;-webkit-text-fill-color:hsl(229, 75%, 51%);font-size:90px;letter-spacing:0px;line-height:1.2\"><span data-text=\"true\">0<\/span><\/span><\/div>",
                 "os" : "10_14",
                 "size" : {
-                  "height" : 16,
-                  "width" : 9
+                  "height" : 108,
+                  "width" : 52
                 },
                 "width" : 0
               },
@@ -4064,12 +4133,10 @@
 
               }
             },
-            "top" : 188,
+            "top" : 117,
             "visible" : true,
-            "width" : 9,
-            "widthType" : 0,
-            "x" : 134,
-            "y" : 153
+            "width" : 52,
+            "widthType" : 0
           },
           {
             "__class" : "FrameNode",
@@ -4168,15 +4235,13 @@
                 "top" : null,
                 "visible" : true,
                 "width" : 32,
-                "widthType" : 0,
-                "x" : 77,
-                "y" : 16
+                "widthType" : 0
               }
             ],
             "clip" : false,
             "codeOverrideEnabled" : true,
-            "codeOverrideFile" : ".\/Counter_example.tsx",
-            "codeOverrideIdentifier" : ".\/Counter_example.tsx_Start",
+            "codeOverrideFile" : ".\/Interval_example.tsx",
+            "codeOverrideIdentifier" : ".\/Interval_example.tsx_Start",
             "codeOverrideName" : "Start",
             "constraintsLocked" : false,
             "deviceType" : null,
@@ -4328,15 +4393,13 @@
                 "top" : null,
                 "visible" : true,
                 "width" : 40,
-                "widthType" : 0,
-                "x" : 77,
-                "y" : 16
+                "widthType" : 0
               }
             ],
             "clip" : false,
             "codeOverrideEnabled" : true,
-            "codeOverrideFile" : ".\/Counter_example.tsx",
-            "codeOverrideIdentifier" : ".\/Counter_example.tsx_Pause",
+            "codeOverrideFile" : ".\/Interval_example.tsx",
+            "codeOverrideIdentifier" : ".\/Interval_example.tsx_Pause",
             "codeOverrideName" : "Pause",
             "constraintsLocked" : false,
             "deviceType" : null,
@@ -4488,15 +4551,13 @@
                 "top" : null,
                 "visible" : true,
                 "width" : 31,
-                "widthType" : 0,
-                "x" : 77,
-                "y" : 16
+                "widthType" : 0
               }
             ],
             "clip" : false,
             "codeOverrideEnabled" : true,
-            "codeOverrideFile" : ".\/Counter_example.tsx",
-            "codeOverrideIdentifier" : ".\/Counter_example.tsx_Stop",
+            "codeOverrideFile" : ".\/Interval_example.tsx",
+            "codeOverrideIdentifier" : ".\/Interval_example.tsx_Stop",
             "codeOverrideName" : "Stop",
             "constraintsLocked" : false,
             "deviceType" : null,

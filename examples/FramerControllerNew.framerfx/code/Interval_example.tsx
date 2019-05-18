@@ -1,7 +1,9 @@
 import { Override } from "framer"
 import { IntervalController } from "framer-controller"
 
-export const controller = new IntervalController()
+export const controller = new IntervalController({
+    paused: true,
+})
 
 export function text(): Override {
     return {
