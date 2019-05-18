@@ -10,4 +10,6 @@ export { PageController } from './PageController';
 export { PlacesController } from './PlacesController';
 export { SelectionController } from './SelectionController';
 export { ScrollController } from './ScrollController';
+export { createPageControls } from './createPageControls';
+export { createStore } from './createStore';
 export { ScrollController as ScrollControllerDeprecated, } from './ScrollController_deprecated';

@@ -3,7 +3,7 @@ name: Get Started
 route: /
 ---
 
-import { Link } from "docz"
+import { Link } from 'docz'
 
 # Framer Controller
 
@@ -45,10 +45,20 @@ The library comes with several such controllers:
 - <Link to="/FormController">FormController</Link> - for managing form values, validation and state
 - <Link to="/PlacesController">PlacesController</Link> -  for fetching place predictions and details from Google Maps API
 
-The library also includes controllers for Framer X's _Page_ and _Scroll_ components.
+The library also includes controllers for Framer X's _Page_ and _Scroll_
+components.
 
 - <Link to="/PageController">PageController</Link> -  for controlling a Framer X Page component
 - <Link to="/ScrollController">ScrollController</Link> -  for controlling a Framer X Scroll component
+
+### Hooks
+
+As of Framer X v24, overrides can also include
+<a href="https://reactjs.org/docs/hooks-intro.html">React hooks</a>. Newer
+versions of this library will replace the controllers above with more efficient
+hooks-based controllers. As a preview, see:
+
+- <Link to="/createPageControls">createPageControls</Link> - a set of controls for the Page component.
 
 ## Installation
 
@@ -63,12 +73,12 @@ The library also includes controllers for Framer X's _Page_ and _Scroll_ compone
 3. Assign its properties and methods to components using Overrides.
 
 ```jsx
-import { Override } from "framer"
-import Controller, { FetchController } from "framer-controller"
+import { Override } from 'framer'
+import Controller, { FetchController } from 'framer-controller'
 
 const controller = new FetchController({
-	url: "https://randomuser.me/api/",
-	parse: data => data.results[0],
+	url: 'https://randomuser.me/api/',
+	parse: (data) => data.results[0],
 })
 
 export const ImageContainer: Override = () => ({

@@ -1,6 +1,6 @@
 {
 	"name": "framer-controller",
-	"version": "1.7.32",
+	"version": "1.8.0",
 	"description": "Control components and state in Framer X with reusable controllers.",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
