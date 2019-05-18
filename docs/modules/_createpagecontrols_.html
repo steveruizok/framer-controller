@@ -85,19 +85,46 @@
 					<a name="createpagecontrols" class="tsd-anchor"></a>
 					<h3>create<wbr>Page<wbr>Controls</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Page<wbr>Controls<span class="tsd-signature-symbol">(</span>loop<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">usePageControls</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Page<wbr>Controls<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">usePageControls</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/bcd91b1/lib/createPageControls.ts#L3">createPageControls.ts:3</a></li>
+									<li>Defined in <a href="https://github.com/steveruizok/framer-controller/blob/1ada8f5/lib/createPageControls.ts#L19">createPageControls.ts:19</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<h1 id="createpagecontrols">createPageControls</h1>
+									<p>Create a unique <code>usePageControls</code> hook.
+									<code>`</code></p>
+								</div>
+								<p>// Without options
+								const usePageControls = createPageControls()</p>
+								<p>// With options
+									const usePageControls = createPageControls({
+									loop: true,
+									currentPage: 3,
+									history: [1, 0, 2, 0, 1],
+									})
+								<code>`</code></p>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> loop: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">object</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> current<wbr>Page<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> history<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> loop<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5>
+										</li>
+									</ul>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">usePageControls</span></h4>

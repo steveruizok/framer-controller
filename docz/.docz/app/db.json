@@ -56,6 +56,113 @@
         }
       ]
     },
+    "src/hooks/createPageControls.mdx": {
+      "name": "createPageControls",
+      "route": "/createPageControls",
+      "id": "50080fdb89f29ebdf14a80f3e944780e",
+      "filepath": "src/hooks/createPageControls.mdx",
+      "link": null,
+      "slug": "src-hooks-create-page-controls",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "createpagecontrols",
+          "value": "createPageControls"
+        },
+        {
+          "depth": 2,
+          "slug": "usage",
+          "value": "Usage"
+        },
+        {
+          "depth": 3,
+          "slug": "1-create-the-hook",
+          "value": "1.  Create the hook"
+        },
+        {
+          "depth": 3,
+          "slug": "2-connect-a-page-component",
+          "value": "2.  Connect a Page component"
+        },
+        {
+          "depth": 3,
+          "slug": "3-control-the-page-component",
+          "value": "3.  Control the Page component"
+        },
+        {
+          "depth": 1,
+          "slug": "usepagecontrols",
+          "value": "usePageControls"
+        },
+        {
+          "depth": 2,
+          "slug": "usage-1",
+          "value": "Usage"
+        },
+        {
+          "depth": 2,
+          "slug": "properties",
+          "value": "Properties"
+        },
+        {
+          "depth": 3,
+          "slug": "-currentpage-number",
+          "value": "🍊 currentPage  number"
+        },
+        {
+          "depth": 2,
+          "slug": "event-handlers",
+          "value": "Event Handlers"
+        },
+        {
+          "depth": 3,
+          "slug": "-onchangepage-currentpage-number--void",
+          "value": "🍊 onChangePage  (currentPage: number) => void"
+        },
+        {
+          "depth": 2,
+          "slug": "methods",
+          "value": "Methods"
+        },
+        {
+          "depth": 3,
+          "slug": "-snaptopage-index-number--0--void",
+          "value": "🍊 snapToPage  (index: number = 0) => void"
+        },
+        {
+          "depth": 3,
+          "slug": "-snaptonextpage-direction-right--left--right--void",
+          "value": "🍊 snapToNextPage  (direction: 'right' | 'left' = 'right') => void"
+        },
+        {
+          "depth": 3,
+          "slug": "-snaptopreviouspage---void",
+          "value": "🍊 snapToPreviousPage  () => void"
+        },
+        {
+          "depth": 3,
+          "slug": "-snaptoprogress-progress-number--void",
+          "value": "🍊 snapToProgress  (progress: number) => void"
+        },
+        {
+          "depth": 3,
+          "slug": "-nextpage-direction-right--left--right--number--null",
+          "value": "🍊 nextPage  (direction: 'right' | 'left' = 'right') => number | null"
+        },
+        {
+          "depth": 3,
+          "slug": "-previouspage---number--null",
+          "value": "🍊 previousPage  () => number | null"
+        },
+        {
+          "depth": 1,
+          "slug": "example",
+          "value": "Example"
+        }
+      ]
+    },
     "src/controllers/BuildYourOwn.mdx": {
       "name": "Build Your Own",
       "route": "/BuildYourOwn",
@@ -272,83 +379,6 @@
           "depth": 1,
           "slug": "selectioncontroller",
           "value": "SelectionController"
-        }
-      ]
-    },
-    "src/hooks/createPageControls.mdx": {
-      "name": "createPageControls",
-      "route": "/createPageControls",
-      "id": "50080fdb89f29ebdf14a80f3e944780e",
-      "filepath": "src/hooks/createPageControls.mdx",
-      "link": null,
-      "slug": "src-hooks-create-page-controls",
-      "order": 0,
-      "menu": null,
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "createpagecontrols",
-          "value": "createPageControls"
-        },
-        {
-          "depth": 2,
-          "slug": "usage",
-          "value": "Usage"
-        },
-        {
-          "depth": 2,
-          "slug": "methods",
-          "value": "Methods"
-        },
-        {
-          "depth": 3,
-          "slug": "onchangepage",
-          "value": "onChangePage"
-        },
-        {
-          "depth": 3,
-          "slug": "snaptopage",
-          "value": "snapToPage"
-        },
-        {
-          "depth": 3,
-          "slug": "snaptonextpage",
-          "value": "snapToNextPage"
-        },
-        {
-          "depth": 3,
-          "slug": "snaptopreviouspage",
-          "value": "snapToPreviousPage"
-        },
-        {
-          "depth": 3,
-          "slug": "snaptoprogress",
-          "value": "snapToProgress"
-        },
-        {
-          "depth": 3,
-          "slug": "nextpage",
-          "value": "nextPage"
-        },
-        {
-          "depth": 3,
-          "slug": "previouspage",
-          "value": "previousPage"
-        },
-        {
-          "depth": 2,
-          "slug": "properties",
-          "value": "Properties"
-        },
-        {
-          "depth": 3,
-          "slug": "currentpage",
-          "value": "currentPage"
-        },
-        {
-          "depth": 1,
-          "slug": "example",
-          "value": "Example"
         }
       ]
     }

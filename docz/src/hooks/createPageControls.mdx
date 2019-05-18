@@ -7,12 +7,19 @@ route: /createPageControls
 
 The `createPageControls` function returns a hook, `usePageControls`, that you
 can use to control a page component. This hook provides an **alternative** to
-the PageController.
+PageController.
+
+Follow the steps below to get started. The `usePageControls` section documents
+the `usePageControls` hook in more detail. At the end of this page, you'll find
+a complete example that uses each method.
 
 ## Usage
 
-To use this hook, first create a `usePageControls` hook by calling
-`createPageControls`.
+### **1.** Create the hook
+
+In an overrides file, import `createPageControls` from the `framer-controller`
+library as shown below. Next, call `createPageControls` and store the returned
+hook under the name `usePageControls`.
 
 ```tsx
 import { Override } from 'framer'
@@ -21,7 +28,22 @@ import { createPageControls } from 'framer-controller'
 const usePageControls = createPageControls()
 ```
 
-Next, override the page component you wish to control as shown below.
+If you wish, you can also pass `createPageControls` an object of (optional)
+options.
+
+```tsx
+const usePageControls = createPageControls({
+	loop: true,
+	currentPage: 2,
+	history: [1, 2, 5, 2],
+})
+```
+
+### **2.** Connect a Page component
+
+Next, override the page component you wish to control. Call `usePageControls`
+inside of the override and pass the returned values `currentPage` and
+`onChangePage` to the component.
 
 ```tsx
 export function PageComponent(props): Override {
@@ -34,9 +56,11 @@ export function PageComponent(props): Override {
 }
 ```
 
-To control the page component through separate overrides, call the
-`usePageControls` hook from your override, then destructure out and use the
-methods that it returns.
+### **3.** Control the Page component
+
+From here on, you can control the Page component in any other override by
+calling the `usePageControls` hook from your override and using the properties
+and methods that it returns.
 
 ```tsx
 export function NextButton(props): Override {
@@ -48,17 +72,91 @@ export function NextButton(props): Override {
 }
 ```
 
-## Methods
+# usePageControls
 
-### onChangePage
+Once you've created a `usePageControls` hook (using `createPageControls`), you
+can call `usePageControls` from inside of an override. Doing do will return a
+collection of **properties**, **event handlers** and **methods** for controlling
+the Page component or interpreting its state.
 
-`(currentPage: number) => void`
+## Usage
+
+At minimum, you should call this hook from your Page component's override as
+shown below. This will connect your Page component's `currentPage` to the hook's
+`currentPage`, as well as guarantee that these stay in sync as the user swipes
+between pages.
+
+```tsx
+export function PageComponent(props): Override {
+	const { currentPage, onChangePage } = usePageControls(props)
+
+	return {
+		currentPage,
+		onChangePage,
+	}
+}
+```
+
+Note that in the example above, we're calling the `usePageControls` hook with
+the `props` of the Page component. You only have to do this with the Page
+component's props. In the other examples, we call this hook without any
+argument.
+
+## Properties
+
+### 🍊 currentPage `number`
+
+The component's current page (as determined by the hook).
+
+```tsx
+export function PageNumber(props): Override {
+	const { currentPage } = usePageControls()
+
+	return {
+		text: currentPage,
+	}
+}
+```
+
+## Event Handlers
+
+### 🍊 onChangePage `(currentPage: number) => void`
 
 Updates the hook when the user changes the Page component's current page.
 
-### snapToPage
+```tsx
+export function PageComponent(props): Override {
+	const { currentPage, onChangePage } = usePageControls(props)
 
-`(index: number = 0) => void`
+	return {
+		currentPage,
+		onChangePage,
+	}
+}
+```
+
+Though you can pass this property directly to your Page component's
+`onChangePage` prop, you mmight want to do other things in your component's
+`onChangePage` event, too. In that case, you can also call this method like
+this:
+
+```tsx
+export function PageComponent(props): Override {
+	const { currentPage, onChangePage } = usePageControls(props)
+
+	return {
+		currentPage,
+		onChangePage: (currentPage) => {
+			// other stuff
+			onChangePage(currentPage)
+		},
+	}
+}
+```
+
+## Methods
+
+### 🍊 snapToPage `(index: number = 0) => void`
 
 Snaps the page component to the page at the provided index. Defaults to `0`.
 
@@ -72,9 +170,7 @@ export function Page2Button(props): Override {
 }
 ```
 
-### snapToNextPage
-
-`(direction: 'right' | 'left' = 'right') => void`
+### 🍊 snapToNextPage `(direction: 'right' | 'left' = 'right') => void`
 
 Snaps the page component to the next page in a given direction, either `"right"`
 or `"left"`. Defaults to `"right"`.
@@ -97,9 +193,7 @@ export function LeftButton(props): Override {
 }
 ```
 
-### snapToPreviousPage
-
-`() => void`
+### 🍊 snapToPreviousPage `() => void`
 
 Snaps the page component to the previous page in the hook's "history" of visited
 pages.
@@ -114,9 +208,7 @@ export function PrevButton(props): Override {
 }
 ```
 
-### snapToProgress
-
-`(progress: number) => void`
+### 🍊 snapToProgress `(progress: number) => void`
 
 Snaps the page component to the nearest page to a given "progress" value, where
 `0` is the Page component's first page and `1` is the last.
@@ -131,9 +223,7 @@ export function MiddleButton(props): Override {
 }
 ```
 
-### nextPage
-
-`(direction: 'right' | 'left' = 'right') => number | null`
+### 🍊 nextPage `(direction: 'right' | 'left' = 'right') => number | null`
 
 Returns the index of the next page in the given direction, or else `null` if no
 page exists in that direction.
@@ -148,9 +238,7 @@ export function NextIndicator(props): Override {
 }
 ```
 
-### previousPage
-
-`() => number | null`
+### 🍊 previousPage `() => number | null`
 
 Returns the index of the previous page in the hook's "history" of visited pages,
 or else `null` if no page exists.
@@ -161,24 +249,6 @@ export function BackIndicator(props): Override {
 
 	return {
 		opacity: previousPage() === null ? 0.5 : 1,
-	}
-}
-```
-
-## Properties
-
-### currentPage
-
-`number`
-
-The component's current page (as determined by the hook).
-
-```tsx
-export function PageNumber(props): Override {
-	const { currentPage } = usePageControls()
-
-	return {
-		text: currentPage,
 	}
 }
 ```

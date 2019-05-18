@@ -1,16 +1,35 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
-function createPageControls(loop = false) {
-    // Store
+/**
+ * # createPageControls
+ * Create a unique `usePageControls` hook.
+ * ```
+
+// Without options
+const usePageControls = createPageControls()
+
+// With options
+const usePageControls = createPageControls({
+  loop: true,
+  currentPage: 3,
+  history: [1, 0, 2, 0, 1],
+})
+```
+ */
+function createPageControls(options) {
+    const { currentPage = 0 } = options;
+    const { loop = false, history = [currentPage] } = options;
+    // Initial Store
     let store = {
         connected: null,
         progress: 0,
-        currentPage: 0,
+        currentPage,
         pages: [],
         loop,
-        history: [0],
+        history,
     };
+    // Store
     const storeSetters = new Set();
     const setStoreState = (changes) => {
         store = Object.assign({}, store, changes);
@@ -19,12 +38,12 @@ function createPageControls(loop = false) {
     };
     // Hook
     const usePageControls = (props) => {
+        // Connect to store
         const [state, setState] = React.useState(store);
         React.useEffect(() => () => storeSetters.delete(setState), []);
         storeSetters.add(setState);
-        const set = (values) => {
-            setStoreState(values);
-        };
+        const set = (values) => setStoreState(values);
+        // If this
         if (props) {
             React.useEffect(() => {
                 const componentProps = props.children[0].props;
@@ -53,9 +72,7 @@ function createPageControls(loop = false) {
          */
         const onChangePage = (currentPage) => {
             if (currentPage !== state.currentPage) {
-                set({
-                    currentPage,
-                });
+                snapToPage(currentPage);
             }
         };
         /**
