@@ -313,6 +313,23 @@
         }
       ]
     },
+    "src/controllers/SelectionController.mdx": {
+      "name": "SelectionController",
+      "route": "/SelectionController",
+      "id": "d701d4edaf7f0b6932208dd01fab76ef",
+      "filepath": "src/controllers/SelectionController.mdx",
+      "link": null,
+      "slug": "src-controllers-selection-controller",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "selectioncontroller",
+          "value": "SelectionController"
+        }
+      ]
+    },
     "src/controllers/ScrollController.mdx": {
       "name": "ScrollController",
       "route": "/ScrollController",
@@ -332,23 +349,6 @@
           "depth": 2,
           "slug": "markers",
           "value": "Markers"
-        }
-      ]
-    },
-    "src/controllers/SelectionController.mdx": {
-      "name": "SelectionController",
-      "route": "/SelectionController",
-      "id": "d701d4edaf7f0b6932208dd01fab76ef",
-      "filepath": "src/controllers/SelectionController.mdx",
-      "link": null,
-      "slug": "src-controllers-selection-controller",
-      "order": 0,
-      "menu": null,
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "selectioncontroller",
-          "value": "SelectionController"
         }
       ]
     }

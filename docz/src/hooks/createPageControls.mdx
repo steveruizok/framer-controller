@@ -62,12 +62,40 @@ Updates the hook when the user changes the Page component's current page.
 
 Snaps the page component to the page at the provided index. Defaults to `0`.
 
+```tsx
+export function Page2Button(props): Override {
+	const { snapToPage, nextPage } = usePageControls()
+
+	return {
+		onTap: () => snapToPage(2),
+	}
+}
+```
+
 ### snapToNextPage
 
 `(direction: 'right' | 'left' = 'right') => void`
 
 Snaps the page component to the next page in a given direction, either `"right"`
 or `"left"`. Defaults to `"right"`.
+
+```tsx
+export function RightButton(props): Override {
+	const { snapToNextPage } = usePageControls()
+
+	return {
+		onTap: () => snapToNextPage(),
+	}
+}
+
+export function LeftButton(props): Override {
+	const { snapToNextPage } = usePageControls()
+
+	return {
+		onTap: () => snapToNextPage('left'),
+	}
+}
+```
 
 ### snapToPreviousPage
 
@@ -76,12 +104,32 @@ or `"left"`. Defaults to `"right"`.
 Snaps the page component to the previous page in the hook's "history" of visited
 pages.
 
+```tsx
+export function PrevButton(props): Override {
+	const { snapToPreviousPage } = usePageControls()
+
+	return {
+		onTap: () => snapToPreviousPage(),
+	}
+}
+```
+
 ### snapToProgress
 
 `(progress: number) => void`
 
 Snaps the page component to the nearest page to a given "progress" value, where
 `0` is the Page component's first page and `1` is the last.
+
+```tsx
+export function MiddleButton(props): Override {
+	const { snapToProgress } = usePageControls()
+
+	return {
+		onTap: () => snapToProgress(0.5),
+	}
+}
+```
 
 ### nextPage
 
@@ -90,6 +138,16 @@ Snaps the page component to the nearest page to a given "progress" value, where
 Returns the index of the next page in the given direction, or else `null` if no
 page exists in that direction.
 
+```tsx
+export function NextIndicator(props): Override {
+	const { nextPage } = usePageControls()
+
+	return {
+		opacity: nextPage() === null ? 0.5 : 1,
+	}
+}
+```
+
 ### previousPage
 
 `() => void`
@@ -97,11 +155,31 @@ page exists in that direction.
 Returns the index of the previous page in the hook's "history" of visited pages,
 or else `null` if no page exists.
 
+```tsx
+export function BackIndicator(props): Override {
+	const { previousPage } = usePageControls()
+
+	return {
+		opacity: previousPage() === null ? 0.5 : 1,
+	}
+}
+```
+
 ## Properties
 
 ### currentPage
 
 The component's current page (as determined by the hook).
+
+```tsx
+export function PageNumber(props): Override {
+	const { currentPage } = usePageControls()
+
+	return {
+		text: currentPage,
+	}
+}
+```
 
 # Example
 
