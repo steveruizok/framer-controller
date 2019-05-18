@@ -260,20 +260,20 @@
         }
       ]
     },
-    "src/controllers/PlacesController.mdx": {
-      "name": "PlacesController",
-      "route": "/PlacesController",
-      "id": "1a81603f745927709488ffc17eba8d7c",
-      "filepath": "src/controllers/PlacesController.mdx",
+    "src/controllers/PageController.mdx": {
+      "name": "PageController",
+      "route": "/PageController",
+      "id": "b4200fcfbadcfd0cd1f857147db0b3a0",
+      "filepath": "src/controllers/PageController.mdx",
       "link": null,
-      "slug": "src-controllers-places-controller",
+      "slug": "src-controllers-page-controller",
       "order": 0,
       "menu": null,
       "headings": [
         {
           "depth": 1,
-          "slug": "placescontroller",
-          "value": "PlacesController"
+          "slug": "pagecontroller",
+          "value": "PageController"
         }
       ]
     },
@@ -294,37 +294,20 @@
         }
       ]
     },
-    "src/controllers/SelectionController.mdx": {
-      "name": "SelectionController",
-      "route": "/SelectionController",
-      "id": "d701d4edaf7f0b6932208dd01fab76ef",
-      "filepath": "src/controllers/SelectionController.mdx",
+    "src/controllers/PlacesController.mdx": {
+      "name": "PlacesController",
+      "route": "/PlacesController",
+      "id": "1a81603f745927709488ffc17eba8d7c",
+      "filepath": "src/controllers/PlacesController.mdx",
       "link": null,
-      "slug": "src-controllers-selection-controller",
+      "slug": "src-controllers-places-controller",
       "order": 0,
       "menu": null,
       "headings": [
         {
           "depth": 1,
-          "slug": "selectioncontroller",
-          "value": "SelectionController"
-        }
-      ]
-    },
-    "src/controllers/PageController.mdx": {
-      "name": "PageController",
-      "route": "/PageController",
-      "id": "b4200fcfbadcfd0cd1f857147db0b3a0",
-      "filepath": "src/controllers/PageController.mdx",
-      "link": null,
-      "slug": "src-controllers-page-controller",
-      "order": 0,
-      "menu": null,
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "pagecontroller",
-          "value": "PageController"
+          "slug": "placescontroller",
+          "value": "PlacesController"
         }
       ]
     },
@@ -347,6 +330,23 @@
           "depth": 2,
           "slug": "markers",
           "value": "Markers"
+        }
+      ]
+    },
+    "src/controllers/SelectionController.mdx": {
+      "name": "SelectionController",
+      "route": "/SelectionController",
+      "id": "d701d4edaf7f0b6932208dd01fab76ef",
+      "filepath": "src/controllers/SelectionController.mdx",
+      "link": null,
+      "slug": "src-controllers-selection-controller",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "selectioncontroller",
+          "value": "SelectionController"
         }
       ]
     }
