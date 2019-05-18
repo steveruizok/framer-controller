@@ -9,7 +9,9 @@
     "native": false,
     "codeSandbox": true,
     "themeConfig": {},
-    "plugins": []
+    "plugins": [
+      {}
+    ]
   },
   "entries": {
     "src/index.mdx": {
@@ -226,23 +228,6 @@
         }
       ]
     },
-    "src/controllers/IntervalController.mdx": {
-      "name": "IntervalController",
-      "route": "/IntervalController",
-      "id": "63ff1259c9dd62f3f283ee853d12b1f5",
-      "filepath": "src/controllers/IntervalController.mdx",
-      "link": null,
-      "slug": "src-controllers-interval-controller",
-      "order": 0,
-      "menu": null,
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "intervalcontroller",
-          "value": "IntervalController"
-        }
-      ]
-    },
     "src/controllers/IndexController.mdx": {
       "name": "IndexController",
       "route": "/IndexController",
@@ -257,6 +242,23 @@
           "depth": 1,
           "slug": "indexcontroller",
           "value": "IndexController"
+        }
+      ]
+    },
+    "src/controllers/IntervalController.mdx": {
+      "name": "IntervalController",
+      "route": "/IntervalController",
+      "id": "63ff1259c9dd62f3f283ee853d12b1f5",
+      "filepath": "src/controllers/IntervalController.mdx",
+      "link": null,
+      "slug": "src-controllers-interval-controller",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "intervalcontroller",
+          "value": "IntervalController"
         }
       ]
     },
