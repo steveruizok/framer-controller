@@ -36,18 +36,23 @@ function createPageControls(options) {
         store.progress = store.currentPage / (store.pages.length - 1) || 0;
         storeSetters.forEach((setter) => setter(store));
     };
+    const set = (values) => setStoreState(values);
     // Hook
     const usePageControls = (props) => {
         // Connect to store
         const [state, setState] = React.useState(store);
         React.useEffect(() => () => storeSetters.delete(setState), []);
         storeSetters.add(setState);
-        const set = (values) => setStoreState(values);
-        // If this
+        // If this hook was called with the props of a scroll component
         if (props) {
+            const { componentIdentifier } = props;
+            if (!componentIdentifier || componentIdentifier !== 'framer/Page') {
+                console.error("⚠️ You've passed the props of some non-Page component to usePageControls. You should only pass props from the Page component that you're trying to control.");
+                return;
+            }
             React.useEffect(() => {
                 const componentProps = props.children[0].props;
-                setStoreState({
+                set({
                     currentPage: componentProps.currentPage,
                     pages: componentProps.children,
                 });
