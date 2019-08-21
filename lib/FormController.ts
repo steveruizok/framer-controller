@@ -219,7 +219,7 @@ export class FormController extends Controller<Form> {
 	 * The form's data entries. For each field, the
 	 * - `value` - The entry's value.
 	 * - `valid` - Whether that value is `valid`, according to its `field.validation`.
-	 * - `touched` - Whether the field has been touched, according to its `field.touch` or `setTouched`.
+	 * - `touched` - Whether the field has been touched, according to its value being set or `setTouched`.
 	 * - `errorText` - Any current `errorText` set on invalid fields.
 	 * - `required` - Whether the field is currently required.
 	 * - `hidden` - Whether the field is currently hidden.
