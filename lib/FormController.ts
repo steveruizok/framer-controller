@@ -20,6 +20,7 @@ type Entry = {
 	valid: boolean
 	hidden: boolean
 	required: boolean
+	touched: boolean
 }
 
 type Entries = { [key in keyof Options]: Entry }
@@ -64,6 +65,7 @@ export class FormController extends Controller<Form> {
 						valid: false,
 						hidden: false,
 						required: false,
+						touched: false
 					},
 				}),
 				{} as Entries
@@ -100,6 +102,7 @@ export class FormController extends Controller<Form> {
 			if (value !== undefined && value !== null) {
 				valid =
 					validation === undefined ? true : validation(value) ? true : false
+				
 
 				// If not complete, use error text (as string or function) if provided
 				errorText =
@@ -116,6 +119,7 @@ export class FormController extends Controller<Form> {
 					value,
 					valid,
 					errorText,
+					touched: true,
 					hidden: false,
 					required: false,
 				},
@@ -180,6 +184,30 @@ export class FormController extends Controller<Form> {
 		})
 		this.setState(state)
 	}
+	
+	/**
+	 * Set the touched state of one of the form's data entries.
+	 * @param {keyof Form['fields']} id - The data entry's `id`.
+	 * @param {boolean} touched - Whether the field has been touched
+	 */
+	setTouched = (id: keyof Form["fields"], touched: boolean) => {
+		const { data } = this.state
+		const state = {
+			...data,
+			[id]: { ...data[id], touched },
+		}
+		this.setState(state)
+	}
+	
+	/**
+	* Reset the touched state of all fields
+	*/
+	setAllUnTouched = () => {
+		const { data } = this.state
+		for (let id in data) {
+			data[id].touched = false	
+		}	
+	}
 
 	/**
 	 * The form's fields. 	 */
@@ -191,6 +219,7 @@ export class FormController extends Controller<Form> {
 	 * The form's data entries. For each field, the
 	 * - `value` - The entry's value.
 	 * - `valid` - Whether that value is `valid`, according to its `field.validation`.
+	 * - `touched` - Whether the field has been touched, according to its `field.touch` or `setTouched`.
 	 * - `errorText` - Any current `errorText` set on invalid fields.
 	 * - `required` - Whether the field is currently required.
 	 * - `hidden` - Whether the field is currently hidden.
